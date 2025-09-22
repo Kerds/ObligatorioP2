@@ -1,6 +1,8 @@
-﻿namespace ObligatorioP2
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ObligatorioP2
 {
-    internal class Equipo
+    public class Equipo
     {
         public int Id { get; set; }
         public static int UId { get; set; } = 0;
@@ -11,6 +13,7 @@
         }
         public Equipo(string nombre)
         {
+            Validar(nombre);
             Id = UId;
             Nombre = nombre;
             UId++;
@@ -30,7 +33,7 @@
         }
         public void Validar(string nombre)
         {
-                       ValidarNombre(string nombre);
+                       ValidarNombre(nombre);
         }
         public void ValidarNombre(string nombre)
         {

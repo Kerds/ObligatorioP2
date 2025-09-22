@@ -2,7 +2,7 @@
 
 namespace ObligatorioP2
 {
-    internal class Usuario
+    public class Usuario
     {
         public int Id { get; set; }
         public static int UId { get; set; } = 0;
