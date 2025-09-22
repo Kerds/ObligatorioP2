@@ -1,6 +1,6 @@
 ﻿namespace ObligatorioP2
 {
-    internal class TipoGasto
+    public class TipoGasto
     {
     }
 }

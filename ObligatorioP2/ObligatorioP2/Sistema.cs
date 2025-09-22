@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ObligatorioP2
 {
-    internal class Sistema
+    public class Sistema
     {
         private List<Usuario> Usuarios;
         private List<Pago> Pagos;

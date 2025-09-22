@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ObligatorioP2
 {
-    internal class InstanciaPagoRecurrente : InstanciaPago
+    public class InstanciaPagoRecurrente : InstanciaPago
     {
         public DateTime FechaInicio { get; set; }
         public DateTime? FechaFin { get; set; }
