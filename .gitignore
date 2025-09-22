@@ -1,0 +1,28 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Archivos de compilación
+bin/
+obj/
+[Bb]uild/
+[Ll]og/
+
+# Paquetes NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+packages/
+
+# Archivos de cache y temporales
+*.tmp
+*.bak
+*.log
+
+# Configuración local
+*.dbmdl
+*.jfm
+*.cache
