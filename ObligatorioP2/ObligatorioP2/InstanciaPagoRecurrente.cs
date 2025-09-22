@@ -17,13 +17,10 @@ namespace ObligatorioP2
             FechaFin = fechaFin;
             Validar(montoBase);
         }
-        public override void Validar(double montoBase)
+        public override void Validar(double montoBase, DateTime fechaInicio,DateTime fechaFin)
         {
             base.Validar(montoBase);
-            if (FechaFin.HasValue)
-            {
-                ValidarFechas(FechaInicio, FechaFin.Value);
-            }
+            ValidarFechas(fechaInicio, fechaFin);
         }
 
         private void ValidarFechas(DateTime fechaInicio, DateTime fechaFin)
