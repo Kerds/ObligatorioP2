@@ -26,9 +26,9 @@ namespace ObligatorioP2
         public void ValidarFechaPago()
         {
               if (FechaPago == DateTime.MinValue)
-            {
-                throw new Exception("El campo fecha de pago no puede estar vacio.") 
-            }
+              {
+                  throw new Exception("El campo fecha de pago no puede estar vacio.");
+              }
         }
         public void ValidarReciboPago()
         {
