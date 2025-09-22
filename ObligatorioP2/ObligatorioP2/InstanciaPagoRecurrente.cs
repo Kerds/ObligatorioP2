@@ -17,23 +17,31 @@ namespace ObligatorioP2
             FechaFin = fechaFin;
             Validar(montoBase);
         }
-        public override void Validar(double montoBase, DateTime fechaInicio,DateTime fechaFin)
+        public override void Validar(double montoBase)
         {
             base.Validar(montoBase);
-            ValidarFechas(fechaInicio, fechaFin);
-        }
-
-        private void ValidarFechas(DateTime fechaInicio, DateTime fechaFin)
-        {
-            if (fechaInicio == DateTime.MinValue)
+            if (FechaInicio == DateTime.MinValue)
             {
                 throw new Exception("El campo fecha de inicio no puede estar vacio.");
             }
-            if (fechaFin < fechaInicio)
+            if (FechaFin < FechaInicio)
             {
                 throw new Exception("La fecha fin no puede ser anterior a la fecha de inicio.");
             }
+            //ValidarFechas(fechaInicio, fechaFin);
         }
+
+        //private void ValidarFechas(DateTime fechaInicio, DateTime fechaFin)
+        //{
+        //if (fechaInicio == DateTime.MinValue)
+        // {
+        //  throw new Exception("El campo fecha de inicio no puede estar vacio.");
+        //}
+        // if (fechaFin < fechaInicio)
+        // {
+        //      throw new Exception("La fecha fin no puede ser anterior a la fecha de inicio.");
+        //    }
+        //  }
 
         public override double CalcularMontoPago()
         {
