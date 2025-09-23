@@ -9,7 +9,7 @@
 
         public TipoGasto()
         {
-            Id = UId;
+            Id = UId++;
         }
 
         public TipoGasto(string nombre, string descripcion)

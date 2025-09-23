@@ -30,7 +30,7 @@ namespace ObligatorioP2
         }
         public InstanciaPago()
         {
-            Id = UId;
+            Id = UId++;
         }
         public InstanciaPago(double montoBase)
         {

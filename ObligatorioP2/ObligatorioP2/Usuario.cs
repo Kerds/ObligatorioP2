@@ -15,7 +15,7 @@ namespace ObligatorioP2
         public DateTime FechaAlta { get; set; }
         public Usuario()
         {
-            Id = UId;
+            Id = UId++;
         }
         public Usuario(string nombre, string apellido, string contrasenia, Equipo equipo)
         {

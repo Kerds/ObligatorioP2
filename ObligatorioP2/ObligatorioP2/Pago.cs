@@ -14,7 +14,7 @@
 
         public Pago()
         {
-            Id = UId;
+            Id = UId++;
         }
 
         public Pago(MetodosPago metodosPago, Usuario usuarioAsociado, TipoGasto tipoGasto, string descripcion, TipoPago tipoPago, InstanciaPago instanciaPago, double montoFinal)
