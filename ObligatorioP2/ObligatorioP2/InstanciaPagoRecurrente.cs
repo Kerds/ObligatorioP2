@@ -28,20 +28,20 @@ namespace ObligatorioP2
             {
                 throw new Exception("La fecha fin no puede ser anterior a la fecha de inicio.");
             }
-            //ValidarFechas(fechaInicio, fechaFin);
+            ValidarFechas(fechaInicio, fechaFin);
         }
 
-        //private void ValidarFechas(DateTime fechaInicio, DateTime fechaFin)
-        //{
-        //if (fechaInicio == DateTime.MinValue)
-        // {
-        //  throw new Exception("El campo fecha de inicio no puede estar vacio.");
-        //}
-        // if (fechaFin < fechaInicio)
-        // {
-        //      throw new Exception("La fecha fin no puede ser anterior a la fecha de inicio.");
-        //    }
-        //  }
+        private void ValidarFechas(DateTime fechaInicio, DateTime fechaFin)
+        {
+        if (fechaInicio == DateTime.MinValue)
+         {
+          throw new Exception("El campo fecha de inicio no puede estar vacio.");
+        }
+       if (fechaFin < fechaInicio)
+         {
+              throw new Exception("La fecha fin no puede ser anterior a la fecha de inicio.");
+           }
+         }
 
         public override double CalcularMontoPago()
         {
