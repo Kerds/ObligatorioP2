@@ -9,7 +9,7 @@ namespace ObligatorioP2
         public string Nombre { get; set; }
 
         public Equipo(){
-            Id = UId;
+            Id = UId++;
         }
         public Equipo(string nombre)
         {
