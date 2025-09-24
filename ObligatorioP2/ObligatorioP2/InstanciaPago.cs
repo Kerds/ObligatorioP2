@@ -16,6 +16,7 @@ namespace ObligatorioP2
 
         public abstract bool EsPagoActivo(DateTime mes);
 
+        public abstract string MiTipo();
         public virtual void Validar(double montoBase)
         {
             ValidarMontoBase(montoBase);

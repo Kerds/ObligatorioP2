@@ -12,27 +12,50 @@ namespace ObligatorioP2
         public int ReciboPago { get; set; }
         public instanciaPagoUnico(double montoBase, DateTime fechaPago, int reciboPago) : base(montoBase)
         {
-
+            SetFechaPago(fechaPago);
+            SetReciboPago(reciboPago);
             Validar(montoBase);
-            FechaPago = fechaPago;
-            ReciboPago = reciboPago;
         }
         public override void Validar(double montoBase)
         {
             base.Validar(montoBase);
-            ValidarFechaPago();
-            ValidarReciboPago();
+             
         }
-        public void ValidarFechaPago()
+        public void SetFechaPago(DateTime fechaPago)
         {
-              if (FechaPago == DateTime.MinValue)
+            try
+            {
+                ValidarFechaPago(fechaPago);
+                FechaPago = fechaPago;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void SetReciboPago(int reciboPago)
+        {
+            try
+            {
+                ValidarReciboPago(reciboPago);
+                ReciboPago = reciboPago;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public void ValidarFechaPago(DateTime fechaPago)
+        {
+              if (fechaPago == DateTime.MinValue)
               {
                   throw new Exception("El campo fecha de pago no puede estar vacio.");
               }
         }
-        public void ValidarReciboPago()
+        public void ValidarReciboPago(int reciboPago)
         {
-            if (ReciboPago <= 0)
+            if (reciboPago <= 0)
             {
                 throw new Exception("El numero de recibo debe ser mayor a 0.");
             }
@@ -45,7 +68,11 @@ namespace ObligatorioP2
 
         public override bool EsPagoActivo(DateTime mes)
         {
-            throw new NotImplementedException();
+            return FechaPago.Month == mes.Month && FechaPago.Year == mes.Year;
+        }
+        public override string MiTipo()
+        {
+            return "Unico";
         }
     }
 }
