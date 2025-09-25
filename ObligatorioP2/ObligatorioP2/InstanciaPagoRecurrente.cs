@@ -8,8 +8,8 @@ namespace ObligatorioP2
 {
     public class InstanciaPagoRecurrente : InstanciaPago
     {
-        public DateTime FechaInicio { get; set; }
-        public DateTime? FechaFin { get; set; }
+        private DateTime FechaInicio { get; set; }
+        private DateTime? FechaFin { get; set; }
 
         public InstanciaPagoRecurrente(double montoBase, DateTime fechaInicio, DateTime? fechaFin = null) : base(montoBase)
         {
@@ -17,7 +17,15 @@ namespace ObligatorioP2
             SetFechaFin(fechaFin ?? DateTime.MinValue);
             Validar(montoBase);
         }
-        private void SetFechaInicio(DateTime fechaInicio)
+        public DateTime GetFechaInicio()
+        {
+            return FechaInicio;
+        }
+        public DateTime? GetFechaFin()
+        {
+            return FechaFin;
+        }
+        public void SetFechaInicio(DateTime fechaInicio)
         {
             try
             {
@@ -29,7 +37,7 @@ namespace ObligatorioP2
                 throw new Exception(ex.Message);
             }
         }
-        private void SetFechaFin(DateTime fechaFin)
+        public void SetFechaFin(DateTime fechaFin)
         {
             ValidarFechaFin(fechaFin);
             FechaFin = fechaFin;
@@ -51,7 +59,8 @@ namespace ObligatorioP2
         }
         public void ValidarFechaFin(DateTime fechaFin)
         {
-            if (fechaFin < FechaInicio)
+            DateTime fechaInicio = GetFechaInicio();
+            if (fechaFin < fechaInicio )
             {
                 throw new Exception("La fecha fin no puede ser anterior a la fecha de inicio.");
             }
