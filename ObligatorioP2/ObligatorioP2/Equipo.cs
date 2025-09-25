@@ -7,7 +7,7 @@ namespace ObligatorioP2
         public int Id { get; set; }
         public static int UId { get; set; } = 0;
         public string Nombre { get; set; }
-
+        public List<Usuario> miembros { get; set; } = new List<Usuario>();
         public Equipo(){
             Id = UId++;
         }
