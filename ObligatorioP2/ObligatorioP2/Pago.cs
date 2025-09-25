@@ -8,7 +8,6 @@
         public Usuario UsuarioAsociado { get; set; }
         public TipoGasto TipoGasto { get; set; }
         public string Descripcion { get; set; }
-        public TipoPago TipoPago { get; set; }
         public InstanciaPago InstanciaPago { get; set; }
         public double MontoFinal { get; set; }
 
@@ -17,14 +16,13 @@
             Id = UId++;
         }
 
-        public Pago(MetodosPago metodosPago, Usuario usuarioAsociado, TipoGasto tipoGasto, string descripcion, TipoPago tipoPago, InstanciaPago instanciaPago, double montoFinal)
+        public Pago(MetodosPago metodosPago, Usuario usuarioAsociado, TipoGasto tipoGasto, string descripcion, InstanciaPago instanciaPago, double montoFinal)
         {
             MetodosPago = metodosPago;
             UsuarioAsociado = usuarioAsociado;
             TipoGasto = tipoGasto;
             Descripcion = descripcion;
-            TipoPago = tipoPago;
-            InstanciaPago = instanciaPago;
+C            InstanciaPago = instanciaPago;
             MontoFinal = montoFinal;
             Validar();
         }

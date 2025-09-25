@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ObligatorioP2
 {
-    public class instanciaPagoUnico : InstanciaPago
+    public class InstanciaPagoUnico : InstanciaPago
     {
-        public DateTime FechaPago { get; set; }
-        public int ReciboPago { get; set; }
-        public instanciaPagoUnico(double montoBase, DateTime fechaPago, int reciboPago) : base(montoBase)
+        private DateTime FechaPago { get; set; }
+        private int ReciboPago { get; set; }
+        public InstanciaPagoUnico(double montoBase, DateTime fechaPago, int reciboPago) : base(montoBase)
         {
             SetFechaPago(fechaPago);
             SetReciboPago(reciboPago);
@@ -20,6 +20,14 @@ namespace ObligatorioP2
         {
             base.Validar(montoBase);
              
+        }
+        public DateTime GetFechaPago()
+        {
+            return FechaPago;
+        }
+        public int GetReciboPago()
+        {
+            return ReciboPago;
         }
         public void SetFechaPago(DateTime fechaPago)
         {
