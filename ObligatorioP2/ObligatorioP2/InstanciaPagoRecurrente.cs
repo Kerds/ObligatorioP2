@@ -60,7 +60,7 @@ namespace ObligatorioP2
         public void ValidarFechaFin(DateTime fechaFin)
         {
             DateTime fechaInicio = GetFechaInicio();
-            if (fechaFin < fechaInicio )
+            if (fechaFin < fechaInicio)
             {
                 throw new Exception("La fecha fin no puede ser anterior a la fecha de inicio.");
             }
@@ -70,7 +70,7 @@ namespace ObligatorioP2
         {
             throw new NotImplementedException();
         }
-        public int CantidadMesesActivos()
+        public int GetCuotas()
         {
             if (FechaFin == null)
             {
