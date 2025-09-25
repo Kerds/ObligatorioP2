@@ -22,7 +22,7 @@
             UsuarioAsociado = usuarioAsociado;
             TipoGasto = tipoGasto;
             Descripcion = descripcion;
-C            InstanciaPago = instanciaPago;
+            InstanciaPago = instanciaPago;
             MontoFinal = montoFinal;
             Validar();
         }
@@ -31,19 +31,12 @@ C            InstanciaPago = instanciaPago;
         {
             ValidarDescripcion();
            ValidarMetodosPago();
-           ValidarTipoPago();
+         
         }
         
       
 
-        public void ValidarTipoPago()
-        {
-            if (TipoPago != TipoPago.Recurrente && TipoPago != TipoPago.Unico)
-            {
-                throw new Exception("Tipo pago invalido");
-            }
-        }
-
+       
         public void ValidarMetodosPago()
         {
             if (MetodosPago != MetodosPago.Credito && MetodosPago != MetodosPago.Debito &&
