@@ -17,14 +17,14 @@ namespace ObligatorioP2
         public abstract bool EsPagoActivo(DateTime mes);
 
         public abstract string MiTipo();
-        public virtual void Validar(double montoBase)
+        public virtual void Validar()
         {
-            ValidarMontoBase(montoBase);
+            ValidarMontoBase();
         }
 
-        public void ValidarMontoBase(double montoBase)
+        public void ValidarMontoBase()
         {
-            if (montoBase <= 0)
+            if (MontoBase <= 0)
             {
                 throw new Exception("El monto base debe ser mayor a 0.");
             }
@@ -35,7 +35,6 @@ namespace ObligatorioP2
         }
         public InstanciaPago(double montoBase)
         {
-            Validar(montoBase);
             Id = UId;
             MontoBase = montoBase;
             UId++;

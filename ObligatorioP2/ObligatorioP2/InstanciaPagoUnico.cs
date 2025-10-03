@@ -12,14 +12,16 @@ namespace ObligatorioP2
         private int ReciboPago { get; set; }
         public InstanciaPagoUnico(double montoBase, DateTime fechaPago, int reciboPago) : base(montoBase)
         {
-            SetFechaPago(fechaPago);
-            SetReciboPago(reciboPago);
-            Validar(montoBase);
+            FechaPago = fechaPago;
+            ReciboPago = reciboPago;
+
+            Validar();
         }
-        public override void Validar(double montoBase)
+        public override void Validar()
         {
-            base.Validar(montoBase);
-             
+            base.Validar();
+            ValidarFechaPago();
+            ValidarReciboPago();
         }
         public DateTime GetFechaPago()
         {
@@ -29,41 +31,16 @@ namespace ObligatorioP2
         {
             return ReciboPago;
         }
-        public void SetFechaPago(DateTime fechaPago)
+        public void ValidarFechaPago()
         {
-            try
-            {
-                ValidarFechaPago(fechaPago);
-                FechaPago = fechaPago;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public void SetReciboPago(int reciboPago)
-        {
-            try
-            {
-                ValidarReciboPago(reciboPago);
-                ReciboPago = reciboPago;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
-        public void ValidarFechaPago(DateTime fechaPago)
-        {
-              if (fechaPago == DateTime.MinValue)
+              if (FechaPago == DateTime.MinValue)
               {
                   throw new Exception("El campo fecha de pago no puede estar vacio.");
               }
         }
-        public void ValidarReciboPago(int reciboPago)
+        public void ValidarReciboPago()
         {
-            if (reciboPago <= 0)
+            if (ReciboPago <= 0)
             {
                 throw new Exception("El numero de recibo debe ser mayor a 0.");
             }

@@ -13,9 +13,10 @@ namespace ObligatorioP2
 
         public InstanciaPagoRecurrente(double montoBase, DateTime fechaInicio, DateTime? fechaFin = null) : base(montoBase)
         {
-            SetFechaInicio(fechaInicio);
-            SetFechaFin(fechaFin ?? DateTime.MinValue);
-            Validar(montoBase);
+
+            FechaInicio = fechaInicio;
+            FechaFin = fechaFin;
+            Validar();
         }
         public DateTime GetFechaInicio()
         {
@@ -25,42 +26,24 @@ namespace ObligatorioP2
         {
             return FechaFin;
         }
-        public void SetFechaInicio(DateTime fechaInicio)
+
+        public override void Validar()
         {
-            try
-            {
-                ValidarFechaInicio(fechaInicio);
-                FechaInicio = fechaInicio;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            base.Validar();
+            ValidarFechaInicio();
+            ValidarFechaFin();
         }
-        public void SetFechaFin(DateTime fechaFin)
+        public void ValidarFechaInicio()
         {
-            ValidarFechaFin(fechaFin);
-            FechaFin = fechaFin;
-        }
-        public override void Validar(double montoBase)
-        {
-            base.Validar(montoBase);
-            if (FechaFin != null && FechaFin < FechaInicio)
-            {
-                throw new Exception("La fecha fin no puede ser anterior a la fecha de inicio.");
-            }
-        }
-        public void ValidarFechaInicio(DateTime fechaInicio)
-        {
-            if (fechaInicio == DateTime.MinValue)
+            if (FechaInicio == DateTime.MinValue)
             {
                 throw new Exception("El campo fecha de inicio no puede estar vacio.");
             }
         }
-        public void ValidarFechaFin(DateTime fechaFin)
+        public void ValidarFechaFin()
         {
             DateTime fechaInicio = GetFechaInicio();
-            if (fechaFin < fechaInicio)
+            if (FechaFin < fechaInicio)
             {
                 throw new Exception("La fecha fin no puede ser anterior a la fecha de inicio.");
             }
