@@ -16,7 +16,11 @@ namespace ObligatorioP2
         {
 
             FechaInicio = fechaInicio;
-            FechaFin = fechaFin;
+            if (fechaFin != null)
+            {
+                FechaFin = fechaFin;
+            }
+           
         }
         public DateTime GetFechaInicio()
         {
