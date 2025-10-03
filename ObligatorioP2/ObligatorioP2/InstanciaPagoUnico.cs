@@ -14,8 +14,6 @@ namespace ObligatorioP2
         {
             FechaPago = fechaPago;
             ReciboPago = reciboPago;
-
-            Validar();
         }
         public override void Validar()
         {
