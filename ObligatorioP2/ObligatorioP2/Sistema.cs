@@ -29,7 +29,24 @@ namespace ObligatorioP2
             }
             return Instancia;
         }
-        public void AgregarUsuario(Usuario usuario)
+        public List<Usuario> GetUsuarios()
+        {
+            return Usuarios;
+        }
+        public List<Pago> GetPagos()
+        {
+            return Pagos;
+        }
+        public List<Equipo> GetEquipos()
+        {
+            return Equipos;
+        }
+        public List<TipoGasto> GetTipoGastos()
+        {
+            return TipoGastos;
+        }
+
+        public void AltaUsuario(Usuario usuario)
         {
             try
             {
@@ -50,7 +67,7 @@ namespace ObligatorioP2
             }
             Usuarios.Add(usuario);
         }
-        public void AgregarEquipo(Equipo equipo)
+        public void AltaEquipo(Equipo equipo)
         {
             try
             {
@@ -70,7 +87,7 @@ namespace ObligatorioP2
             }
             Equipos.Add(equipo);
         }
-        public void AgregarTipoGasto(TipoGasto tipoGasto)
+        public void AltaTipoGasto(TipoGasto tipoGasto)
         {
             try
             {
@@ -90,7 +107,7 @@ namespace ObligatorioP2
             }
             TipoGastos.Add(tipoGasto);
         }
-        public void AgregarPago(Pago pago)
+        public void AltaPago(Pago pago)
         {
             try
             {
