@@ -8,6 +8,7 @@ namespace ObligatorioP2
         public static int UId { get; set; } = 0;
         public string Nombre { get; set; }
         public List<Usuario> Miembros { get; set; } = new List<Usuario>();
+        
         public Equipo(){
             Id = UId++;
         }
@@ -45,6 +46,7 @@ namespace ObligatorioP2
             }
             Miembros.Add(usuario);
         }
+
         public override bool Equals(object? obj)
         {
             if (obj is Equipo)
