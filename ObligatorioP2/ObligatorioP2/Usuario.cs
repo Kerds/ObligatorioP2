@@ -18,9 +18,7 @@ namespace ObligatorioP2
             Id = UId++;
         }
         public Usuario(string nombre, string apellido, string contrasenia, Equipo equipo)
-        {
-            Validar(nombre, apellido, contrasenia, equipo);
-            Id = UId;
+        {   Id = UId;
             Nombre = nombre;
             Apellido = apellido;
             Contrasenia = contrasenia;
@@ -32,46 +30,37 @@ namespace ObligatorioP2
         {
             return $"El usuario {Nombre} {Apellido} pertenece al equipo: {Equipo.Nombre}";
         }
-        public override bool Equals(object? obj)
+        public void Validar()
         {
-            if (obj is Usuario)
-            {
-                Usuario usuario = (Usuario)obj;
-                return this.Id == usuario.Id;
-            }
-            return false;
+            ValidarNombre();
+            ValidarApellido();
+            ValidarContrasenia();
+            ValidarEquipo();
         }
-        public void Validar(string nombre, string apellido, string contrasenia, Equipo equipo)
+        public void ValidarNombre()
         {
-            ValidarNombre(nombre);
-            ValidarApellido(apellido);
-            ValidarContrasenia(contrasenia);
-            ValidarEquipo(equipo);
-        }
-        public void ValidarNombre(string nombre)
-        {
-            if (nombre.Length < 3)
+            if (Nombre.Length < 3)
             {
                 throw new Exception("El nombre debe tener al menos 3 caracteres.");
             }
         }
-        public void ValidarApellido(string apellido)
+        public void ValidarApellido()
         {
-            if (apellido.Length < 3)
+            if (Apellido.Length < 3)
             {
                 throw new Exception("El apellido debe tener al menos 3 caracteres.");
             }
         }
-        public void ValidarContrasenia(string contrasenia)
+        public void ValidarContrasenia()
         {
-            if (contrasenia.Length < 8)
+            if (Contrasenia.Length < 8)
             {
                 throw new Exception("La contraseña debe tener al menos 8 caracteres.");
             }
         }
-        public void ValidarEquipo(Equipo equipo)
+        public void ValidarEquipo()
         {
-            if (equipo == null)
+            if ()
             {
                 throw new Exception("El equipo no puede ser nulo.");
             }
@@ -104,6 +93,19 @@ namespace ObligatorioP2
             {
                 throw new Exception("El email no es válido.");
             }
+        }
+        public string GetEmail()
+        {
+            return Email;
+        }
+        public override bool Equals(object? obj)
+        {
+            if (obj is Usuario)
+            {
+                Usuario usuario = (Usuario)obj;
+                return this.Id == usuario.Id;
+            }
+            return false;
         }
     }
 }
