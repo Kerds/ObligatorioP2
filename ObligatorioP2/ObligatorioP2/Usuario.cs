@@ -18,13 +18,12 @@ namespace ObligatorioP2
             Id = UId++;
         }
         public Usuario(string nombre, string apellido, string contrasenia, Equipo equipo)
-        {   Id = UId;
+        {   Id = UId++;
             Nombre = nombre;
             Apellido = apellido;
             Contrasenia = contrasenia;
             Equipo = equipo;
             FechaAlta = DateTime.Now;
-            UId++;
         }
         public override string ToString()
         {
@@ -36,6 +35,7 @@ namespace ObligatorioP2
             ValidarApellido();
             ValidarContrasenia();
             ValidarEquipo();
+            ValidarFechaAlta();
         }
         public void ValidarNombre()
         {
@@ -92,6 +92,13 @@ namespace ObligatorioP2
             if (!email.Contains("@") || !email.Contains("."))
             {
                 throw new Exception("El email no es válido.");
+            }
+        }
+        public void ValidarFechaAlta()
+        {
+            if (FechaAlta == DateTime.MinValue)
+            {
+                throw new Exception("La fecha de alta no puede estar vacia.");
             }
         }
         public string GetEmail()
