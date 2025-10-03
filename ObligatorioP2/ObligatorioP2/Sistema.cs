@@ -59,7 +59,7 @@ namespace ObligatorioP2
                     throw new Exception("El usuario ya existe.");
                 }
                 usuario.Validar();
-
+                usuario.SetEmail(GenerarEmail(usuario));
             }
             catch (Exception ex)
             {
@@ -127,5 +127,34 @@ namespace ObligatorioP2
             }
             Pagos.Add(pago);
         }
+        public Usuario BuscarUsuarioPorEmail(string email)
+        {
+            foreach (Usuario usuario in Usuarios)
+            {
+                if (usuario.Email == email)
+                {
+                    return usuario;
+                }
+            }
+            return null;
+        }
+        public string GenerarEmail(Usuario usuario)
+        {
+            int counter = 0;
+            string email = null;
+            bool flag = false;
+
+            while (!flag)
+            {
+                email = usuario.CreateEmail(counter);
+
+                if (BuscarUsuarioPorEmail(email) == null)
+                {
+                    flag = true;
+                }
+                counter++;
+            }
+            return email;
         }
     }
+}
