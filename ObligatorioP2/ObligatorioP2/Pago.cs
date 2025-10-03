@@ -16,27 +16,73 @@
             Id = UId++;
         }
 
-        public Pago(MetodosPago metodosPago, Usuario usuarioAsociado, TipoGasto tipoGasto, string descripcion, InstanciaPago instanciaPago, double montoFinal)
+        public Pago(MetodosPago metodosPago, Usuario usuarioAsociado, TipoGasto tipoGasto, string descripcion, InstanciaPago instanciaPago)
         {
             MetodosPago = metodosPago;
             UsuarioAsociado = usuarioAsociado;
             TipoGasto = tipoGasto;
             Descripcion = descripcion;
             InstanciaPago = instanciaPago;
-            MontoFinal = montoFinal;
-            Validar();
+            SetMontoFinal();
         }
 
         public void Validar()
         {
-            ValidarDescripcion();
+           ValidarDescripcion();
            ValidarMetodosPago();
-         
+           ValidarTipoGasto();
+           ValidarInstanciaPago();
+           ValidarMontoFinal();
+           ValidarUsuarioAsociado();
         }
-        
-      
+        private void ValidarUsuarioAsociado()
+        {
+            if (UsuarioAsociado == null)
+            {
+                throw new Exception("El usuario asociado no puede ser nulo");
+            }
+        }
+        private void ValidarMontoFinal()
+        {
+            if (MontoFinal <= 0)
+            {
+                throw new Exception("El monto final debe ser mayor a 0");
+            }
+        }
+        private void ValidarInstanciaPago()
+        {
+            if (InstanciaPago == null)
+            {
+                throw new Exception("La instancia de pago no puede ser nula");
+            }
+            InstanciaPago.Validar();
+        }
 
-       
+        private void ValidarTipoGasto()
+        {
+            if (TipoGasto == null)
+            {
+                throw new Exception("El tipo de gasto no puede ser nulo");
+            }
+        }
+
+        private double SetMontoFinal()
+        {
+            try
+            {
+                if (InstanciaPago == null)
+                {
+                    throw new Exception("La instancia de pago no puede ser nula");
+                }
+                double montoFinal = InstanciaPago.CalcularMontoPago();
+                MontoFinal = montoFinal;
+                return MontoFinal;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al calcular el monto final: " + ex.Message);
+            }
+        }
         public void ValidarMetodosPago()
         {
             if (MetodosPago != MetodosPago.Credito && MetodosPago != MetodosPago.Debito &&
@@ -54,14 +100,18 @@
             }
         }
         
-        
-        
-      
-        
-        
         public override string ToString()
         {
-            return Descripcion;
+            return $"El Pago {Id} de monto {MontoFinal:F2} fue abonado con el método \"{MetodosPago}\", por el usuario: {(UsuarioAsociado != null ? UsuarioAsociado.ToString() : "N/A")}.";
+        }
+        public override bool Equals(object? obj)
+        {
+            if (obj is Pago)
+            {
+                Pago pago = (Pago)obj;
+                return this.Id == pago.Id;
+            }
+            return false;
         }
     }
 }
