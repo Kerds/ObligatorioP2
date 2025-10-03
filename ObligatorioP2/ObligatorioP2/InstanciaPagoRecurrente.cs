@@ -11,12 +11,12 @@ namespace ObligatorioP2
         private DateTime FechaInicio { get; set; }
         private DateTime? FechaFin { get; set; }
 
+
         public InstanciaPagoRecurrente(double montoBase, DateTime fechaInicio, DateTime? fechaFin = null) : base(montoBase)
         {
 
             FechaInicio = fechaInicio;
             FechaFin = fechaFin;
-            Validar();
         }
         public DateTime GetFechaInicio()
         {
