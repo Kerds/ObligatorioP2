@@ -18,6 +18,7 @@
 
         public Pago(MetodosPago metodosPago, Usuario usuarioAsociado, TipoGasto tipoGasto, string descripcion, InstanciaPago instanciaPago)
         {
+            Id = UId++;
             MetodosPago = metodosPago;
             UsuarioAsociado = usuarioAsociado;
             TipoGasto = tipoGasto;

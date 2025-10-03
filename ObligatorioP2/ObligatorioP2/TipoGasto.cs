@@ -14,10 +14,9 @@
 
         public TipoGasto(string nombre, string descripcion)
         {
-            Id = UId;
+            Id = UId++;
             Nombre = nombre;
             Descripcion = descripcion;
-            Validar();
         }
 
         public void Validar()

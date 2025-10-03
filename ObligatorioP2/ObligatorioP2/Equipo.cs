@@ -7,13 +7,12 @@ namespace ObligatorioP2
         public int Id { get; set; }
         public static int UId { get; set; } = 0;
         public string Nombre { get; set; }
-        public List<Usuario> miembros { get; set; } = new List<Usuario>();
+        public List<Usuario> Miembros { get; set; } = new List<Usuario>();
         public Equipo(){
             Id = UId++;
         }
         public Equipo(string nombre)
         {
-            Validar(nombre);
             Id = UId;
             Nombre = nombre;
             UId++;
@@ -21,6 +20,30 @@ namespace ObligatorioP2
         public override string ToString()
         {
             return $"Id: {Id}, Nombre: {Nombre}";
+        }
+
+        public void Validar()
+        {
+                ValidarNombre();
+        }
+        public void ValidarNombre()
+        {
+            if(Nombre.Length < 3)
+            {
+                throw new Exception("El nombre del equipo debe tener al menos 3 caracteres.");
+            }
+        }
+        public void AgregarMiembro(Usuario usuario)
+        {
+            if (usuario == null)
+            {
+                throw new Exception("El usuario no puede ser nulo.");
+            }
+            if (Miembros.Contains(usuario))
+            {
+                throw new Exception("El usuario ya es miembro del equipo.");
+            }
+            Miembros.Add(usuario);
         }
         public override bool Equals(object? obj)
         {
@@ -30,17 +53,6 @@ namespace ObligatorioP2
                 return this.Id == equipo.Id;
             }
             return false;
-        }
-        public void Validar(string nombre)
-        {
-                       ValidarNombre(nombre);
-        }
-        public void ValidarNombre(string nombre)
-        {
-            if(nombre.Length < 3)
-            {
-                throw new Exception("El nombre del equipo debe tener al menos 3 caracteres.");
-            }
         }
     }
 }

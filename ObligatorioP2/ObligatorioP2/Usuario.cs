@@ -60,7 +60,7 @@ namespace ObligatorioP2
         }
         public void ValidarEquipo()
         {
-            if ()
+            if (Equipo == null)
             {
                 throw new Exception("El equipo no puede ser nulo.");
             }
