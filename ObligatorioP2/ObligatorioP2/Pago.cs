@@ -1,9 +1,9 @@
 ﻿namespace ObligatorioP2
 {
-    internal class Pago
+    public class Pago
     {
         public int Id { get; set; }
-        public static int UId {get; set;} = 0;
+        public static int UId { get; set; }
         public MetodosPago MetodosPago { get; set; }
         public Usuario UsuarioAsociado { get; set; }
         public TipoGasto TipoGasto { get; set; }
