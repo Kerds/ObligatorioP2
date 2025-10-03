@@ -53,9 +53,41 @@ namespace ObligatorioP2
             }
         }
 
+        private double CalcularRecargo()
+        {
+            int cuotasRestantes = GetCuotas();
+            double recargo = 0;
+            if (cuotasRestantes == -1)
+            {
+                recargo = 1.03;
+            }else if (cuotasRestantes >= 10)
+            {
+                recargo = 1.10;
+            }else if (cuotasRestantes >= 6 && cuotasRestantes <= 9)
+            {
+                recargo = 1.05;
+            }else if (cuotasRestantes <= 5)
+            {
+                recargo = 1.03;
+            }
+            return recargo;
+        }
+        
+
         public override double CalcularMontoPago()
         {
-            throw new NotImplementedException();
+            double montoBase = GetMontoBase();
+            int cuotasRestantes = GetCuotas();
+            double recargo = CalcularRecargo();
+
+            if (cuotasRestantes == -1)
+            {
+                return montoBase * recargo;
+            }
+            else
+            {
+                return montoBase * cuotasRestantes * recargo;
+            }
         }
         public int GetCuotas()
         {

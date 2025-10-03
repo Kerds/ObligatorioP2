@@ -22,6 +22,12 @@ namespace ObligatorioP2
             MontoBase = montoBase;
             UId++;
         }
+
+        public double GetMontoBase()
+        {
+            return MontoBase;
+        }
+        
         public abstract double CalcularMontoPago();
 
         public abstract bool EsPagoActivo(DateTime mes);
