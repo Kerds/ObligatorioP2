@@ -46,5 +46,16 @@
         {
             return Nombre ;
         }
+        
+        public override bool Equals(object? obj)
+        {
+            if (obj is TipoGasto)
+            {
+                TipoGasto tipoGasto = (TipoGasto)obj;
+                return this.Nombre == tipoGasto.Nombre && this.Id == tipoGasto.Id;
+            }
+            return false;
+        }
+        
     }
 }

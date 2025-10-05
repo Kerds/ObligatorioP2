@@ -21,7 +21,7 @@ namespace ObligatorioP2
             Equipos = new List<Equipo>();
             TipoGastos = new List<TipoGasto>();
         }
-        public static Sistema GetInstancia()
+        public static Sistema GetSistema()
         {
             if (Instancia == null)
             {
