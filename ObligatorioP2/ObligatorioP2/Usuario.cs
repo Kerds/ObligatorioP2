@@ -110,7 +110,7 @@ namespace ObligatorioP2
             if (obj is Usuario)
             {
                 Usuario usuario = (Usuario)obj;
-                return this.Id == usuario.Id;
+                return this.Id == usuario.Id || this.Email == usuario.Email;
             }
             return false;
         }
