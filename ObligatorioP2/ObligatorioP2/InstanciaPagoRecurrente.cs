@@ -56,19 +56,24 @@ namespace ObligatorioP2
         private double CalcularRecargo()
         {
             int cuotasRestantes = GetCuotas();
-            double recargo = 0;
-            if (cuotasRestantes == -1)
+            double recargo;
+            switch (cuotasRestantes)
             {
-                recargo = 1.03;
-            }else if (cuotasRestantes >= 10)
-            {
-                recargo = 1.10;
-            }else if (cuotasRestantes >= 6 && cuotasRestantes <= 9)
-            {
-                recargo = 1.05;
-            }else if (cuotasRestantes <= 5)
-            {
-                recargo = 1.03;
+                case -1:
+                    recargo = 1.03;
+                    break;
+                case >= 10:
+                    recargo = 1.10;
+                    break;
+                case >= 6 and <= 9:
+                    recargo = 1.05;
+                    break;
+                case >= 1 and <= 5:
+                    recargo = 1.03;
+                    break;
+                default:
+                    recargo = 1.03;
+                    break;
             }
             return recargo;
         }
