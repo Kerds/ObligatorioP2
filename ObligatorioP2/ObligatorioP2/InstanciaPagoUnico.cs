@@ -44,9 +44,17 @@ namespace ObligatorioP2
             }
         }
 
-        public override double CalcularMontoPago()
+        public override double CalcularMontoPago(MetodosPago metodoPago)
         {
-            throw new NotImplementedException();
+            
+            if(metodoPago == MetodosPago.Efectivo)
+            {
+                return MontoBase * 0.8;
+            }
+            else
+            {
+                return MontoBase * 0.9;
+            }
         }
 
         public override bool EsPagoActivo(DateTime mes)
