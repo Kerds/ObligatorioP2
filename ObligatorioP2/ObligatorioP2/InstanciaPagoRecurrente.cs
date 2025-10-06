@@ -59,7 +59,7 @@ namespace ObligatorioP2
             double recargo;
             switch (cuotasRestantes)
             {
-                case -1:
+                case <= 5:
                     recargo = 1.03;
                     break;
                 case >= 10:
@@ -68,20 +68,14 @@ namespace ObligatorioP2
                 case >= 6 and <= 9:
                     recargo = 1.05;
                     break;
-                case >= 1 and <= 5:
-                    recargo = 1.03;
-                    break;
-                default:
-                    recargo = 1.03;
-                    break;
-            }
+                }
             return recargo;
         }
         
 
-        public override double CalcularMontoPago()
+        public override double CalcularMontoPago(MetodosPago metodoPago)
         {
-            double montoBase = GetMontoBase();
+            double montoBase = MontoBase;
             int cuotasRestantes = GetCuotas();
             double recargo = CalcularRecargo();
 
