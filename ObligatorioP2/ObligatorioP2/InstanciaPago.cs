@@ -28,7 +28,7 @@ namespace ObligatorioP2
             return MontoBase;
         }
         
-        public abstract double CalcularMontoPago();
+        public abstract double CalcularMontoPago(MetodosPago metodoPago);
 
         public abstract bool EsPagoActivo(DateTime mes);
 
