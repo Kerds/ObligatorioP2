@@ -156,5 +156,17 @@ namespace ObligatorioP2
             }
             return email;
         }
+        public List<Pago> PagosPorUsuario(Usuario user)
+        {
+            List<Pago> lisAux = new List<Pago>();
+            foreach (Pago p in Pagos)
+            {
+                if (p.UsuarioAsociado.Email == user.Email)
+                {
+                    lisAux.Add(p);
+                }
+            }
+            return lisAux;
+        }
     }
 }

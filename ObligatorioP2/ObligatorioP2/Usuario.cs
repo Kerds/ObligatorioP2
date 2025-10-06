@@ -27,7 +27,7 @@ namespace ObligatorioP2
         }
         public override string ToString()
         {
-            return $"El usuario {Nombre} {Apellido} pertenece al equipo: {Equipo.Nombre}";
+            return $"El usuario {Nombre} {Apellido}, con email ${Email} pertenece al equipo: {Equipo.Nombre}";
         }
         public void Validar()
         {
