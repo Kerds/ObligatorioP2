@@ -181,9 +181,9 @@ namespace ObligatorioP2
             return null;
         }
 
-        public List<Equipo> GetUsuarioDeEquipo(string Equipo)
+        public List<Usuario> GetUsuarioDeEquipo(string nombreEquipo)
         {
-            Equipo equipo = GetEquipoPorNombre(Equipo);
+            Equipo equipo = GetEquipoPorNombre(nombreEquipo);
             if (equipo == null)
             {
                 throw new Exception("El equipo no existe.");
