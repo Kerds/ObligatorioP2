@@ -52,7 +52,7 @@ namespace ObligatorioP2
             if (obj is Equipo)
             {
                 Equipo equipo = (Equipo)obj;
-                return this.Id == equipo.Id;
+                return this.Id == equipo.Id || this.Nombre == equipo.Nombre;
             }
             return false;
         }
