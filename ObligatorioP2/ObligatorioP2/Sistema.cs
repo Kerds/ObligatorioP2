@@ -168,5 +168,30 @@ namespace ObligatorioP2
             }
             return lisAux;
         }
+
+        public Equipo GetEquipoPorNombre(string nombre)
+        {
+            foreach (Equipo equipo in Equipos)
+            {
+                if (equipo.Nombre == nombre)
+                {
+                    return equipo;
+                }
+            }
+            return null;
+        }
+
+        public List<Equipo> GetUsuarioDeEquipo(string Equipo)
+        {
+            Equipo equipo = GetEquipoPorNombre(Equipo);
+            if (equipo == null)
+            {
+                throw new Exception("El equipo no existe.");
+            }
+
+            return equipo.Miembros;
+
+        } 
+        
     }
 }
