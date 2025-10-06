@@ -75,7 +75,7 @@
                 {
                     throw new Exception("La instancia de pago no puede ser nula");
                 }
-                double montoFinal = InstanciaPago.CalcularMontoPago();
+                double montoFinal = InstanciaPago.CalcularMontoPago(MetodosPago);
                 MontoFinal = montoFinal;
                 return MontoFinal;
             }
