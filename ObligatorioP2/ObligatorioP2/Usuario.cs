@@ -65,12 +65,21 @@ namespace ObligatorioP2
                 throw new Exception("El equipo no puede ser nulo.");
             }
         }
+        public string FirstThreeLetters(string str)
+        {
+            if (str.Length < 3)
+            {
+                return str;
+            }
+            return str.Substring(0, 3);
+        }
         public string CreateEmail(int counter)
         {
             string email;
             if (counter > 0)
             {
-                email = Nombre.ToLower() + "." + Apellido.ToLower() + counter + "@laEmpresa.com";
+
+                email = FirstThreeLetters( Nombre.ToLower()) + FirstThreeLetters( Apellido.ToLower()) + counter + "@laEmpresa.com";
                 SetEmail(email);
                 return email;
             }
