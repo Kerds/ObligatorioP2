@@ -1,10 +1,55 @@
 ﻿namespace ObligatorioP2
 {
+    
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+        Sistema sistema = Sistema.GetSistema();
+        bool exitFlag = false;
+            while (!exitFlag)
+            {
+                Console.WriteLine("----------Seleccione una opcion:---------");
+                Console.WriteLine("-----------------------------------------");
+                Console.WriteLine("1. Listar todos los Usuarios del Sistema.");
+                Console.WriteLine("-----------------------------------------");
+                Console.WriteLine("2. Listar pagos de usuario por correo.");
+                Console.WriteLine("-----------------------------------------");
+                Console.WriteLine("3. Alta de usuario");
+                Console.WriteLine("-----------------------------------------");
+                Console.WriteLine("4. Listar los miembros de un Equipo");
+                Console.WriteLine("-----------------------------------------");
+                Console.WriteLine("0. Salir");
+
+                int opcionSelec = int.Parse(Console.ReadLine());
+                if (opcionSelec < 0 || opcionSelec > 4)
+                {
+                    Console.WriteLine("Por favor seleccione una opcion correcta.");
+                }
+                if(opcionSelec == 0)
+                {
+                    Console.WriteLine("Cerrando Programa");
+
+                    exitFlag = true;
+                }
+                if (opcionSelec == 1) {
+                    Console.WriteLine("Listando usuarios, por favor espere:");
+                    try {
+                        List<Usuario> listaUsuarios = sistema.GetUsuarios();
+
+                        foreach (Usuario u in listaUsuarios)
+                        {
+                            Console.WriteLine(u.ToString());
+                        }
+                    }
+                    catch(Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
+                }
+            }
+            Console.ReadKey();
         }
     }
 }
