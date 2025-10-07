@@ -191,7 +191,145 @@ namespace ObligatorioP2
 
             return equipo.Miembros;
 
-        } 
+        }
+
+        public void PreargaDatos()
+        {
+            PrecargaEquipo();
+            PrecargaUsuarios();
+            PrecargaGastos();
+            PrecargaPagos();
+        }
+
+        public void PrecargaEquipo()
+        {
+            Equipo contabilidad = new Equipo("Contabilidad");
+            AltaEquipo(contabilidad);
+
+            Equipo finanzas = new Equipo("Finanzas");
+            AltaEquipo(finanzas);
+
+            Equipo tesoreria = new Equipo("Tesorería");
+            AltaEquipo(tesoreria);
+
+            Equipo auditoria = new Equipo("Auditoría");
+            AltaEquipo(auditoria);
+            
+        }
+
+        public void PrecargaUsuarios()
+        {
+            
+            
+            Equipo contabilidad= GetEquipoPorNombre("Contabilidad");
+            Equipo finanzas= GetEquipoPorNombre("Finanzas");
+            Equipo tesoreria = GetEquipoPorNombre("Tesoreria"); 
+            Equipo auditoria = GetEquipoPorNombre("Auditoria");
+           
+            
+            // --- Contabilidad ---
+            Usuario usuario1 = new Usuario("Juana", "Melcer", "12345678",contabilidad);
+            AltaUsuario(usuario1); 
+            contabilidad.AgregarMiembro(usuario1); 
+            
+            Usuario usuario2 = new Usuario("Ana", "Perez", "12345678", contabilidad);
+            AltaUsuario(usuario2);
+            contabilidad.AgregarMiembro(usuario2);
+
+            Usuario usuario3 = new Usuario("Lucas", "Garcia", "12345678", contabilidad);
+            AltaUsuario(usuario3);
+            contabilidad.AgregarMiembro(usuario3);
+
+            Usuario usuario4 = new Usuario("Martina", "Rodriguez", "12345678", contabilidad);
+            AltaUsuario(usuario4);
+            contabilidad.AgregarMiembro(usuario4);
+
+            Usuario usuario5 = new Usuario("Santiago", "Fernandez", "12345678", contabilidad);
+            AltaUsuario(usuario5);
+            contabilidad.AgregarMiembro(usuario5);
+
+            Usuario usuario6 = new Usuario("Valentina", "Lopez", "12345678", contabilidad);
+            AltaUsuario(usuario6);
+            contabilidad.AgregarMiembro(usuario6);
+
+            // --- Finanzas ---
+            Usuario usuario7 = new Usuario("Mateo", "Suarez", "12345678", finanzas);
+            AltaUsuario(usuario7);
+            finanzas.AgregarMiembro(usuario7);
+
+            Usuario usuario8 = new Usuario("Camila", "Martinez", "12345678", finanzas);
+            AltaUsuario(usuario8);
+            finanzas.AgregarMiembro(usuario8);
+
+            Usuario usuario9 = new Usuario("Joaquin", "Ruiz", "12345678", finanzas);
+            AltaUsuario(usuario9);
+            finanzas.AgregarMiembro(usuario9);
+
+            Usuario usuario10 = new Usuario("Sofia", "Silva", "12345678", finanzas);
+            AltaUsuario(usuario10);
+            finanzas.AgregarMiembro(usuario10);
+
+            Usuario usuario11 = new Usuario("Tomas", "Castro", "12345678", finanzas);
+            AltaUsuario(usuario11);
+            finanzas.AgregarMiembro(usuario11);
+
+            Usuario usuario12 = new Usuario("Isabella", "Mendez", "12345678", finanzas);
+            AltaUsuario(usuario12);
+            finanzas.AgregarMiembro(usuario12);
+
+            // --- Tesoreria ---
+            Usuario usuario13 = new Usuario("Agustin", "Vega", "12345678", tesoreria);
+            AltaUsuario(usuario13);
+            tesoreria.AgregarMiembro(usuario13);
+
+            Usuario usuario14 = new Usuario("Mia", "Ortega", "12345678", tesoreria);
+            AltaUsuario(usuario14);
+            tesoreria.AgregarMiembro(usuario14);
+
+            Usuario usuario15 = new Usuario("Facundo", "Ramirez", "12345678", tesoreria);
+            AltaUsuario(usuario15);
+            tesoreria.AgregarMiembro(usuario15);
+
+            Usuario usuario16 = new Usuario("Julia", "Morales", "12345678", tesoreria);
+            AltaUsuario(usuario16);
+            tesoreria.AgregarMiembro(usuario16);
+
+            Usuario usuario17 = new Usuario("Nicolas", "Pereira", "12345678", tesoreria);
+            AltaUsuario(usuario17);
+            tesoreria.AgregarMiembro(usuario17);
+
+            // --- Auditoria ---
+            Usuario usuario18 = new Usuario("Florencia", "Santos", "12345678", auditoria);
+            AltaUsuario(usuario18);
+            auditoria.AgregarMiembro(usuario18);
+
+            Usuario usuario19 = new Usuario("Andres", "Torres", "12345678", auditoria);
+            AltaUsuario(usuario19);
+            auditoria.AgregarMiembro(usuario19);
+
+            Usuario usuario20 = new Usuario("Carolina", "Diaz", "12345678", auditoria);
+            AltaUsuario(usuario20);
+            auditoria.AgregarMiembro(usuario20);
+
+            Usuario usuario21 = new Usuario("Bruno", "Ramos", "12345678", auditoria);
+            AltaUsuario(usuario21);
+            auditoria.AgregarMiembro(usuario21);
+
+            Usuario usuario22 = new Usuario("Lucia", "Acosta", "12345678", auditoria);
+            AltaUsuario(usuario22);
+            auditoria.AgregarMiembro(usuario22);
+                    
+        }
+
+        public void PrecargaGastos()
+        {
+            
+        }
+
+        public void PrecargaPagos()
+        {
+            
+        }
         
     }
 }
