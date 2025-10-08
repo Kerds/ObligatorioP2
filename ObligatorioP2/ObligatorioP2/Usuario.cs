@@ -79,11 +79,11 @@ namespace ObligatorioP2
             if (counter > 0)
             {
 
-                email = FirstThreeLetters( Nombre.ToLower()) + FirstThreeLetters( Apellido.ToLower()) + counter + "@laEmpresa.com";
+                email = FirstThreeLetters(Nombre.ToLower()) + FirstThreeLetters(Apellido.ToLower()) + counter + "@laEmpresa.com";
                 SetEmail(email);
                 return email;
             }
-            email = Nombre.ToLower() + "." + Apellido.ToLower() + "@laEmpresa.com";
+            email = FirstThreeLetters(Nombre.ToLower()) + FirstThreeLetters(Apellido.ToLower()) + "@laEmpresa.com";
             SetEmail(email);
             return email;
         }
