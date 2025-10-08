@@ -20,6 +20,7 @@ namespace ObligatorioP2
             Pagos = new List<Pago>();
             Equipos = new List<Equipo>();
             TipoGastos = new List<TipoGasto>();
+            PreargaDatos();
         }
         public static Sistema GetSistema()
         {
@@ -209,10 +210,10 @@ namespace ObligatorioP2
             Equipo finanzas = new Equipo("Finanzas");
             AltaEquipo(finanzas);
 
-            Equipo tesoreria = new Equipo("Tesorería");
+            Equipo tesoreria = new Equipo("Tesoreria");
             AltaEquipo(tesoreria);
 
-            Equipo auditoria = new Equipo("Auditoría");
+            Equipo auditoria = new Equipo("Auditoria");
             AltaEquipo(auditoria);
             
         }
@@ -314,7 +315,6 @@ namespace ObligatorioP2
             Usuario usuario21 = new Usuario("Bruno", "Ramos", "12345678", auditoria);
             AltaUsuario(usuario21);
             auditoria.AgregarMiembro(usuario21);
-
             Usuario usuario22 = new Usuario("Lucia", "Acosta", "12345678", auditoria);
             AltaUsuario(usuario22);
             auditoria.AgregarMiembro(usuario22);
