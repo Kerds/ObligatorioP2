@@ -6,8 +6,15 @@
 
         static void Main(string[] args)
         {
-        Sistema sistema = Sistema.GetSistema();
-        bool exitFlag = false;
+            Sistema sistema;
+
+            try {
+             sistema = Sistema.GetSistema();
+            }catch (Exception e) {
+                Console.WriteLine(e.Message);
+                return;
+            }
+            bool exitFlag = false;
             while (!exitFlag)
             {
                 MostrarMenu();
@@ -38,6 +45,9 @@
                             Console.WriteLine(e.Message);
                         }
                         break;
+                    case 2:
+
+                        break;
                     default:
                         Console.WriteLine("Por favor seleccione una opcion correcta.");
                         break;
@@ -57,7 +67,8 @@
                     Console.WriteLine(u.ToString());
                 }
                 Console.WriteLine("Fin de la lista.");
-            }else
+            }
+            else
             {
                 Console.WriteLine("No hay usuarios en el sistema.");
             }

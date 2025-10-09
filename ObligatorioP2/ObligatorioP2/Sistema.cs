@@ -170,6 +170,17 @@ namespace ObligatorioP2
             return lisAux;
         }
 
+        public TipoGasto GetTipoGasto(String nombreGasto)
+        {
+            foreach (TipoGasto tipo in TipoGastos)
+            {
+                if (tipo.Nombre == nombreGasto)
+                {
+                    return tipo;
+                }
+            }
+            return null;
+        }
         public Equipo GetEquipoPorNombre(string nombre)
         {
             foreach (Equipo equipo in Equipos)
@@ -323,13 +334,46 @@ namespace ObligatorioP2
 
         public void PrecargaGastos()
         {
-            
+            TipoGasto tipo1 = new TipoGasto("Alquiler", "Pago mensual por el alquiler de la oficina");
+            AltaTipoGasto(tipo1);
+            TipoGasto tipo2 = new TipoGasto("Servicios", "Pago de servicios como luz, agua, internet, etc.");
+            AltaTipoGasto(tipo2);
+            TipoGasto tipo3 = new TipoGasto("Sueldos", "Pago de sueldos a los empleados");
+            AltaTipoGasto(tipo3);
+            TipoGasto tipo4 = new TipoGasto("Materiales de oficina", "Compra de materiales de oficina como papel, bolígrafos, etc.");
+            AltaTipoGasto(tipo4);
+            TipoGasto tipo5 = new TipoGasto("Publicidad", "Gastos en publicidad y marketing");
+            AltaTipoGasto(tipo5);
+            TipoGasto tipo6 = new TipoGasto("Viajes", "Gastos en viajes de negocios");
+            AltaTipoGasto(tipo6);
+
         }
 
         public void PrecargaPagos()
         {
+            InstanciaPagoRecurrente alquilerLocal = new InstanciaPagoRecurrente(1500,DateTime.Now, null);
+            TipoGasto Alquiler = GetTipoGasto("Alquiler");
+            Equipo contabilidad = GetEquipoPorNombre("Contabilidad");
+            Usuario usuario1 = new Usuario("Juan", "Perez", "12345678", contabilidad);
+            AltaUsuario(usuario1);
+            contabilidad.AgregarMiembro(usuario1);
+            Pago pago1 = new Pago(MetodosPago.Efectivo, usuario1, Alquiler, "Se abono el mes de alquiler", alquilerLocal);
+            AltaPago(pago1);
+
             
         }
-        
+
+        internal List<Pago> GetPagosPorEmail(string? email)
+        {
+            List<Pago> lisAux = new List<Pago>();
+            foreach(Pago pago in Pagos)
+            {
+                if(pago.UsuarioAsociado.Email == email)
+                {
+                    lisAux.Add(pago);
+                }
+            }
+            return lisAux;
+        }
     }
 }
