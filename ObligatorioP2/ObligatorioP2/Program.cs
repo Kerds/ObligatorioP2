@@ -50,11 +50,17 @@
 
         private static void ListarUsuarios(List<Usuario> listaUsuarios)
         {
-            foreach (Usuario u in listaUsuarios)
+            if (listaUsuarios.Count > 0)
             {
-                Console.WriteLine(u.ToString());
+                foreach (Usuario u in listaUsuarios)
+                {
+                    Console.WriteLine(u.ToString());
+                }
+                Console.WriteLine("Fin de la lista.");
+            }else
+            {
+                Console.WriteLine("No hay usuarios en el sistema.");
             }
-            Console.WriteLine("Fin de la lista.");
             Console.WriteLine("");
             Console.WriteLine("1 - Volver al menu ");
         }
