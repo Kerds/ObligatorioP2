@@ -46,7 +46,17 @@ namespace ObligatorioP2
         {
             return TipoGastos;
         }
-
+        public Usuario GetUsuarioPorEmail(string email)
+        {
+            foreach (Usuario usuario in Usuarios)
+            {
+                if (usuario.Email == email)
+                {
+                    return usuario;
+                }
+            }
+            return null;
+        }
         public void AltaUsuario(Usuario usuario)
         {
             try
@@ -351,6 +361,7 @@ namespace ObligatorioP2
 
         public void PrecargaPagos()
         {
+            
             InstanciaPagoRecurrente alquilerLocal = new InstanciaPagoRecurrente(1500,DateTime.Now, null);
             TipoGasto Alquiler = GetTipoGasto("Alquiler");
             Equipo contabilidad = GetEquipoPorNombre("Contabilidad");
