@@ -37,7 +37,7 @@ namespace ObligatorioP2
             ValidarEquipo();
             ValidarFechaAlta();
         }
-        public void ValidarNombre()
+        public void ValidarNombre() //pasar a private
         {
             if (Nombre.Length < 3)
             {
