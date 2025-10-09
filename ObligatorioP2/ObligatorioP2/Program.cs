@@ -32,13 +32,14 @@
                         try
                         {
                             List<Usuario> listaUsuarios = sistema.GetUsuarios();
-
                             ListarUsuarios(listaUsuarios);
 
-                            if (Console.ReadLine() == "1")
+                            // Espera hasta que el usuario escriba "1" para volver al menú
+                            while (Console.ReadLine() != "1")
                             {
-                                Console.Clear();
+                                Console.WriteLine("Por favor, ingrese '1' para volver al menú.");
                             }
+                            Console.Clear();
                         }
                         catch (Exception e)
                         {
@@ -47,10 +48,10 @@
                         break;
                     case 2:
                         Console.WriteLine("Ingrese el email del Usuario:");
-                        string email = Console.ReadLine();
-                        if(email == null)
+                        string? email = Console.ReadLine();
+                        if (string.IsNullOrWhiteSpace(email))
                         {
-                            Console.WriteLine("El email no puede estar vacio.");
+                            Console.WriteLine("El email no puede estar vacío.");
                             break;
                         }
                         Usuario usuario = sistema.GetUsuarioPorEmail(email);
@@ -60,6 +61,13 @@
                             {
                                 List<Pago> listaPagos = sistema.PagosPorUsuario(usuario);
                                 ListarPagos(listaPagos);
+
+                                // Espera hasta que el usuario escriba "1" para volver al menú
+                                while (Console.ReadLine() != "1")
+                                {
+                                    Console.WriteLine("Por favor, ingrese '1' para volver al menú.");
+                                }
+                                Console.Clear();
                             }
                             catch (Exception e)
                             {
@@ -97,6 +105,7 @@
             }
             Console.WriteLine("");
             Console.WriteLine("1 - Volver al menu ");
+            
         }
 
         private static void ListarUsuarios(List<Usuario> listaUsuarios)
