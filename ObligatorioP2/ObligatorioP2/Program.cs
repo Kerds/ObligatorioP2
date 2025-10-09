@@ -46,8 +46,31 @@
                         }
                         break;
                     case 2:
-
-                        break;
+                        Console.WriteLine("Ingrese el email del Usuario:");
+                        string email = Console.ReadLine();
+                        if(email == null)
+                        {
+                            Console.WriteLine("El email no puede estar vacio.");
+                            break;
+                        }
+                        Usuario usuario = sistema.GetUsuarioPorEmail(email);
+                        if (usuario != null)
+                        {
+                            try
+                            {
+                                List<Pago> listaPagos = sistema.PagosPorUsuario(usuario);
+                                ListarPagos(listaPagos);
+                            }
+                            catch (Exception e)
+                            {
+                                Console.WriteLine(e.Message);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("No existe un usuario con ese email.");
+                        }
+                                break;
                     default:
                         Console.WriteLine("Por favor seleccione una opcion correcta.");
                         break;
@@ -56,6 +79,24 @@
             Console.ReadKey();
 
             
+        }
+
+        private static void ListarPagos(List<Pago> listPagos)
+        {
+            if (listPagos.Count > 0)
+            {
+                foreach (Pago p in listPagos)
+                {
+                    Console.WriteLine(p.ToString());
+                }
+                Console.WriteLine("Fin de la lista.");
+            }
+            else
+            {
+                Console.WriteLine("No hay pagos en el sistema.");
+            }
+            Console.WriteLine("");
+            Console.WriteLine("1 - Volver al menu ");
         }
 
         private static void ListarUsuarios(List<Usuario> listaUsuarios)
