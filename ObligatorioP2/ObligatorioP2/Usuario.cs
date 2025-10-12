@@ -62,7 +62,7 @@ namespace ObligatorioP2
         {
             if (Equipo == null)
             {
-                throw new Exception("El equipo no puede ser nulo.");
+                throw new Exception("El equipo no Existe.");
             }
         }
         private void ValidarFechaAlta()

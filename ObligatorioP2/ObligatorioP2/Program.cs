@@ -79,6 +79,36 @@
                             Console.WriteLine("No existe un usuario con ese email.");
                         }
                                 break;
+                    case 3:
+                        Console.WriteLine("Ingrese Nombre:");
+                        string nombre = Console.ReadLine();
+                        Console.WriteLine("Ingrese Apellido:");
+                        string apellido = Console.ReadLine();
+                        Console.WriteLine("Ingrese Contresenia:");
+                        string contresenia = Console.ReadLine();
+                        Console.WriteLine("Ingrese Equipo:");
+                        string equipoIngresado = Console.ReadLine();
+                        try
+                        {
+                         Equipo equipo = sistema.GetEquipoPorNombre(equipoIngresado);
+                       
+                         Usuario usuNuevo = new Usuario(nombre, apellido, contresenia, equipo);
+                         sistema.AltaUsuario(usuNuevo);
+                         equipo.AgregarMiembro(usuNuevo);
+                         Console.WriteLine("Usuario creado correctamente.");
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Error: " + e.Message);
+                        }
+                        Console.WriteLine();
+                        Console.WriteLine("1 - Volver al menú");
+                        while (Console.ReadLine() != "1")
+                        {
+                            Console.WriteLine("Por favor, ingrese '1' para volver al menú.");
+                        }
+                        Console.Clear();
+                        break;
                     case 4:
                        
                             Console.WriteLine("Ingrese el nombre del equipo:");
