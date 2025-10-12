@@ -1,6 +1,6 @@
 ﻿namespace ObligatorioP2
 {
-    public class TipoGasto
+    public class TipoGasto : IValidar 
     {
         public int Id { get; set; }
         public static int UId {get; set;} = 0;
@@ -25,7 +25,7 @@
             ValidarDescripcion();
         }
 
-        public void ValidarNombre()
+        private void ValidarNombre()
         {
             if (string.IsNullOrEmpty(Nombre))
             {
@@ -34,7 +34,7 @@
             
         }
 
-        public void ValidarDescripcion()
+        private void ValidarDescripcion()
         {
             if (string.IsNullOrEmpty(Descripcion))
             {

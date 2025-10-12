@@ -2,7 +2,7 @@
 
 namespace ObligatorioP2
 {
-    public class Usuario
+    public class Usuario : IValidar 
     {
         public int Id { get; set; }
         public static int UId { get; set; } = 0;
@@ -27,7 +27,7 @@ namespace ObligatorioP2
         }
         public override string ToString()
         {
-            return $"El usuario {Nombre} {Apellido}, con email {Email} pertenece al equipo: {Equipo.Nombre}";
+            return $"Usuario: {Nombre} {Apellido}, Email: {Email}, Equipo: {Equipo.Nombre}";
         }
         public void Validar()
         {
@@ -37,32 +37,39 @@ namespace ObligatorioP2
             ValidarEquipo();
             ValidarFechaAlta();
         }
-        public void ValidarNombre() //pasar a private
+        private void ValidarNombre() 
         {
             if (Nombre.Length < 3)
             {
                 throw new Exception("El nombre debe tener al menos 3 caracteres.");
             }
         }
-        public void ValidarApellido()
+        private void ValidarApellido()
         {
             if (Apellido.Length < 3)
             {
                 throw new Exception("El apellido debe tener al menos 3 caracteres.");
             }
         }
-        public void ValidarContrasenia()
+        private void ValidarContrasenia()
         {
             if (Contrasenia.Length < 8)
             {
                 throw new Exception("La contraseña debe tener al menos 8 caracteres.");
             }
         }
-        public void ValidarEquipo()
+        private void ValidarEquipo()
         {
             if (Equipo == null)
             {
                 throw new Exception("El equipo no puede ser nulo.");
+            }
+        }
+        private void ValidarFechaAlta()
+        {
+            if (FechaAlta == DateTime.MinValue)
+            {
+                throw new Exception("La fecha de alta no puede estar vacia.");
             }
         }
         public string FirstThreeLetters(string str)
@@ -103,13 +110,7 @@ namespace ObligatorioP2
                 throw new Exception("El email no es válido.");
             }
         }
-        public void ValidarFechaAlta()
-        {
-            if (FechaAlta == DateTime.MinValue)
-            {
-                throw new Exception("La fecha de alta no puede estar vacia.");
-            }
-        }
+        
         public string GetEmail()
         {
             return Email;
@@ -123,5 +124,11 @@ namespace ObligatorioP2
             }
             return false;
         }
+
+        public string StringMiembrosEquipo()
+        {
+            return $"Usuario: {Nombre} {Apellido}, Email: {Email} ";
+        }
+        
     }
 }

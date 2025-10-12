@@ -40,7 +40,7 @@ namespace ObligatorioP2
             ValidarMontoBase();
         }
 
-        public void ValidarMontoBase()
+        private void ValidarMontoBase()
         {
             if (MontoBase <= 0)
             {

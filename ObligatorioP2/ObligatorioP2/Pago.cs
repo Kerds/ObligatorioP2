@@ -84,7 +84,7 @@
                 throw new Exception("Error al calcular el monto final: " + ex.Message);
             }
         }
-        public void ValidarMetodosPago()
+        private void ValidarMetodosPago()
         {
             if (MetodosPago != MetodosPago.Credito && MetodosPago != MetodosPago.Debito &&
                 MetodosPago != MetodosPago.Efectivo)
@@ -93,7 +93,7 @@
             }
         }
 
-        public void ValidarDescripcion()
+        private void ValidarDescripcion()
         {
             if (string.IsNullOrEmpty(Descripcion))
             {

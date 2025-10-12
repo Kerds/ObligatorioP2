@@ -2,12 +2,12 @@
 
 namespace ObligatorioP2
 {
-    public class Equipo
+    public class Equipo : IValidar 
     {
         public int Id { get; set; }
         public static int UId { get; set; } = 0;
         public string Nombre { get; set; }
-        public List<Usuario> Miembros { get; set; } = new List<Usuario>();
+        private List<Usuario> Miembros { get; set; } = new List<Usuario>();
         
         public Equipo(){
             Id = UId++;
@@ -27,12 +27,17 @@ namespace ObligatorioP2
         {
                 ValidarNombre();
         }
-        public void ValidarNombre()
+        private void ValidarNombre()
         {
             if(Nombre.Length < 3)
             {
                 throw new Exception("El nombre del equipo debe tener al menos 3 caracteres.");
             }
+        }
+
+        public List<Usuario> GetMiembros()
+        {
+            return Miembros;
         }
         public void AgregarMiembro(Usuario usuario)
         {

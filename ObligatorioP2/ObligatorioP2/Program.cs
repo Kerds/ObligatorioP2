@@ -79,6 +79,42 @@
                             Console.WriteLine("No existe un usuario con ese email.");
                         }
                                 break;
+                    case 4:
+                       
+                            Console.WriteLine("Ingrese el nombre del equipo:");
+                            try
+                            {
+                                String nombreEquipo = Console.ReadLine();
+                                List<Usuario> listaUsuariosDeEquipo = sistema.GetUsuariosDeEquipo(nombreEquipo);
+                                if (listaUsuariosDeEquipo.Count == 0)
+                                {
+                                    Console.WriteLine("El equipo ingresado no contiene usuarios");
+                                    Console.WriteLine("");
+                                    Console.WriteLine("1 - Volver al menu ");
+                                }
+                                else
+                                {
+                                    foreach (Usuario u in listaUsuariosDeEquipo)
+                                    {
+                                        Console.WriteLine(u.StringMiembrosEquipo());
+                                    }
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                
+                                Console.WriteLine(e.Message);
+                                Console.WriteLine("");
+                                Console.WriteLine("Por favor, ingrese '1' para volver al menú.");
+                            }
+                            
+                            while (Console.ReadLine() != "1")
+                            {
+                                Console.WriteLine("Por favor, ingrese '1' para volver al menú.");
+                            }
+                            Console.Clear();
+
+                        break;
                     default:
                         Console.WriteLine("Por favor seleccione una opcion correcta.");
                         break;

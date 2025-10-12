@@ -29,14 +29,14 @@ namespace ObligatorioP2
         {
             return ReciboPago;
         }
-        public void ValidarFechaPago()
+        private void ValidarFechaPago()
         {
               if (FechaPago == DateTime.MinValue)
               {
                   throw new Exception("El campo fecha de pago no puede estar vacio.");
               }
         }
-        public void ValidarReciboPago()
+        private void ValidarReciboPago()
         {
             if (ReciboPago <= 0)
             {

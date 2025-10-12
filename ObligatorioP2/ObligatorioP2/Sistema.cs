@@ -193,9 +193,10 @@ namespace ObligatorioP2
         }
         public Equipo GetEquipoPorNombre(string nombre)
         {
+         
             foreach (Equipo equipo in Equipos)
             {
-                if (equipo.Nombre == nombre)
+                if (equipo.Nombre.ToLower() == nombre.ToLower())
                 {
                     return equipo;
                 }
@@ -203,15 +204,16 @@ namespace ObligatorioP2
             return null;
         }
 
-        public List<Usuario> GetUsuarioDeEquipo(string nombreEquipo)
+        public List<Usuario> GetUsuariosDeEquipo(string nombreEquipo)
         {
+            
             Equipo equipo = GetEquipoPorNombre(nombreEquipo);
             if (equipo == null)
             {
                 throw new Exception("El equipo no existe.");
             }
 
-            return equipo.Miembros;
+            return equipo.GetMiembros();
 
         }
 
@@ -236,6 +238,9 @@ namespace ObligatorioP2
 
             Equipo auditoria = new Equipo("Auditoria");
             AltaEquipo(auditoria);
+            
+            Equipo ventas = new Equipo("Ventas");
+            AltaEquipo(ventas);
             
         }
 
