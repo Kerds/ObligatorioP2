@@ -65,5 +65,9 @@ namespace Clases.Pagos
         {
             return "Unico";
         }
+        public override string ToString()
+        {
+            return "Pago Unico";
+        }
     }
 }

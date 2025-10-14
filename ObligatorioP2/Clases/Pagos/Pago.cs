@@ -107,12 +107,8 @@ namespace Clases.Pagos
         {
             string texto = $"El Pago {Id} de monto {MontoFinal:F2} fue abonado con el método \"{MetodosPago}\", por el usuario: {(UsuarioAsociado != null ? UsuarioAsociado.ToString() : "N/A")}.";
 
-            if (InstanciaPago.MiTipo() == "Recurrente")
-            {
                 return texto + $" Detalles: {InstanciaPago.ToString()}";
-            }
-            return texto;
-        }
+          }
     
         public override bool Equals(object? obj)
         {
