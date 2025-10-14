@@ -22,7 +22,7 @@ namespace ObligatorioP2
             Pagos = new List<Pago>();
             Equipos = new List<Equipo>();
             TipoGastos = new List<TipoGasto>();
-            PreargaDatos();
+            PrecargaDatos();
         }
         public static Sistema GetSistema()
         {
@@ -47,17 +47,6 @@ namespace ObligatorioP2
         public List<TipoGasto> GetTipoGastos()
         {
             return TipoGastos;
-        }
-        public Usuario GetUsuarioPorEmail(string email)
-        {
-            foreach (Usuario usuario in Usuarios)
-            {
-                if (usuario.Email == email)
-                {
-                    return usuario;
-                }
-            }
-            return null;
         }
         public void AltaUsuario(Usuario usuario)
         {
@@ -140,7 +129,7 @@ namespace ObligatorioP2
             }
             Pagos.Add(pago);
         }
-        public Usuario BuscarUsuarioPorEmail(string email)
+        public Usuario GetUsuarioPorEmail(string email)
         {
             foreach (Usuario usuario in Usuarios)
             {
@@ -151,6 +140,7 @@ namespace ObligatorioP2
             }
             return null;
         }
+        
         public string GenerarEmail(Usuario usuario)
         {
             int counter = 0;
@@ -161,7 +151,7 @@ namespace ObligatorioP2
             {
                 email = usuario.CreateEmail(counter);
 
-                if (BuscarUsuarioPorEmail(email) == null)
+                if (GetUsuarioPorEmail(email) == null)
                 {
                     flag = true;
                 }
@@ -219,7 +209,7 @@ namespace ObligatorioP2
 
         }
 
-        public void PreargaDatos()
+        public void PrecargaDatos()
         {
             PrecargaEquipo();
             PrecargaUsuarios();
@@ -413,17 +403,6 @@ namespace ObligatorioP2
             }
         }
 
-        internal List<Pago> GetPagosPorEmail(string? email)
-        {
-            List<Pago> lisAux = new List<Pago>();
-            foreach(Pago pago in Pagos)
-            {
-                if(pago.UsuarioAsociado.Email == email)
-                {
-                    lisAux.Add(pago);
-                }
-            }
-            return lisAux;
-        }
+       
     }
 }

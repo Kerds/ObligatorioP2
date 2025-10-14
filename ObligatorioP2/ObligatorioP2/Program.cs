@@ -193,14 +193,55 @@ namespace ObligatorioP2
         // Método para crear un usuario nuevo y agregarlo al sistema
         private static void CrearUsuario(Sistema sistema)
         {
-            Console.WriteLine("Ingrese Nombre:");
-            string nombre = Console.ReadLine();
-            Console.WriteLine("Ingrese Apellido:");
-            string apellido = Console.ReadLine();
-            Console.WriteLine("Ingrese Contresenia:");
-            string contrasenia = Console.ReadLine();
-            Equipo equipo = ListarEquiposParaSelec(sistema, "Seleccione un Equipo:");
-            if (equipo == null) return; // Salir si no se selecciona un equipo válido
+            string nombre = "";
+            while (true)
+            {
+                Console.WriteLine("Ingrese Nombre:");
+                string input = Console.ReadLine().Trim();
+                if (!string.IsNullOrEmpty(input) && input.Length >= 3)
+                {
+                    nombre = input;
+                    break;
+                }
+                Console.WriteLine("El nombre debe tener al menos 3 caracteres.");
+            }
+
+            string apellido = "";
+            while (true)
+            {
+                Console.WriteLine("Ingrese Apellido:");
+                string input = Console.ReadLine().Trim();
+                if (!string.IsNullOrEmpty(input) && input.Length >= 3)
+                {
+                    apellido = input;
+                    break;
+                }
+                Console.WriteLine("El apellido debe tener al menos 3 caracteres.");
+            }
+
+            string contrasenia = "";
+            while (true)
+            {
+                Console.WriteLine("Ingrese Contraseña:");
+                string input = Console.ReadLine().Trim();
+                if (!string.IsNullOrEmpty(input) && input.Length >= 8)
+                {
+                    contrasenia = input;
+                    break;
+                }
+                Console.WriteLine("La contraseña debe tener al menos 8 caracteres.");
+            }
+
+            Equipo equipo = null;
+            while (equipo == null)
+            {
+                equipo = ListarEquiposParaSelec(sistema, "Seleccione un Equipo:");
+                if (equipo == null)
+                {
+                    Console.WriteLine("Debe seleccionar un equipo válido.");
+                }
+            }
+
             try
             {
                 Usuario usuNuevo = new Usuario(nombre, apellido, contrasenia, equipo);
