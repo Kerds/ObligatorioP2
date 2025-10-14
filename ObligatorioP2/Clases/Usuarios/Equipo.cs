@@ -9,20 +9,24 @@ namespace Clases.Usuarios
         public static int UId { get; set; } = 0;
         public string Nombre { get; set; }
         private List<Usuario> Miembros { get; set; } = new List<Usuario>();
-        
-        public Equipo(){
+
+        public Equipo()
+        {
             Id = UId++;
         }
+
         public Equipo(string nombre)
         {
             Id = UId;
             Nombre = nombre;
             UId++;
         }
+
         public override string ToString()
         {
             return $"Id: {Id}, Nombre: {Nombre}";
         }
+        
         public string GetNombre()
         {
             return Nombre;
@@ -32,6 +36,7 @@ namespace Clases.Usuarios
         {
                 ValidarNombre();
         }
+        
         private void ValidarNombre()
         {
             if(Nombre.Length < 3)
