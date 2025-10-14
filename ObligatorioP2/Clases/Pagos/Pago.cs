@@ -1,8 +1,9 @@
 ﻿using Clases.Usuarios;
+using ObligatorioP2;
 
 namespace Clases.Pagos
 {
-    public class Pago
+    public class Pago : IValidar
     {
         public int Id { get; set; }
         public static int UId { get; set; }
