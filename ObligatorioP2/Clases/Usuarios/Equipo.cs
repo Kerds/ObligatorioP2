@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ObligatorioP2;
+using System.ComponentModel.DataAnnotations;
 
-namespace ObligatorioP2
+namespace Clases.Usuarios
 {
     public class Equipo : IValidar 
     {
@@ -21,6 +22,10 @@ namespace ObligatorioP2
         public override string ToString()
         {
             return $"Id: {Id}, Nombre: {Nombre}";
+        }
+        public string GetNombre()
+        {
+            return Nombre;
         }
 
         public void Validar()
@@ -57,7 +62,7 @@ namespace ObligatorioP2
             if (obj is Equipo)
             {
                 Equipo equipo = (Equipo)obj;
-                return this.Id == equipo.Id || this.Nombre == equipo.Nombre;
+                return Id == equipo.Id || Nombre == equipo.Nombre;
             }
             return false;
         }

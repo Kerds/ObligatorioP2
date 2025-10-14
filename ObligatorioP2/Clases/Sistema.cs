@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Clases.Pagos;
+using Clases.Usuarios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -366,17 +368,49 @@ namespace ObligatorioP2
 
         public void PrecargaPagos()
         {
-            
-            InstanciaPagoRecurrente alquilerLocal = new InstanciaPagoRecurrente(1500,DateTime.Now, null);
-            TipoGasto Alquiler = GetTipoGasto("Alquiler");
-            Equipo contabilidad = GetEquipoPorNombre("Contabilidad");
-            Usuario usuario1 = new Usuario("Juan", "Perez", "12345678", contabilidad);
-            AltaUsuario(usuario1);
-            contabilidad.AgregarMiembro(usuario1);
-            Pago pago1 = new Pago(MetodosPago.Efectivo, usuario1, Alquiler, "Se abono el mes de alquiler", alquilerLocal);
-            AltaPago(pago1);
+            List<Usuario> usuarios = GetUsuarios();
+            List<TipoGasto> tiposGasto = GetTipoGastos();
+            Random rnd = new Random();
 
-            
+            // 25 pagos recurrentes, 5 de ellos pagados por completo (con FechaFin)
+            for (int i = 0; i < 25; i++)
+            {
+                Usuario usuario = usuarios[rnd.Next(usuarios.Count)];
+                TipoGasto tipoGasto = tiposGasto[rnd.Next(tiposGasto.Count)];
+                double monto = rnd.Next(1000, 5000);
+
+                DateTime fechaInicio = DateTime.Now.AddMonths(-rnd.Next(1, 24));
+                DateTime? fechaFin = null;
+                if (i < 5)
+                {
+                    int mesesDuracion = rnd.Next(1, 12);
+                    fechaFin = fechaInicio.AddMonths(mesesDuracion);
+                }
+
+                InstanciaPagoRecurrente instanciaRecurrente = new InstanciaPagoRecurrente(monto, fechaInicio, fechaFin);
+                MetodosPago metodo = (MetodosPago)rnd.Next(1, 4);
+                string descripcion = $"Pago recurrente de {tipoGasto.Nombre} para {usuario.Nombre}";
+
+                Pago pago = new Pago(metodo, usuario, tipoGasto, descripcion, instanciaRecurrente);
+                AltaPago(pago);
+            }
+
+            // 17 pagos únicos (InstanciaPagoUnico) con fecha y recibo válidos
+            for (int i = 0; i < 17; i++)
+            {
+                Usuario usuario = usuarios[rnd.Next(usuarios.Count)];
+                TipoGasto tipoGasto = tiposGasto[rnd.Next(tiposGasto.Count)];
+                double monto = rnd.Next(500, 3000);
+                DateTime fechaPago = DateTime.Now.AddDays(-rnd.Next(1, 365));
+                int reciboPago = rnd.Next(1, 99999); // Recibo mayor a 0
+
+                InstanciaPagoUnico instanciaUnico = new InstanciaPagoUnico(monto, fechaPago, reciboPago);
+                MetodosPago metodo = (MetodosPago)rnd.Next(1, 4);
+                string descripcion = $"Pago único de {tipoGasto.Nombre} para {usuario.Nombre}";
+
+                Pago pago = new Pago(metodo, usuario, tipoGasto, descripcion, instanciaUnico);
+                AltaPago(pago);
+            }
         }
 
         internal List<Pago> GetPagosPorEmail(string? email)

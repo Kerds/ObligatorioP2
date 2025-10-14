@@ -1,4 +1,6 @@
-﻿namespace ObligatorioP2
+﻿using ObligatorioP2;
+
+namespace Clases.Pagos
 {
     public class TipoGasto : IValidar 
     {
@@ -52,7 +54,7 @@
             if (obj is TipoGasto)
             {
                 TipoGasto tipoGasto = (TipoGasto)obj;
-                return this.Nombre == tipoGasto.Nombre || this.Id == tipoGasto.Id;
+                return Nombre == tipoGasto.Nombre || Id == tipoGasto.Id;
             }
             return false;
         }

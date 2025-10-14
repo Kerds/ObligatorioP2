@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObligatorioP2
+namespace Clases.Pagos
 {
     public class InstanciaPagoRecurrente : InstanciaPago
     {
@@ -95,7 +95,7 @@ namespace ObligatorioP2
                 return -1; // Indica que el pago es indefinido   
             }
             DateTime fechaFin = FechaFin ?? DateTime.Now;
-            int meses = ((fechaFin.Year - FechaInicio.Year) * 12) + fechaFin.Month - FechaInicio.Month;
+            int meses = (fechaFin.Year - FechaInicio.Year) * 12 + fechaFin.Month - FechaInicio.Month;
             return meses + 1; // +1 para incluir el mes de inicio
         }
         public override bool EsPagoActivo(DateTime mes)

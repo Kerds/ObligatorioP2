@@ -1,4 +1,6 @@
-﻿namespace ObligatorioP2
+﻿using Clases.Usuarios;
+
+namespace Clases.Pagos
 {
     public class Pago
     {
@@ -110,7 +112,7 @@
             if (obj is Pago)
             {
                 Pago pago = (Pago)obj;
-                return this.Id == pago.Id;
+                return Id == pago.Id;
             }
             return false;
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ObligatorioP2
+namespace Clases.Pagos
 {
     public class InstanciaPagoUnico : InstanciaPago
     {

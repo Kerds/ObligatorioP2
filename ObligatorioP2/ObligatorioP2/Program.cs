@@ -1,4 +1,8 @@
-﻿namespace ObligatorioP2
+﻿using System.Diagnostics.Metrics;
+using Clases;
+using Clases.Usuarios;
+using Clases.Pagos;
+namespace ObligatorioP2
 {
     
     internal class Program
@@ -47,75 +51,19 @@
                         }
                         break;
                     case 2:
-                        Console.WriteLine("Ingrese el email del Usuario:");
-                        string? email = Console.ReadLine();
-                        if (string.IsNullOrWhiteSpace(email))
-                        {
-                            Console.WriteLine("El email no puede estar vacío.");
-                            break;
-                        }
-                        Usuario usuario = sistema.GetUsuarioPorEmail(email);
-                        if (usuario != null)
-                        {
-                            try
-                            {
-                                List<Pago> listaPagos = sistema.PagosPorUsuario(usuario);
-                                ListarPagos(listaPagos);
-
-                                // Espera hasta que el usuario escriba "1" para volver al menú
-                                while (Console.ReadLine() != "1")
-                                {
-                                    Console.WriteLine("Por favor, ingrese '1' para volver al menú.");
-                                }
-                                Console.Clear();
-                            }
-                            catch (Exception e)
-                            {
-                                Console.WriteLine(e.Message);
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("No existe un usuario con ese email.");
-                        }
-                                break;
+                        ListarPagosPorEmail(sistema);
+                        break;
                     case 3:
-                        Console.WriteLine("Ingrese Nombre:");
-                        string nombre = Console.ReadLine();
-                        Console.WriteLine("Ingrese Apellido:");
-                        string apellido = Console.ReadLine();
-                        Console.WriteLine("Ingrese Contresenia:");
-                        string contresenia = Console.ReadLine();
-                        Console.WriteLine("Ingrese Equipo:");
-                        string equipoIngresado = Console.ReadLine();
-                        try
-                        {
-                         Equipo equipo = sistema.GetEquipoPorNombre(equipoIngresado);
-                       
-                         Usuario usuNuevo = new Usuario(nombre, apellido, contresenia, equipo);
-                         sistema.AltaUsuario(usuNuevo);
-                         equipo.AgregarMiembro(usuNuevo);
-                         Console.WriteLine("Usuario creado correctamente.");
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine("Error: " + e.Message);
-                        }
-                        Console.WriteLine();
-                        Console.WriteLine("1 - Volver al menú");
-                        while (Console.ReadLine() != "1")
-                        {
-                            Console.WriteLine("Por favor, ingrese '1' para volver al menú.");
-                        }
-                        Console.Clear();
+                        CrearUsuario(sistema);
+
                         break;
                     case 4:
-                       
-                            Console.WriteLine("Ingrese el nombre del equipo:");
                             try
                             {
-                                String nombreEquipo = Console.ReadLine();
-                                List<Usuario> listaUsuariosDeEquipo = sistema.GetUsuariosDeEquipo(nombreEquipo);
+                            Equipo equipo = ListarEquiposParaSelec(sistema, "Seleccione el nombre del equipo:");
+                            if (equipo != null)
+                            {
+                                List<Usuario> listaUsuariosDeEquipo = sistema.GetUsuariosDeEquipo(equipo.GetNombre());
                                 if (listaUsuariosDeEquipo.Count == 0)
                                 {
                                     Console.WriteLine("El equipo ingresado no contiene usuarios");
@@ -130,6 +78,8 @@
                                     }
                                 }
                             }
+                            else { Console.WriteLine("Debe seleccionar un equipo valido."); }
+                            }
                             catch (Exception e)
                             {
                                 
@@ -137,8 +87,9 @@
                                 Console.WriteLine("");
                                 Console.WriteLine("Por favor, ingrese '1' para volver al menú.");
                             }
-                            
-                            while (Console.ReadLine() != "1")
+                        Console.WriteLine("1 - Volver al menu ");
+
+                        while (Console.ReadLine() != "1")
                             {
                                 Console.WriteLine("Por favor, ingrese '1' para volver al menú.");
                             }
@@ -206,6 +157,88 @@
             Console.WriteLine("-----------------------------------------");
             Console.WriteLine("0. Salir");
         }
+        private static void ListarPagosPorEmail(Sistema sistema)
+        {
+            Console.WriteLine("Ingrese el email del Usuario:");
+            string? email = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                Console.WriteLine("El email no puede estar vacío.");
+                return;
+            }
+            Usuario usuario = sistema.GetUsuarioPorEmail(email);
+            if (usuario != null)
+            {
+                try
+                {
+                    List<Pago> listaPagos = sistema.PagosPorUsuario(usuario);
+                    ListarPagos(listaPagos);
+                    Console.WriteLine("Por favor, ingrese '1' para volver al menú.");
+                    // Espera hasta que el usuario escriba "1" para volver al menú
+                    while (Console.ReadLine() != "1")
+                    {
+                        Console.WriteLine("Por favor, ingrese '1' para volver al menú.");
+                    }
+                    Console.Clear();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            else
+            {
+                Console.WriteLine("No existe un usuario con ese email.");
+            }
+        }
+        // Método para crear un usuario nuevo y agregarlo al sistema
+        private static void CrearUsuario(Sistema sistema)
+        {
+            Console.WriteLine("Ingrese Nombre:");
+            string nombre = Console.ReadLine();
+            Console.WriteLine("Ingrese Apellido:");
+            string apellido = Console.ReadLine();
+            Console.WriteLine("Ingrese Contresenia:");
+            string contrasenia = Console.ReadLine();
+            Equipo equipo = ListarEquiposParaSelec(sistema, "Seleccione un Equipo:");
+            if (equipo == null) return; // Salir si no se selecciona un equipo válido
+            try
+            {
+                Usuario usuNuevo = new Usuario(nombre, apellido, contrasenia, equipo);
+                sistema.AltaUsuario(usuNuevo);
+                equipo.AgregarMiembro(usuNuevo);
+                Console.WriteLine("Usuario creado correctamente.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+            Console.WriteLine();
+            Console.WriteLine("1 - Volver al menú");
+            while (Console.ReadLine() != "1")
+            {
+                Console.WriteLine("Por favor, ingrese '1' para volver al menú.");
+            }
+            Console.Clear();
+        }
+        // Método para seleccionar un equipo de la lista de equipos del sistema
+        private static Equipo? ListarEquiposParaSelec(Sistema sistema, string text)
+        {
+            List<Equipo> listaEquipos = sistema.GetEquipos();
+            int counter = 0;
+            Console.WriteLine(text);
+            foreach (Equipo e in listaEquipos)
+            {
+                Console.WriteLine($"{counter++} - {e.GetNombre()}");
+            }
 
+            string? input = Console.ReadLine();
+            if (!int.TryParse(input, out int indiceEquipo) || indiceEquipo < 0 || indiceEquipo >= listaEquipos.Count)
+            {
+                Console.WriteLine("Opción de equipo inválida.");
+                return null;
+            }
+            return listaEquipos[indiceEquipo];
+        }
     }
 }

@@ -1,6 +1,7 @@
-﻿using System.Diagnostics.Metrics;
+﻿using ObligatorioP2;
+using System.Diagnostics.Metrics;
 
-namespace ObligatorioP2
+namespace Clases.Usuarios
 {
     public class Usuario : IValidar 
     {
@@ -120,7 +121,7 @@ namespace ObligatorioP2
             if (obj is Usuario)
             {
                 Usuario usuario = (Usuario)obj;
-                return this.Id == usuario.Id || this.Email == usuario.Email;
+                return Id == usuario.Id || Email == usuario.Email;
             }
             return false;
         }
