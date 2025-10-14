@@ -98,6 +98,18 @@ namespace Clases.Pagos
             int meses = (fechaFin.Year - FechaInicio.Year) * 12 + fechaFin.Month - FechaInicio.Month;
             return meses + 1; // +1 para incluir el mes de inicio
         }
+        public int CuotasRestantes()
+        {
+            if (FechaFin == null)
+            {
+                return -1; // Indica que el pago es indefinido   
+            }
+            DateTime fechaFin = FechaFin ?? DateTime.Now;
+            DateTime mesActual = DateTime.Now;
+
+            int meses = (fechaFin.Year - mesActual.Year) * 12 + fechaFin.Month - mesActual.Month;
+            return meses + 1; 
+        }
         public override bool EsPagoActivo(DateTime mes)
         {
             return mes >= FechaInicio && (FechaFin == null || mes <= FechaFin);
@@ -105,6 +117,15 @@ namespace Clases.Pagos
         public override string MiTipo()
         {
             return "Recurrente";
+        }
+        public override string ToString()
+        {
+            int mesesRestantes = CuotasRestantes();
+            if (mesesRestantes < 0)
+            {
+                return $"Recurrente";
+            }
+            return $"Cuotas restantes {mesesRestantes}";
         }
     }
 }

@@ -173,7 +173,7 @@ namespace ObligatorioP2
                 {
                     List<Pago> listaPagos = sistema.PagosPorUsuario(usuario);
                     ListarPagos(listaPagos);
-                    Console.WriteLine("Por favor, ingrese '1' para volver al menú.");
+                    Console.WriteLine("1 - Volver al menu ");
                     // Espera hasta que el usuario escriba "1" para volver al menú
                     while (Console.ReadLine() != "1")
                     {
