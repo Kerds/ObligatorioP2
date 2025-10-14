@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ObligatorioP2;
 
 namespace Clases.Pagos
 {
-    public abstract class InstanciaPago
+    public abstract class InstanciaPago : IValidar
     {
         public int Id { get; set; }
         public static int UId { get; set; } = 0;
