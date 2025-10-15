@@ -145,6 +145,7 @@ namespace ObligatorioP2
 
         public static void MostrarMenu()
         {
+            Console.Clear();
             Console.WriteLine("----------Seleccione una opcion:---------");
             Console.WriteLine("-----------------------------------------");
             Console.WriteLine("1. Listar todos los Usuarios del Sistema.");
