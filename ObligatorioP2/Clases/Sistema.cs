@@ -358,51 +358,56 @@ namespace ObligatorioP2
 
         public void PrecargaPagos()
         {
-            List<Usuario> usuarios = GetUsuarios();
-            List<TipoGasto> tiposGasto = GetTipoGastos();
-            Random rnd = new Random();
+            // Asume que hay 22 usuarios y 6 tipos de gasto precargados en el sistema
+            // Los pagos se distribuyen de forma pareja y declarativa, siguiendo las reglas
 
-            // 25 pagos recurrentes, 5 de ellos pagados por completo (con FechaFin)
-            for (int i = 0; i < 25; i++)
-            {
-                Usuario usuario = usuarios[rnd.Next(usuarios.Count)];
-                TipoGasto tipoGasto = tiposGasto[rnd.Next(tiposGasto.Count)];
-                double monto = rnd.Next(1000, 5000);
+            // 6 pagos recurrentes SIN fecha de fin (null)
+            AltaPago(new Pago(MetodosPago.Credito, Usuarios[0], TipoGastos[0], "Pago recurrente sin fin de Alquiler para Juana", new InstanciaPagoRecurrente(2000, DateTime.Now.AddMonths(-10), null)));
+            AltaPago(new Pago(MetodosPago.Debito, Usuarios[1], TipoGastos[1], "Pago recurrente sin fin de Servicios para Ana", new InstanciaPagoRecurrente(1500, DateTime.Now.AddMonths(-8), null)));
+            AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[2], TipoGastos[2], "Pago recurrente sin fin de Sueldos para Lucas", new InstanciaPagoRecurrente(3000, DateTime.Now.AddMonths(-12), null)));
+            AltaPago(new Pago(MetodosPago.Credito, Usuarios[3], TipoGastos[3], "Pago recurrente sin fin de Materiales para Martina", new InstanciaPagoRecurrente(1200, DateTime.Now.AddMonths(-6), null)));
+            AltaPago(new Pago(MetodosPago.Debito, Usuarios[4], TipoGastos[4], "Pago recurrente sin fin de Publicidad para Santiago", new InstanciaPagoRecurrente(1800, DateTime.Now.AddMonths(-15), null)));
+            AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[5], TipoGastos[5], "Pago recurrente sin fin de Viajes para Valentina", new InstanciaPagoRecurrente(2500, DateTime.Now.AddMonths(-9), null)));
 
-                DateTime fechaInicio = DateTime.Now.AddMonths(-rnd.Next(1, 24));
-                DateTime? fechaFin = null;
-                if (i < 5)
-                {
-                    int mesesDuracion = rnd.Next(1, 12);
-                    fechaFin = fechaInicio.AddMonths(mesesDuracion);
-                }
+            // 19 pagos recurrentes CON fecha de fin
+            AltaPago(new Pago(MetodosPago.Credito, Usuarios[6], TipoGastos[0], "Pago recurrente con fin de Alquiler para Mateo", new InstanciaPagoRecurrente(2100, DateTime.Now.AddMonths(-7), DateTime.Now.AddMonths(-2))));
+            AltaPago(new Pago(MetodosPago.Debito, Usuarios[7], TipoGastos[1], "Pago recurrente con fin de Servicios para Camila", new InstanciaPagoRecurrente(1700, DateTime.Now.AddMonths(-5), DateTime.Now.AddMonths(-1))));
+            AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[8], TipoGastos[2], "Pago recurrente con fin de Sueldos para Joaquin", new InstanciaPagoRecurrente(3200, DateTime.Now.AddMonths(-11), DateTime.Now.AddMonths(-3))));
+            AltaPago(new Pago(MetodosPago.Credito, Usuarios[9], TipoGastos[3], "Pago recurrente con fin de Materiales para Sofia", new InstanciaPagoRecurrente(1300, DateTime.Now.AddMonths(-7), DateTime.Now.AddMonths(-2))));
+            AltaPago(new Pago(MetodosPago.Debito, Usuarios[10], TipoGastos[4], "Pago recurrente con fin de Publicidad para Tomas", new InstanciaPagoRecurrente(1900, DateTime.Now.AddMonths(-13), DateTime.Now.AddMonths(-4))));
+            AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[11], TipoGastos[5], "Pago recurrente con fin de Viajes para Isabella", new InstanciaPagoRecurrente(2600, DateTime.Now.AddMonths(-10), DateTime.Now.AddMonths(-3))));
+            AltaPago(new Pago(MetodosPago.Credito, Usuarios[12], TipoGastos[0], "Pago recurrente con fin de Alquiler para Agustin", new InstanciaPagoRecurrente(2200, DateTime.Now.AddMonths(-8), DateTime.Now.AddMonths(-2))));
+            AltaPago(new Pago(MetodosPago.Debito, Usuarios[13], TipoGastos[1], "Pago recurrente con fin de Servicios para Mia", new InstanciaPagoRecurrente(1600, DateTime.Now.AddMonths(-6), DateTime.Now.AddMonths(-1))));
+            AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[14], TipoGastos[2], "Pago recurrente con fin de Sueldos para Facundo", new InstanciaPagoRecurrente(3100, DateTime.Now.AddMonths(-14), DateTime.Now.AddMonths(-2))));
+            AltaPago(new Pago(MetodosPago.Credito, Usuarios[15], TipoGastos[3], "Pago recurrente con fin de Materiales para Julia", new InstanciaPagoRecurrente(1400, DateTime.Now.AddMonths(-8), DateTime.Now.AddMonths(-2))));
+            AltaPago(new Pago(MetodosPago.Debito, Usuarios[16], TipoGastos[4], "Pago recurrente con fin de Publicidad para Nicolas", new InstanciaPagoRecurrente(2000, DateTime.Now.AddMonths(-12), DateTime.Now.AddMonths(-3))));
+            AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[17], TipoGastos[5], "Pago recurrente con fin de Viajes para Florencia", new InstanciaPagoRecurrente(2700, DateTime.Now.AddMonths(-9), DateTime.Now.AddMonths(-1))));
+            AltaPago(new Pago(MetodosPago.Credito, Usuarios[18], TipoGastos[0], "Pago recurrente con fin de Alquiler para Andres", new InstanciaPagoRecurrente(2300, DateTime.Now.AddMonths(-10), DateTime.Now.AddMonths(-2))));
+            AltaPago(new Pago(MetodosPago.Debito, Usuarios[19], TipoGastos[1], "Pago recurrente con fin de Servicios para Carolina", new InstanciaPagoRecurrente(1800, DateTime.Now.AddMonths(-7), DateTime.Now.AddMonths(-1))));
+            AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[20], TipoGastos[2], "Pago recurrente con fin de Sueldos para Bruno", new InstanciaPagoRecurrente(3300, DateTime.Now.AddMonths(-13), DateTime.Now.AddMonths(-2))));
+            AltaPago(new Pago(MetodosPago.Credito, Usuarios[21], TipoGastos[3], "Pago recurrente con fin de Materiales para Lucia", new InstanciaPagoRecurrente(1500, DateTime.Now.AddMonths(-6), DateTime.Now.AddMonths(-2))));
+            AltaPago(new Pago(MetodosPago.Debito, Usuarios[0], TipoGastos[4], "Pago recurrente con fin extra de Publicidad para Juana", new InstanciaPagoRecurrente(2100, DateTime.Now.AddMonths(-11), DateTime.Now.AddMonths(-3))));
+            AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[1], TipoGastos[5], "Pago recurrente con fin extra de Viajes para Ana", new InstanciaPagoRecurrente(2800, DateTime.Now.AddMonths(-8), DateTime.Now.AddMonths(-2))));
+            AltaPago(new Pago(MetodosPago.Credito, Usuarios[2], TipoGastos[0], "Pago recurrente con fin extra de Alquiler para Lucas", new InstanciaPagoRecurrente(2400, DateTime.Now.AddMonths(-9), DateTime.Now.AddMonths(-1))));
 
-                InstanciaPagoRecurrente instanciaRecurrente = new InstanciaPagoRecurrente(monto, fechaInicio, fechaFin);
-                MetodosPago metodo = (MetodosPago)rnd.Next(1, 4);
-                string descripcion = $"Pago recurrente de {tipoGasto.Nombre} para {usuario.Nombre}";
-
-                Pago pago = new Pago(metodo, usuario, tipoGasto, descripcion, instanciaRecurrente);
-                AltaPago(pago);
-            }
-
-            // 17 pagos únicos (InstanciaPagoUnico) con fecha y recibo válidos
-            for (int i = 0; i < 17; i++)
-            {
-                Usuario usuario = usuarios[rnd.Next(usuarios.Count)];
-                TipoGasto tipoGasto = tiposGasto[rnd.Next(tiposGasto.Count)];
-                double monto = rnd.Next(500, 3000);
-                DateTime fechaPago = DateTime.Now.AddDays(-rnd.Next(1, 365));
-                int reciboPago = rnd.Next(1, 99999); // Recibo mayor a 0
-
-                InstanciaPagoUnico instanciaUnico = new InstanciaPagoUnico(monto, fechaPago, reciboPago);
-                MetodosPago metodo = (MetodosPago)rnd.Next(1, 4);
-                string descripcion = $"Pago único de {tipoGasto.Nombre} para {usuario.Nombre}";
-
-                Pago pago = new Pago(metodo, usuario, tipoGasto, descripcion, instanciaUnico);
-                AltaPago(pago);
-            }
-        }
-
-       
+            // 17 pagos únicos
+            AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[0], TipoGastos[1], "Pago único de Servicios para Juana", new InstanciaPagoUnico(900, DateTime.Now.AddDays(-30), 1001)));
+            AltaPago(new Pago(MetodosPago.Credito, Usuarios[1], TipoGastos[2], "Pago único de Sueldos para Ana", new InstanciaPagoUnico(1100, DateTime.Now.AddDays(-60), 1002)));
+            AltaPago(new Pago(MetodosPago.Debito, Usuarios[2], TipoGastos[3], "Pago único de Materiales para Lucas", new InstanciaPagoUnico(800, DateTime.Now.AddDays(-90), 1003)));
+            AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[3], TipoGastos[4], "Pago único de Publicidad para Martina", new InstanciaPagoUnico(950, DateTime.Now.AddDays(-120), 1004)));
+            AltaPago(new Pago(MetodosPago.Credito, Usuarios[4], TipoGastos[5], "Pago único de Viajes para Santiago", new InstanciaPagoUnico(1000, DateTime.Now.AddDays(-150), 1005)));
+            AltaPago(new Pago(MetodosPago.Debito, Usuarios[5], TipoGastos[0], "Pago único de Alquiler para Valentina", new InstanciaPagoUnico(1200, DateTime.Now.AddDays(-180), 1006)));
+            AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[6], TipoGastos[1], "Pago único de Servicios para Mateo", new InstanciaPagoUnico(1300, DateTime.Now.AddDays(-210), 1007)));
+            AltaPago(new Pago(MetodosPago.Credito, Usuarios[7], TipoGastos[2], "Pago único de Sueldos para Camila", new InstanciaPagoUnico(1400, DateTime.Now.AddDays(-240), 1008)));
+            AltaPago(new Pago(MetodosPago.Debito, Usuarios[8], TipoGastos[3], "Pago único de Materiales para Joaquin", new InstanciaPagoUnico(1500, DateTime.Now.AddDays(-270), 1009)));
+            AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[9], TipoGastos[4], "Pago único de Publicidad para Sofia", new InstanciaPagoUnico(1600, DateTime.Now.AddDays(-300), 1010)));
+            AltaPago(new Pago(MetodosPago.Credito, Usuarios[10], TipoGastos[5], "Pago único de Viajes para Tomas", new InstanciaPagoUnico(1700, DateTime.Now.AddDays(-330), 1011)));
+            AltaPago(new Pago(MetodosPago.Debito, Usuarios[11], TipoGastos[0], "Pago único de Alquiler para Isabella", new InstanciaPagoUnico(1800, DateTime.Now.AddDays(-360), 1012)));
+            AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[12], TipoGastos[1], "Pago único de Servicios para Agustin", new InstanciaPagoUnico(1900, DateTime.Now.AddDays(-390), 1013)));
+            AltaPago(new Pago(MetodosPago.Credito, Usuarios[13], TipoGastos[2], "Pago único de Sueldos para Mia", new InstanciaPagoUnico(2000, DateTime.Now.AddDays(-420), 1014)));
+            AltaPago(new Pago(MetodosPago.Debito, Usuarios[14], TipoGastos[3], "Pago único de Materiales para Facundo", new InstanciaPagoUnico(2100, DateTime.Now.AddDays(-450), 1015)));
+            AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[15], TipoGastos[4], "Pago único de Publicidad para Julia", new InstanciaPagoUnico(2200, DateTime.Now.AddDays(-480), 1016)));
+            AltaPago(new Pago(MetodosPago.Credito, Usuarios[16], TipoGastos[5], "Pago único de Viajes para Nicolas", new InstanciaPagoUnico(2300, DateTime.Now.AddDays(-510), 1017)));
+}
     }
 }
