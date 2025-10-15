@@ -166,6 +166,21 @@ namespace ObligatorioP2
                 Console.WriteLine("El email no puede estar vacío.");
                 return;
             }
+            if (!email.Contains("@") || !email.Contains("."))
+            {
+                Console.WriteLine("El email ingresado no es válido.");
+                return;
+            }
+            if (email.Length < 5)
+            {
+                Console.WriteLine("El email debe tener al menos 5 caracteres.");
+                return;
+            }
+            if (!email.Contains("laEmpresa"))
+            {
+                Console.WriteLine("El email debe pertenecer a la empresa (debe contener 'laEmpresa').");
+                return;
+            }
             Usuario usuario = sistema.GetUsuarioPorEmail(email);
             if (usuario != null)
             {
