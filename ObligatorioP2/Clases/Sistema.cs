@@ -360,50 +360,50 @@ public void PrecargaPagos()
     // ===== 6 pagos RECURRENTES SIN fecha de fin (EndDate = null) =====
     AltaPago(new Pago(MetodosPago.Credito,  Usuarios[0],  TipoGastos[0],  "Alquiler mensual",new InstanciaPagoRecurrente(28000, DateTime.Now.AddMonths(-12), null)));
     AltaPago(new Pago(MetodosPago.Debito,   Usuarios[1],  TipoGastos[1],  "Servicios (UTE/ANTEL)",new InstanciaPagoRecurrente(6500,  DateTime.Now.AddMonths(-9),  null)));
-    AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[2],  TipoGastos[2],  "Sueldos",new InstanciaPagoRecurrente(120000,DateTime.Now.AddMonths(-10), null)));
+    AltaPago(new Pago(MetodosPago.Credito, Usuarios[2],  TipoGastos[2],  "Sueldos",new InstanciaPagoRecurrente(120000,DateTime.Now.AddMonths(-10), null)));
     AltaPago(new Pago(MetodosPago.Credito,  Usuarios[3],  TipoGastos[3],  "Mantenimiento",new InstanciaPagoRecurrente(4200,  DateTime.Now.AddMonths(-6),  null)));
     AltaPago(new Pago(MetodosPago.Debito,   Usuarios[4],  TipoGastos[4],  "Internet",new InstanciaPagoRecurrente(1800,  DateTime.Now.AddMonths(-8),  null)));
-    AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[5],  TipoGastos[5],  "Limpieza",new InstanciaPagoRecurrente(3500,  DateTime.Now.AddMonths(-5),  null)));
+    AltaPago(new Pago(MetodosPago.Credito, Usuarios[5],  TipoGastos[5],  "Limpieza",new InstanciaPagoRecurrente(3500,  DateTime.Now.AddMonths(-5),  null)));
 
     // ===== 9 pagos RECURRENTES con fecha de fin en el FUTURO =====
     AltaPago(new Pago(MetodosPago.Credito,  Usuarios[6],  TipoGastos[0],  "Licencia software",new InstanciaPagoRecurrente(2200,  DateTime.Now.AddMonths(-4),  DateTime.Now.AddMonths(8))));
     AltaPago(new Pago(MetodosPago.Debito,   Usuarios[7],  TipoGastos[1],  "Seguro flota",new InstanciaPagoRecurrente(9500,  DateTime.Now.AddMonths(-7),  DateTime.Now.AddMonths(5))));
-    AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[8],  TipoGastos[2],  "Alquiler depósito",new InstanciaPagoRecurrente(54000, DateTime.Now.AddMonths(-2),  DateTime.Now.AddMonths(10))));
+    AltaPago(new Pago(MetodosPago.Credito, Usuarios[8],  TipoGastos[2],  "Alquiler depósito",new InstanciaPagoRecurrente(54000, DateTime.Now.AddMonths(-2),  DateTime.Now.AddMonths(10))));
     AltaPago(new Pago(MetodosPago.Credito,  Usuarios[9],  TipoGastos[3],  "Servicio guardia",new InstanciaPagoRecurrente(4100,  DateTime.Now.AddMonths(-3),  DateTime.Now.AddMonths(4))));
     AltaPago(new Pago(MetodosPago.Debito,   Usuarios[10], TipoGastos[4],  "Telefonía móvil",new InstanciaPagoRecurrente(2600,  DateTime.Now.AddMonths(-1),  DateTime.Now.AddMonths(12))));
-    AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[11], TipoGastos[5],  "Mantenimiento HVAC",new InstanciaPagoRecurrente(7800,  DateTime.Now.AddMonths(-6),  DateTime.Now.AddMonths(2))));
+    AltaPago(new Pago(MetodosPago.Credito, Usuarios[11], TipoGastos[5],  "Mantenimiento HVAC",new InstanciaPagoRecurrente(7800,  DateTime.Now.AddMonths(-6),  DateTime.Now.AddMonths(2))));
     AltaPago(new Pago(MetodosPago.Credito,  Usuarios[12], TipoGastos[0],  "Soporte técnico",new InstanciaPagoRecurrente(3300,  DateTime.Now.AddMonths(-5),  DateTime.Now.AddMonths(6))));
     AltaPago(new Pago(MetodosPago.Debito,   Usuarios[13], TipoGastos[1],  "Licencias antivirus",new InstanciaPagoRecurrente(1450,  DateTime.Now.AddMonths(-8),  DateTime.Now.AddMonths(3))));
-    AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[14], TipoGastos[2],  "Estacionamiento",new InstanciaPagoRecurrente(2100,  DateTime.Now.AddMonths(-2),  DateTime.Now.AddMonths(7))));
+    AltaPago(new Pago(MetodosPago.Credito, Usuarios[14], TipoGastos[2],  "Estacionamiento",new InstanciaPagoRecurrente(2100,  DateTime.Now.AddMonths(-2),  DateTime.Now.AddMonths(7))));
 
     // ===== 10 pagos RECURRENTES con fecha de fin en el PASADO =====
     AltaPago(new Pago(MetodosPago.Credito,  Usuarios[0],  TipoGastos[3],  "Campaña marketing",new InstanciaPagoRecurrente(12500, DateTime.Now.AddMonths(-14), DateTime.Now.AddMonths(-6))));
     AltaPago(new Pago(MetodosPago.Debito,   Usuarios[1],  TipoGastos[4],  "Contrato limpieza",new InstanciaPagoRecurrente(3800,  DateTime.Now.AddMonths(-12), DateTime.Now.AddMonths(-3))));
-    AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[2],  TipoGastos[5],  "Consultoría RRHH",new InstanciaPagoRecurrente(9200,  DateTime.Now.AddMonths(-9),  DateTime.Now.AddMonths(-1))));
+    AltaPago(new Pago(MetodosPago.Credito, Usuarios[2],  TipoGastos[5],  "Consultoría RRHH",new InstanciaPagoRecurrente(9200,  DateTime.Now.AddMonths(-9),  DateTime.Now.AddMonths(-1))));
     AltaPago(new Pago(MetodosPago.Credito,  Usuarios[3],  TipoGastos[0],  "Capacitación personal",new InstanciaPagoRecurrente(4600,  DateTime.Now.AddMonths(-10), DateTime.Now.AddMonths(-2))));
     AltaPago(new Pago(MetodosPago.Debito,   Usuarios[4],  TipoGastos[1],  "Servicio backup",new InstanciaPagoRecurrente(1700,  DateTime.Now.AddMonths(-11), DateTime.Now.AddMonths(-5))));
-    AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[5],  TipoGastos[2],  "Alquiler sala reuniones",new InstanciaPagoRecurrente(3000,  DateTime.Now.AddMonths(-7),  DateTime.Now.AddMonths(-4))));
+    AltaPago(new Pago(MetodosPago.Credito, Usuarios[5],  TipoGastos[2],  "Alquiler sala reuniones",new InstanciaPagoRecurrente(3000,  DateTime.Now.AddMonths(-7),  DateTime.Now.AddMonths(-4))));
     AltaPago(new Pago(MetodosPago.Credito,  Usuarios[6],  TipoGastos[3],  "Publicidad trimestral",new InstanciaPagoRecurrente(8000,  DateTime.Now.AddMonths(-8),  DateTime.Now.AddMonths(-2))));
     AltaPago(new Pago(MetodosPago.Debito,   Usuarios[7],  TipoGastos[4],  "Soporte ERP",new InstanciaPagoRecurrente(5100,  DateTime.Now.AddMonths(-15), DateTime.Now.AddMonths(-9))));
-    AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[8],  TipoGastos[5],  "Servicio jardinería",new InstanciaPagoRecurrente(2400,  DateTime.Now.AddMonths(-13), DateTime.Now.AddMonths(-8))));
+    AltaPago(new Pago(MetodosPago.Debito, Usuarios[8],  TipoGastos[5],  "Servicio jardinería",new InstanciaPagoRecurrente(2400,  DateTime.Now.AddMonths(-13), DateTime.Now.AddMonths(-8))));
     AltaPago(new Pago(MetodosPago.Credito,  Usuarios[9],  TipoGastos[0],  "Monitoreo cámaras",new InstanciaPagoRecurrente(3500,  DateTime.Now.AddMonths(-6),  DateTime.Now.AddMonths(-1))));
 
     // ===== 17 pagos ÚNICOS (con número de recibo agregado) =====
     AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[10], TipoGastos[1], "Compra insumos oficina",new InstanciaPagoUnico(2700,  DateTime.Now.AddDays(-25), 2001)));
     AltaPago(new Pago(MetodosPago.Debito,   Usuarios[11], TipoGastos[2], "Flete puntual mercadería",new InstanciaPagoUnico(15400, DateTime.Now.AddDays(-10), 2002)));
-    AltaPago(new Pago(MetodosPago.Credito,  Usuarios[12], TipoGastos[3], "Reparación impresora",new InstanciaPagoUnico(4300,  DateTime.Now.AddDays(-40), 2003)));
+    AltaPago(new Pago(MetodosPago.Efectivo,  Usuarios[12], TipoGastos[3], "Reparación impresora",new InstanciaPagoUnico(4300,  DateTime.Now.AddDays(-40), 2003)));
     AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[13], TipoGastos[4], "Catering reunión clientes",new InstanciaPagoUnico(9600,  DateTime.Now.AddDays(-5),  2004)));
     AltaPago(new Pago(MetodosPago.Debito,   Usuarios[14], TipoGastos[5], "Taxi traslado urgente",new InstanciaPagoUnico(850,   DateTime.Now.AddDays(-3),  2005)));
-    AltaPago(new Pago(MetodosPago.Credito,  Usuarios[0],  TipoGastos[0], "Reposición sillas",new InstanciaPagoUnico(11800, DateTime.Now.AddDays(-60), 2006)));
+    AltaPago(new Pago(MetodosPago.Efectivo,  Usuarios[0],  TipoGastos[0], "Reposición sillas",new InstanciaPagoUnico(11800, DateTime.Now.AddDays(-60), 2006)));
     AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[1],  TipoGastos[1], "Papelería y timbres",new InstanciaPagoUnico(2100,  DateTime.Now.AddDays(-15), 2007)));
     AltaPago(new Pago(MetodosPago.Debito,   Usuarios[2],  TipoGastos[2], "Carga combustible única",new InstanciaPagoUnico(4200,  DateTime.Now.AddDays(-7),  2008)));
-    AltaPago(new Pago(MetodosPago.Credito,  Usuarios[3],  TipoGastos[3], "Compra luces LED",new InstanciaPagoUnico(7800,  DateTime.Now.AddDays(-20), 2009)));
+    AltaPago(new Pago(MetodosPago.Debito,  Usuarios[3],  TipoGastos[3], "Compra luces LED",new InstanciaPagoUnico(7800,  DateTime.Now.AddDays(-20), 2009)));
     AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[4],  TipoGastos[4], "Pago peaje excepcional",new InstanciaPagoUnico(340,   DateTime.Now.AddDays(-1),  2010)));
     AltaPago(new Pago(MetodosPago.Debito,   Usuarios[5],  TipoGastos[5], "Servicio plomería",new InstanciaPagoUnico(5200,  DateTime.Now.AddDays(-13), 2011)));
-    AltaPago(new Pago(MetodosPago.Credito,  Usuarios[6],  TipoGastos[0], "Compra monitor 27",new InstanciaPagoUnico(18500, DateTime.Now.AddDays(-33), 2012)));
+    AltaPago(new Pago(MetodosPago.Debito,  Usuarios[6],  TipoGastos[0], "Compra monitor 27",new InstanciaPagoUnico(18500, DateTime.Now.AddDays(-33), 2012)));
     AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[7],  TipoGastos[1], "Cafetera nueva",new InstanciaPagoUnico(4200,  DateTime.Now.AddDays(-18), 2013)));
     AltaPago(new Pago(MetodosPago.Debito,   Usuarios[8],  TipoGastos[2], "Reemplazo neumático",new InstanciaPagoUnico(9300,  DateTime.Now.AddDays(-22), 2014)));
-    AltaPago(new Pago(MetodosPago.Credito,  Usuarios[9],  TipoGastos[3], "Servicio desinfección",new InstanciaPagoUnico(6100,  DateTime.Now.AddDays(-27), 2015)));
+    AltaPago(new Pago(MetodosPago.Efectivo,  Usuarios[9],  TipoGastos[3], "Servicio desinfección",new InstanciaPagoUnico(6100,  DateTime.Now.AddDays(-27), 2015)));
     AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[10], TipoGastos[4], "Compra matafuegos",new InstanciaPagoUnico(3900,  DateTime.Now.AddDays(-45), 2016)));
     AltaPago(new Pago(MetodosPago.Debito,   Usuarios[11], TipoGastos[5], "Reparación notebook",new InstanciaPagoUnico(7200,  DateTime.Now.AddDays(-12), 2017)));
 }
