@@ -22,9 +22,8 @@ namespace ObligatorioP2
             while (!exitFlag)
             {
                 MostrarMenu();
-                int opcionSelec = int.Parse(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out int opcionSelec);
 
-                
                 switch (opcionSelec)
                 {
                     case 0:
@@ -32,6 +31,7 @@ namespace ObligatorioP2
                         exitFlag = true;
                         break;
                     case 1:
+                        Console.Clear();
                         Console.WriteLine("Listando usuarios, por favor espere:");
                         try
                         {
@@ -43,7 +43,6 @@ namespace ObligatorioP2
                             {
                                 Console.WriteLine("Por favor, ingrese '1' para volver al menú.");
                             }
-                            Console.Clear();
                         }
                         catch (Exception e)
                         {
@@ -51,13 +50,16 @@ namespace ObligatorioP2
                         }
                         break;
                     case 2:
+                        Console.Clear();
                         ListarPagosPorEmail(sistema);
                         break;
                     case 3:
+                        Console.Clear();
                         CrearUsuario(sistema);
 
                         break;
                     case 4:
+                        Console.Clear();
                             try
                             {
                             Equipo equipo = ListarEquiposParaSelec(sistema, "Seleccione el nombre del equipo:");
@@ -93,8 +95,6 @@ namespace ObligatorioP2
                             {
                                 Console.WriteLine("Por favor, ingrese '1' para volver al menú.");
                             }
-                            Console.Clear();
-
                         break;
                     default:
                         Console.WriteLine("Por favor seleccione una opcion correcta.");
@@ -145,7 +145,6 @@ namespace ObligatorioP2
 
         public static void MostrarMenu()
         {
-            Console.Clear();
             Console.WriteLine("----------Seleccione una opcion:---------");
             Console.WriteLine("-----------------------------------------");
             Console.WriteLine("1. Listar todos los Usuarios del Sistema.");
@@ -194,7 +193,6 @@ namespace ObligatorioP2
                     {
                         Console.WriteLine("Por favor, ingrese '1' para volver al menú.");
                     }
-                    Console.Clear();
                 }
                 catch (Exception e)
                 {
@@ -275,7 +273,6 @@ namespace ObligatorioP2
             {
                 Console.WriteLine("Por favor, ingrese '1' para volver al menú.");
             }
-            Console.Clear();
         }
         // Método para seleccionar un equipo de la lista de equipos del sistema
         private static Equipo? ListarEquiposParaSelec(Sistema sistema, string text)

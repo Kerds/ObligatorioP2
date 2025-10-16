@@ -18,7 +18,7 @@ namespace Clases.Pagos
             FechaInicio = fechaInicio;
             if (fechaFin != null)
             {
-                FechaFin = fechaFin;
+            FechaFin = fechaFin;
             }
            
         }
