@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObligatorioP2", "Obligatori
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clases", "Clases\Clases.csproj", "{4D645AE1-E63E-494E-A51D-867AE8D0F0F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp Op2", "WebApp Op2\WebApp Op2.csproj", "{1811DCEC-2BBD-45D4-B8FD-DD5EE3A5B183}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4D645AE1-E63E-494E-A51D-867AE8D0F0F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D645AE1-E63E-494E-A51D-867AE8D0F0F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D645AE1-E63E-494E-A51D-867AE8D0F0F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1811DCEC-2BBD-45D4-B8FD-DD5EE3A5B183}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1811DCEC-2BBD-45D4-B8FD-DD5EE3A5B183}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1811DCEC-2BBD-45D4-B8FD-DD5EE3A5B183}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1811DCEC-2BBD-45D4-B8FD-DD5EE3A5B183}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
