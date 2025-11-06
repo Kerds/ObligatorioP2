@@ -1,31 +1,30 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using ObligatorioP2;
 using WebApp_Op2.Models;
 
 namespace WebApp_Op2.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
+    Sistema sistema = Sistema.GetSistema();
 
     public IActionResult Index()
     {
+        if(HttpContext.Session.GetString("usuario") != null)
+        {
+            ViewBag.Usuario = HttpContext.Session.GetString("usuario");
+        }
+        else
+        {
+            return RedirectToAction("Login", "Usuario");
+        }
         return View();
     }
-
+   
     public IActionResult Privacy()
     {
         return View();
     }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
 }

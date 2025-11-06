@@ -408,5 +408,16 @@ public void PrecargaPagos()
     AltaPago(new Pago(MetodosPago.Debito,   Usuarios[11], TipoGastos[5], "Reparación notebook",new InstanciaPagoUnico(7200,  DateTime.Now.AddDays(-12), 2017)));
 }
 
+        public Usuario ObtenerUsuario(string email, string contrasena)
+        {
+            foreach(Usuario usuario in Usuarios)
+            {
+                if (usuario.Email == email && usuario.Contrasenia == contrasena)
+                {
+                    return usuario;
+                }
+            }
+            return null;
+        }
     }
 }

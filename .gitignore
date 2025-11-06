@@ -28,3 +28,4 @@ packages/
 *.cache
 ObligatorioProgramacion2.asta.lock
 ObligatorioProgramacion2.asta.lock
+/ObligatorioP2/WebApp Op2/node_modules
