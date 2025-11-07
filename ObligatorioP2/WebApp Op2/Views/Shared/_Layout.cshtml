@@ -44,8 +44,8 @@
                     @if (!string.IsNullOrEmpty(usuario))
                     {
                         <form asp-controller="Usuario" asp-action="Logout" method="post" class="m-0">
-                            <button type="submit" class="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Cerrar sesión (@usuario)
+                            <button type="submit" class="inline-flex items-center px-3 py-2 border border-transparent text-sm hover:text-gray-300 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all transition-duration-300">
+                                Cerrar sesión
                             </button>
                         </form>
                     }

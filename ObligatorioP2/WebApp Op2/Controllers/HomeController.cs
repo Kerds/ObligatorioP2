@@ -10,19 +10,9 @@ public class HomeController : Controller
 {
     Sistema sistema = Sistema.GetSistema();
 
-
-    [LogActionFilter]
-    public IActionResult Index()
-    {
-
-        if (HttpContext.Session.GetString("usuario") != null)
-        {
-            ViewBag.Usuario = HttpContext.Session.GetString("usuario");
-        }
-        else
-        {
-            return RedirectToAction("Login", "Usuario");
-        }
+public IActionResult Index()
+    {           
+        ViewBag.Usuario = HttpContext.Session.GetString("usuario");
         return View();
     }
    
