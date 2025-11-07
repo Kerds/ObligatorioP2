@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-
 
 namespace WebApp_Op2.Filters
 {
@@ -9,28 +7,31 @@ namespace WebApp_Op2.Filters
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-           string userLogged = context.HttpContext.Session.GetString("usuario");
-            if (userLogged != null)
-            {
-                context.Result = new RedirectResult("/Home/Index"); 
+            // Obtener controller/action actuales
+            var controller = context.RouteData.Values["controller"]?.ToString() ?? "";
+            var action = context.RouteData.Values["action"]?.ToString() ?? "";
 
+            if (string.Equals(controller, "Usuario", StringComparison.OrdinalIgnoreCase)
+                && string.Equals(action, "Login", StringComparison.OrdinalIgnoreCase))
+            {
                 return;
             }
-            base.OnActionExecuting(context);
+
+            // Si no hay usuario en sesión, redirigir al Login (UsuarioController.Login)
+            var userLogged = context.HttpContext.Session.GetString("usuario");
+            if (string.IsNullOrEmpty(userLogged))
+            {
+                context.Result = new RedirectToActionResult("Login", "Usuario", null);
+                return;
+            }
+
+            // Logging opcional
+            Console.WriteLine($"[Before] Action: {context.ActionDescriptor.DisplayName} - Usuario: {userLogged}");
         }
 
         public override void OnActionExecuted(ActionExecutedContext context)
         {
-            if (context.Result == null)
-            {
-                string userLogged = context.HttpContext.Session.GetString("usuario");
-                if (userLogged != null)
-                {
-                    context.Result = new RedirectResult("/Home/Index");
-                    return;
-                }
-            }
-            base.OnActionExecuted(context);
+            Console.WriteLine($"[After] Action: {context.ActionDescriptor.DisplayName}");
         }
     }
 }
