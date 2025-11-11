@@ -2,6 +2,7 @@
 using Clases;
 using Clases.Usuarios;
 using Clases.Pagos;
+using Clases.Roles;
 namespace ObligatorioP2
 {
     
@@ -255,10 +256,18 @@ namespace ObligatorioP2
                     Console.WriteLine("Debe seleccionar un equipo válido.");
                 }
             }
-
+            Rol rol = null;
+            while (rol == null)
+            {
+                rol = ListarRol( "Por favor seleccione un Rol");
+                if (rol == null)
+                {
+                    Console.WriteLine("Debe seleccionar un Rol válido.");
+                }
+            }
             try
             {
-                Usuario usuNuevo = new Usuario(nombre, apellido, contrasenia, equipo);
+                Usuario usuNuevo = new Usuario(nombre, apellido, contrasenia, equipo, rol);
                 sistema.AltaUsuario(usuNuevo);
                 equipo.AgregarMiembro(usuNuevo);
                 Console.WriteLine("Usuario creado correctamente.");
@@ -274,6 +283,33 @@ namespace ObligatorioP2
                 Console.WriteLine("Por favor, ingrese '1' para volver al menú.");
             }
         }
+
+        private static Rol? ListarRol( string text)
+        {
+            Console.WriteLine(text);
+            Console.WriteLine("1 - Rol Empleado");
+            Console.WriteLine("2 - Rol Gerente");
+            string? input = Console.ReadLine();
+            if (input == null)
+            {
+                Console.WriteLine("Opción de rol inválida.");
+                return null;
+            }
+            else if (input == "1")
+            {
+                return new RolEmpleado();
+            }
+            else if (input == "2")
+            {
+                return new RolGerente();
+            }
+            else
+            {
+                Console.WriteLine("Opción de rol inválida.");
+                return null;
+            }
+            }
+
         // Método para seleccionar un equipo de la lista de equipos del sistema
         private static Equipo? ListarEquiposParaSelec(Sistema sistema, string text)
         {

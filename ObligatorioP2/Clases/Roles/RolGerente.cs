@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Clases.Roles
 {
-    internal class RolGerente : Rol
+    public class RolGerente : Rol
     {
         public RolGerente(): base() { }
+
         public override bool AddTipoGasto()
         {
             return true;        }
