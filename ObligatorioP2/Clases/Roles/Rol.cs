@@ -5,18 +5,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Clases.Rol
+namespace Clases.Roles
 {
     public abstract class Rol
     {
-        public Rol() { }
+        public int id { get; set; }
+        public static int RolId { get; set; } = 0;
+    
+        public Rol()
+        {
+            id = RolId;
+        }
         public abstract string MiRol();
         public abstract bool CargarNuevoPago();
         public abstract bool VerPagosMesActual();
         public abstract bool AddTipoGasto();
         public abstract bool RemoveTipoGasto();
         public abstract bool ListadoPagosEquipo();
-
 
     }
 }

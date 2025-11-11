@@ -4,35 +4,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Clases.Rol 
+namespace Clases.Roles
 {
-    internal class RolGerente : Rol
+    public class RolEmpleado : Rol
     {
+        public RolEmpleado() : base() { }
         public override bool AddTipoGasto()
         {
-            return true;        }
-
+            return false;
+        }
+    
         public override bool CargarNuevoPago()
         {
             return true;
         }
-
-        public override bool ListadoPagosEquipo()
-        {
-            return true;
-        }
-
         public override string MiRol()
         {
-            return "Gerente";
+            return "Empleado";
         }
+                
+        public override bool ListadoPagosEquipo()
+        {
+            return false;  }
+
+        
 
         public override bool RemoveTipoGasto()
-        { return true; }
+        {
+            return false;
+        }
 
         public override bool VerPagosMesActual()
         {
-            return true;
-        }
+            return true;        }
+
     }
 }

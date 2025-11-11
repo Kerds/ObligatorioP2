@@ -1,4 +1,5 @@
-﻿using ObligatorioP2;
+﻿using Clases.Roles;
+using ObligatorioP2;
 using System.Diagnostics.Metrics;
 
 namespace Clases.Usuarios
@@ -12,6 +13,7 @@ namespace Clases.Usuarios
         public string Contrasenia { get; set; }
         public string Email { get; set; }
 
+        public Rol MiRol { get; set; }
         public Equipo Equipo { get; set; }
         public DateTime FechaAlta { get; set; }
         public Usuario()
@@ -44,6 +46,10 @@ namespace Clases.Usuarios
             {
                 throw new Exception("El nombre debe tener al menos 3 caracteres.");
             }
+        }
+        public void SetRol( Rol rol)
+        {
+            MiRol = rol;
         }
         private void ValidarApellido()
         {

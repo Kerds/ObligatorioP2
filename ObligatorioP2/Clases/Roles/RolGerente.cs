@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Clases.Rol
+namespace Clases.Roles
 {
-    internal class RolEmpleado : Rol
+    internal class RolGerente : Rol
     {
+        public RolGerente(): base() { }
         public override bool AddTipoGasto()
         {
-            return false;
-        }
+            return true;        }
 
         public override bool CargarNuevoPago()
         {
@@ -20,20 +20,20 @@ namespace Clases.Rol
 
         public override bool ListadoPagosEquipo()
         {
-            return false;  }
+            return true;
+        }
 
         public override string MiRol()
         {
-            return "Empleado";
+            return "Gerente";
         }
 
         public override bool RemoveTipoGasto()
-        {
-            return false;
-        }
+        { return true; }
 
         public override bool VerPagosMesActual()
         {
-            return true;        }
+            return true;
+        }
     }
 }
