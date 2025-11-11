@@ -23,7 +23,7 @@ namespace Clases.Roles
             return true;
         }
 
-        public override string MiRol()
+        public override string ToString()
         {
             return "Gerente";
         }

@@ -13,7 +13,6 @@ namespace Clases.Roles
         public Rol()
         {
         }
-        public abstract string MiRol();
         public abstract bool CargarNuevoPago();
         public abstract bool VerPagosMesActual();
         public abstract bool AddTipoGasto();

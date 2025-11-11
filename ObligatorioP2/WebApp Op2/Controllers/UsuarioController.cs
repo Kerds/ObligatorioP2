@@ -20,6 +20,9 @@ public class UsuarioController : Controller
         if (usuario != null)
         {
             HttpContext.Session.SetString("usuario", usuario.Email);
+            if (usuario.MiRol != null) { 
+                HttpContext.Session.SetString("rol", usuario.MiRol.ToString());
+            }
             return RedirectToAction("Index", "Home");
         }
         else
