@@ -13,7 +13,7 @@ namespace Clases.Usuarios
         public string Contrasenia { get; set; }
         public string Email { get; set; }
 
-        public Rol MiRol { get; set; }
+        public Rol? MiRol { get; set; }
         public Equipo Equipo { get; set; }
         public DateTime FechaAlta { get; set; }
         public Usuario()

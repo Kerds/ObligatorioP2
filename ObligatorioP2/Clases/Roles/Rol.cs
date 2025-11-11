@@ -9,12 +9,9 @@ namespace Clases.Roles
 {
     public abstract class Rol
     {
-        public int id { get; set; }
-        public static int RolId { get; set; } = 0;
     
         public Rol()
         {
-            id = RolId;
         }
         public abstract string MiRol();
         public abstract bool CargarNuevoPago();

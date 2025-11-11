@@ -1,4 +1,5 @@
 ﻿using Clases.Pagos;
+using Clases.Roles;
 using Clases.Usuarios;
 using System;
 using System.Collections.Generic;
@@ -243,98 +244,100 @@ namespace ObligatorioP2
     Equipo finanzas     = GetEquipoPorNombre("Finanzas");
     Equipo tesoreria    = GetEquipoPorNombre("Tesoreria");
     Equipo auditoria    = GetEquipoPorNombre("Auditoria");
-
-    // ---- Contabilidad (6) ----
-    Usuario usuario1 = new Usuario("Juana", "Melcer", "12345678", contabilidad);
+            Rol Gerente = new RolGerente();
+            Rol Empleado = new RolEmpleado();
+            // ---- Contabilidad (6) ----
+            Usuario usuario1 = new Usuario("Juana", "Melcer", "12345678", contabilidad, Gerente);
     AltaUsuario(usuario1);
     contabilidad.AgregarMiembro(usuario1);
 
-    Usuario usuario2 = new Usuario("Ana", "Perez", "12345678", contabilidad);
+    Usuario usuario2 = new Usuario("Ana", "Perez", "12345678", contabilidad, Empleado);
     AltaUsuario(usuario2);
     contabilidad.AgregarMiembro(usuario2);
 
-    Usuario usuario3 = new Usuario("Lucas", "Garcia", "12345678", contabilidad);
+    Usuario usuario3 = new Usuario("Lucas", "Garcia", "12345678", contabilidad, Gerente);
     AltaUsuario(usuario3);
     contabilidad.AgregarMiembro(usuario3);
 
-    Usuario usuario4 = new Usuario("Martina", "Rodriguez", "12345678", contabilidad);
+    Usuario usuario4 = new Usuario("Martina", "Rodriguez", "12345678", contabilidad, Empleado);
     AltaUsuario(usuario4);
     contabilidad.AgregarMiembro(usuario4);
 
-    Usuario usuario5 = new Usuario("Santiago", "Fernandez", "12345678", contabilidad);
-    AltaUsuario(usuario5);
+    Usuario usuario5 = new Usuario("Santiago", "Fernandez", "12345678", contabilidad, Gerente);
+    AltaUsuario(usuario5);  
     contabilidad.AgregarMiembro(usuario5);
 
-    Usuario usuario6 = new Usuario("Valentina", "Gomez", "12345678", contabilidad);
+    Usuario usuario6 = new Usuario("Valentina", "Gomez", "12345678", contabilidad, Empleado);
     AltaUsuario(usuario6);
     contabilidad.AgregarMiembro(usuario6);
 
     // ---- Finanzas (5) ----
-    Usuario usuario7 = new Usuario("Mateo", "Suarez", "12345678", finanzas);
+    Usuario usuario7 = new Usuario("Mateo", "Suarez", "12345678", finanzas, Gerente);
     AltaUsuario(usuario7);
     finanzas.AgregarMiembro(usuario7);
 
-    Usuario usuario8 = new Usuario("Camila", "Lopez", "12345678", finanzas);
+    Usuario usuario8 = new Usuario("Camila", "Lopez", "12345678", finanzas, Empleado);
     AltaUsuario(usuario8);
     finanzas.AgregarMiembro(usuario8);
 
-    Usuario usuario9 = new Usuario("Joaquin", "Alvarez", "12345678", finanzas);
+    Usuario usuario9 = new Usuario("Joaquin", "Alvarez", "12345678", finanzas, Gerente);
     AltaUsuario(usuario9);
     finanzas.AgregarMiembro(usuario9);
 
-    Usuario usuario10 = new Usuario("Sofia", "Martinez", "12345678", finanzas);
+    Usuario usuario10 = new Usuario("Sofia", "Martinez", "12345678", finanzas, Empleado);
     AltaUsuario(usuario10);
     finanzas.AgregarMiembro(usuario10);
 
-    Usuario usuario11 = new Usuario("Tomas", "Pereira", "12345678", finanzas);
+    Usuario usuario11 = new Usuario("Tomas", "Pereira", "12345678", finanzas, Gerente);
     AltaUsuario(usuario11);
     finanzas.AgregarMiembro(usuario11);
 
     // ---- Tesoreria (5) ----
-    Usuario usuario12 = new Usuario("Isabella", "Santos", "12345678", tesoreria);
+    Usuario usuario12 = new Usuario("Isabella", "Santos", "12345678", tesoreria, Empleado);
     AltaUsuario(usuario12);
     tesoreria.AgregarMiembro(usuario12);
 
-    Usuario usuario13 = new Usuario("Agustin", "Cabrera", "12345678", tesoreria);
+    Usuario usuario13 = new Usuario("Agustin", "Cabrera", "12345678", tesoreria, Gerente);
     AltaUsuario(usuario13);
     tesoreria.AgregarMiembro(usuario13);
 
-    Usuario usuario14 = new Usuario("Mia", "Torres", "12345678", tesoreria);
+    Usuario usuario14 = new Usuario("Mia", "Torres", "12345678", tesoreria, Empleado);
     AltaUsuario(usuario14);
     tesoreria.AgregarMiembro(usuario14);
 
-    Usuario usuario15 = new Usuario("Facundo", "Silva", "12345678", tesoreria);
+    Usuario usuario15 = new Usuario("Facundo", "Silva", "12345678", tesoreria, Empleado);
     AltaUsuario(usuario15);
     tesoreria.AgregarMiembro(usuario15);
 
-    Usuario usuario16 = new Usuario("Julia", "Ramos", "12345678", tesoreria);
+    Usuario usuario16 = new Usuario("Julia", "Ramos", "12345678", tesoreria,Gerente);
     AltaUsuario(usuario16);
     tesoreria.AgregarMiembro(usuario16);
 
     // ---- Auditoria (5) ----
-    Usuario usuario17 = new Usuario("Nicolas", "Castro", "12345678", auditoria);
+    Usuario usuario17 = new Usuario("Nicolas", "Castro", "12345678", auditoria, Empleado);
     AltaUsuario(usuario17);
     auditoria.AgregarMiembro(usuario17);
 
-    Usuario usuario18 = new Usuario("Florencia", "Vega", "12345678", auditoria);
+    Usuario usuario18 = new Usuario("Florencia", "Vega", "12345678", auditoria, Gerente);
     AltaUsuario(usuario18);
     auditoria.AgregarMiembro(usuario18);
 
-    Usuario usuario19 = new Usuario("Andres", "Morales", "12345678", auditoria);
+    Usuario usuario19 = new Usuario("Andres", "Morales", "12345678", auditoria, Empleado);
     AltaUsuario(usuario19);
     auditoria.AgregarMiembro(usuario19);
 
-    Usuario usuario20 = new Usuario("Carolina", "Ruiz", "12345678", auditoria);
+    Usuario usuario20 = new Usuario("Carolina", "Ruiz", "12345678", auditoria, Gerente);
     AltaUsuario(usuario20);
     auditoria.AgregarMiembro(usuario20);
 
-    Usuario usuario21 = new Usuario("Bruno", "Herrera", "12345678", auditoria);
+    Usuario usuario21 = new Usuario("Bruno", "Herrera", "12345678", auditoria, Empleado);
     AltaUsuario(usuario21);
     auditoria.AgregarMiembro(usuario21);
-    Usuario usuario22 = new Usuario("Lucia", "Acosta", "12345678", auditoria);
+    Usuario usuario22 = new Usuario("Lucia", "Acosta", "12345678", auditoria, Gerente);
     AltaUsuario(usuario22);
     auditoria.AgregarMiembro(usuario22);
-}
+       
+        }
 
        
 
