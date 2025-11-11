@@ -20,13 +20,17 @@ namespace Clases.Usuarios
         {
             Id = UId++;
         }
-        public Usuario(string nombre, string apellido, string contrasenia, Equipo equipo)
+        public Usuario(string nombre, string apellido, string contrasenia, Equipo equipo, Rol? rol)
         {   Id = UId++;
             Nombre = nombre;
             Apellido = apellido;
             Contrasenia = contrasenia;
             Equipo = equipo;
             FechaAlta = DateTime.Now;
+            if (rol != null)
+            {
+                MiRol = rol;
+            }
         }
         public override string ToString()
         {
@@ -49,6 +53,10 @@ namespace Clases.Usuarios
         }
         public void SetRol( Rol rol)
         {
+            if (rol == null)
+            {
+                throw new Exception("El rol no puede ser nulo.");
+            }
             MiRol = rol;
         }
         private void ValidarApellido()
