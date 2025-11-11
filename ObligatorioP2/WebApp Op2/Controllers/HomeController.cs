@@ -13,6 +13,7 @@ public class HomeController : Controller
 public IActionResult Index()
     {           
         ViewBag.Usuario = HttpContext.Session.GetString("usuario");
+        ViewBag.Rol = HttpContext.Session.GetString("rol");
         return View();
     }
    
