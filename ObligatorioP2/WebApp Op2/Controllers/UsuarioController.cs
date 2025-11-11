@@ -19,9 +19,11 @@ public class UsuarioController : Controller
     public IActionResult Login(string email, string contrasena)
     {
         Usuario usuario = null;
-        try { 
-        usuario = sistema.ObtenerUsuario(email, contrasena);
-        }catch(Exception ex)
+        try
+        {
+            usuario = sistema.ObtenerUsuario(email, contrasena);
+        }
+        catch (Exception ex)
         {
             ViewBag.Error = ex.Message;
             return View();
