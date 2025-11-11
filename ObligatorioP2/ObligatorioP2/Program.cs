@@ -182,7 +182,14 @@ namespace ObligatorioP2
                 Console.WriteLine("El email debe pertenecer a la empresa (debe contener 'laEmpresa').");
                 return;
             }
-            Usuario usuario = sistema.GetUsuarioPorEmail(email);
+            Usuario usuario
+            try { 
+             usuario = sistema.GetUsuarioPorEmail(email);
+            }catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return;
+            }
             if (usuario != null)
             {
                 try

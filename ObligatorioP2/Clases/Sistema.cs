@@ -17,7 +17,7 @@ namespace ObligatorioP2
         private List<TipoGasto> TipoGastos;
         private static Sistema Instancia;
 
-        public Sistema()
+        private Sistema()
         {
             Usuarios = new List<Usuario>();
             Pagos = new List<Pago>();
@@ -132,6 +132,24 @@ namespace ObligatorioP2
         }
         public Usuario GetUsuarioPorEmail(string email)
         {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                throw new Exception("El email no puede estar vacío.");
+                
+            }
+            if (!email.Contains("@") || !email.Contains("."))
+            {
+                throw new Exception("El email ingresado no es válido.");
+            }
+            if (email.Length < 5)
+            {
+                throw new Exception("El email debe tener al menos 5 caracteres.");
+                
+            }
+            if (!email.Contains("laEmpresa"))
+            {
+                throw new Exception("El email debe pertenecer a la empresa (debe contener 'laEmpresa').");
+            }
             foreach (Usuario usuario in Usuarios)
             {
                 if (usuario.Email == email)

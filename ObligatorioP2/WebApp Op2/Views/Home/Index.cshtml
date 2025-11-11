@@ -3,7 +3,14 @@
 }
 @{
     string user = ViewBag.Usuario;
+    string rol = ViewBag.Rol;
 }
 <div class="text-center">
-    <h1 class="display-4">Welcome @if (!string.IsNullOrEmpty(user)) {@user }</h1>
+    <h1 class="display-4">Welcome @if (!string.IsNullOrEmpty(user)) {
+    @user
+        }
+ de rol @if (!string.IsNullOrEmpty(rol)) {
+    @rol
+        }
+ </h1>
 </div>
