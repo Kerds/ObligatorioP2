@@ -7,7 +7,6 @@ namespace WebApp_Op2.Controllers;
 public class UsuarioController : Controller
 {
     Sistema sistema = Sistema.GetSistema();
-    
     public IActionResult Login()
     {
         if (HttpContext.Session.GetString("usuario") != null)
@@ -16,14 +15,22 @@ public class UsuarioController : Controller
         }
         return View();
     }
-    [HttpPost]
+    [HttpPost]   
     public IActionResult Login(string email, string contrasena)
     {
-        Usuario usuario = sistema.ObtenerUsuario(email, contrasena);
-        if (usuario != null)
+        Usuario usuario = null;
+        try { 
+        usuario = sistema.ObtenerUsuario(email, contrasena);
+        }catch(Exception ex)
+        {
+            ViewBag.Error = ex.Message;
+            return View();
+        }
+            if (usuario != null)
         {
             HttpContext.Session.SetString("usuario", usuario.Email);
-            if (usuario.MiRol != null) { 
+            if (usuario.MiRol != null)
+            {
                 HttpContext.Session.SetString("rol", usuario.MiRol.ToString());
             }
             return RedirectToAction("Index", "Home");
