@@ -4,6 +4,8 @@
     <projectFile>ObligatorioP2/ObligatorioP2.csproj</projectFile>
     <projectFile profileName="http">WebApp Op2/WebApp Op2.csproj</projectFile>
     <projectFile profileName="https">WebApp Op2/WebApp Op2.csproj</projectFile>
+    <projectFile profileName="http">WebApp Op2/WebAppOp2.csproj</projectFile>
+    <projectFile profileName="https">WebApp Op2/WebAppOp2.csproj</projectFile>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
@@ -11,7 +13,10 @@
   <component name="ChangeListManager">
     <list default="true" id="bc48df08-0d8b-4a5e-91a1-b7ae809ee6b9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ObligatorioP2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ObligatorioP2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ObligatorioP2.sln" beforeDir="false" afterPath="$PROJECT_DIR$/ObligatorioP2.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApp Op2/Controllers/GerenteController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp Op2/Controllers/GerenteController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApp Op2/Controllers/PagoController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApp Op2/Controllers/TipoGastoController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApp Op2/wwwroot/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/WebApp Op2/wwwroot/css/site.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,23 +42,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Project.ObligatorioP2.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.6772152&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.WebAppOp2: http.executor": "Run",
+    ".NET Project.ObligatorioP2.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "XThreadsFramesViewSplitterKey": "0.6772152",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected=".NET Project.ObligatorioP2">
+}]]></component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.WebAppOp2: http">
     <configuration name="ObligatorioP2" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -109,6 +115,33 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration name="WebAppOp2: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile" temporary="true">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/WebApp Op2/WebAppOp2.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net8.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="http" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <option name="AUTO_ATTACH_CHILDREN" value="0" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue=".NET Launch Settings Profile.WebApp Op2: http" />
+      <item itemvalue=".NET Launch Settings Profile.WebApp Op2: https" />
+      <item itemvalue=".NET Launch Settings Profile.WebAppOp2: http" />
+      <item itemvalue=".NET Project.ObligatorioP2" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue=".NET Launch Settings Profile.WebAppOp2: http" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

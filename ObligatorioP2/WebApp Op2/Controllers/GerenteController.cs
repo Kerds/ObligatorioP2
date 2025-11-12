@@ -1,4 +1,5 @@
-﻿using Clases.Usuarios;
+﻿using Clases.Pagos;
+using Clases.Usuarios;
 using Microsoft.AspNetCore.Mvc;
 using ObligatorioP2;
 using WebApp_Op2.Filters;
@@ -18,6 +19,17 @@ namespace WebApp_Op2.Controllers
             Usuario usuario = sistema.GetUsuarioPorEmail(userLogged);
 
             return View(usuario);
+        }
+
+        public IActionResult AltaGasto()
+        {
+            return View();
+        }
+        
+        [HttpPost]
+        public IActionResult AltaGasto(TipoGasto tipoGasto)
+        {
+            return View();
         }
     }
 }

@@ -1,0 +1,44 @@
+@model dynamic
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<section class="min-h-screen flex items-center justify-center bg-gray-800">
+    <form asp-action="AltaGasto" method="post" class="w-full max-w-md bg-white rounded-lg shadow-md p-8 space-y-6">
+
+        <h2 class="text-2xl font-semibold text-gray-800 text-center">Alta de Gasto</h2>
+        <p>@ViewBag.Error</p>
+        <div>
+            <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre</label>
+            <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                required
+                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                placeholder="Ingresar nombre" />
+        </div>
+
+        <div>
+            <label for="descripcion" class="block text-sm font-medium text-gray-700">Descripcion</label>
+            <input
+                type="text"
+                id="descripcion"
+                name="descripcion"
+                required
+                class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                placeholder="Ingrese Descripcion" />
+        </div>
+        
+
+        <button
+            type="submit"
+            class="w-full inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 font-medium">
+           Crear Gasto
+        </button>
+        
+    </form>
+</section>
+
