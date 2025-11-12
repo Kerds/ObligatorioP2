@@ -431,7 +431,29 @@ public void PrecargaPagos()
 
         public Usuario ObtenerUsuario(string email, string contrasena)
         {
-            foreach(Usuario usuario in Usuarios)
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                throw new Exception("El email y la contraseña no pueden estar vacíos.");
+
+            }
+            if (!email.Contains("@") || !email.Contains("."))
+            {
+                throw new Exception("El email ingresado no es válido.");
+            }
+            if (email.Length < 5)
+            {
+                throw new Exception("El email debe tener al menos 5 caracteres.");
+
+            }
+            if (!email.Contains("laEmpresa"))
+            {
+                throw new Exception("El email debe pertenecer a la empresa (debe contener 'laEmpresa').");
+            }
+            if ( string.IsNullOrWhiteSpace(contrasena))
+            {
+                throw new Exception("El email y la contraseña no pueden estar vacíos.");
+            }
+            foreach (Usuario usuario in Usuarios)
             {
                 if (usuario.Email == email && usuario.Contrasenia == contrasena)
                 {

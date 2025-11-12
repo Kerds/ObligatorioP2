@@ -1,12 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Clases.Usuarios;
+using Microsoft.AspNetCore.Mvc;
+using ObligatorioP2;
+using WebApp_Op2.Filters;
 
 namespace WebApp_Op2.Controllers
 {
     public class GerenteController : Controller
     {
-        public IActionResult Index()
+        Sistema sistema = Sistema.GetSistema();
+
+        [LogActionFilter]
+        [RolActionFilter()]
+        public IActionResult Perfil()
         {
-            return View();
+            string userLogged = HttpContext.Session.GetString("usuario");
+            Console.WriteLine("Entré al perfil del Gerente");
+            Usuario usuario = sistema.GetUsuarioPorEmail(userLogged);
+
+            return View(usuario);
         }
     }
 }
