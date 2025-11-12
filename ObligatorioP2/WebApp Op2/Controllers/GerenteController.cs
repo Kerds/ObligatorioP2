@@ -16,16 +16,25 @@ namespace WebApp_Op2.Controllers
         {
             string userLogged = HttpContext.Session.GetString("usuario");
             Console.WriteLine("Entré al perfil del Gerente");
-            Usuario usuario = sistema.GetUsuarioPorEmail(userLogged);
-
+            Usuario usuario = null;
+            try { 
+            usuario = sistema.GetUsuarioPorEmail(userLogged);
+            }catch(Exception e)
+            {
+            
+            }
             return View(usuario);
         }
 
+        [LogActionFilter]
+        [RolActionFilter()]
         public IActionResult AltaGasto()
         {
             return View();
         }
-        
+
+        [LogActionFilter]
+        [RolActionFilter()]
         [HttpPost]
         public IActionResult AltaGasto(TipoGasto tipoGasto)
         {
