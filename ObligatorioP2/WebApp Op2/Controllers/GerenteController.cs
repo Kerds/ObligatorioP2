@@ -31,6 +31,17 @@ namespace WebApp_Op2.Controllers
             {
                 return RedirectToAction("Login", "Usuario");
             }
+            try
+            {
+                ViewBag.MiembrosEquipo = (sistema.GetEquipoPorNombre(usuario.GetNombreEquipo())).GetMiembros();
+                ViewBag.Pagos = sistema.GetPagosUsuario(usuario);
+
+            }catch(Exception e)
+            {
+                ViewBag.Error = e.Message;
+                ViewBag.MiembrosEquipo = new List<Usuario>();
+                ViewBag.Pagos = new List<Pago>();
+            }
             return View(usuario);
         }
 

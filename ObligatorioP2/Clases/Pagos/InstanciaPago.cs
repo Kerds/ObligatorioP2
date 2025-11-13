@@ -31,7 +31,7 @@ namespace Clases.Pagos
         
         public abstract double CalcularMontoPago(MetodosPago metodoPago);
 
-        public abstract bool EsPagoActivo(DateTime mes);
+        public abstract bool EsPagoActivo(DateTime fecha);
 
         public abstract string MiTipo();
        

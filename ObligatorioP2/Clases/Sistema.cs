@@ -204,7 +204,15 @@ namespace ObligatorioP2
         }
         public Equipo GetEquipoPorNombre(string nombre)
         {
-         
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                throw new Exception("El nombre del equipo no puede estar vacío.");
+            }
+            if (nombre.Length < 3)
+            {
+                throw new Exception("El nombre del equipo debe tener al menos 3 caracteres.");
+            }
+
             foreach (Equipo equipo in Equipos)
             {
                 if (equipo.Nombre.ToLower() == nombre.ToLower())
@@ -215,7 +223,7 @@ namespace ObligatorioP2
             return null;
         }
 
-        public List<Usuario> GetUsuariosDeEquipo(string nombreEquipo)
+        public IEnumerable<Usuario> GetUsuariosDeEquipo(string nombreEquipo)
         {
             
             Equipo equipo = GetEquipoPorNombre(nombreEquipo);
@@ -379,6 +387,7 @@ namespace ObligatorioP2
 public void PrecargaPagos()
 {
     // ===== 6 pagos RECURRENTES SIN fecha de fin (EndDate = null) =====
+
     AltaPago(new Pago(MetodosPago.Credito,  Usuarios[0],  TipoGastos[0],  "Alquiler mensual",new InstanciaPagoRecurrente(28000, DateTime.Now.AddMonths(-12), null)));
     AltaPago(new Pago(MetodosPago.Debito,   Usuarios[1],  TipoGastos[1],  "Servicios (UTE/ANTEL)",new InstanciaPagoRecurrente(6500,  DateTime.Now.AddMonths(-9),  null)));
     AltaPago(new Pago(MetodosPago.Credito, Usuarios[2],  TipoGastos[2],  "Sueldos",new InstanciaPagoRecurrente(120000,DateTime.Now.AddMonths(-10), null)));
@@ -466,6 +475,35 @@ public void PrecargaPagos()
         public void BajaGasto(TipoGasto tipoGasto)
         {
             tipoGasto.Activo = false;
+        }
+
+        public IEnumerable<Pago> GetPagosUsuario(Usuario usuario)
+        {
+            if (usuario == null)
+            {
+                throw new Exception("El usuario no puede ser nulo.");
+            }
+            if (!Usuarios.Contains(usuario))
+            {
+                throw new Exception("El usuario no existe en el sistema.");
+            }
+            if (Pagos.Count == 0)
+            {
+                throw new Exception("No hay pagos registrados en el sistema.");
+            }
+            List<Pago> pagosUsuario = new List<Pago>();
+            foreach (Pago pago in Pagos)
+            {
+                if (pago.UsuarioAsociado.Email == usuario.Email && pago.EsPagoActivo(DateTime.Now))
+                {
+                    pagosUsuario.Add(pago);
+                }
+            }
+            if (pagosUsuario.Count == 0)
+            {
+                throw new Exception("El usuario no tiene pagos activos.");
+            }
+            return pagosUsuario.AsEnumerable();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Clases.Pagos
             Id = UId++;
         }
 
-        public Pago(MetodosPago metodosPago, Usuario usuarioAsociado, TipoGasto tipoGasto, string descripcion, InstanciaPago instanciaPago, DateTime fechaInicio, DateTime? fechaFinal)
+        public Pago(MetodosPago metodosPago, Usuario usuarioAsociado, TipoGasto tipoGasto, string descripcion, InstanciaPago instanciaPago)
         {
             Id = UId++;
             MetodosPago = metodosPago;
@@ -114,6 +114,10 @@ namespace Clases.Pagos
 
                 return texto + $" Detalles: {InstanciaPago.ToString()}";
           }
+        public bool EsPagoActivo(DateTime fecha)
+        {
+            return InstanciaPago.EsPagoActivo(fecha);
+        }
     
         public override bool Equals(object? obj)
         {

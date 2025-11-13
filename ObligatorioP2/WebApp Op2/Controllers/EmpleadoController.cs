@@ -1,4 +1,5 @@
-﻿using Clases.Usuarios;
+﻿using Clases.Pagos;
+using Clases.Usuarios;
 using Microsoft.AspNetCore.Mvc;
 using ObligatorioP2;
 using WebApp_Op2.Filters;
@@ -12,12 +13,29 @@ namespace WebApp_Op2.Controllers
         [RolActionFilter()]
         public IActionResult Perfil()
         {
+
             string userLogged = HttpContext.Session.GetString("usuario");
+            Console.WriteLine("Entré al perfil de Empleado");
+            Usuario usuario = null;
+            try
+            {
+                usuario = sistema.GetUsuarioPorEmail(userLogged);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Login", "Usuario");
+            }
+            try
+            {
+                ViewBag.Pagos = sistema.GetPagosUsuario(usuario);
 
-            Console.WriteLine("Entré al perfil del empleado");
-            Usuario usuario = sistema.GetUsuarioPorEmail(userLogged);
-
-            return View();
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e.Message;
+                ViewBag.Pagos = new List<Pago>();
+            }
+            return View(usuario);
         }
     }
 }
