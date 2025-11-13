@@ -48,6 +48,7 @@ namespace Clases.Pagos
                 throw new Exception("El monto base debe ser mayor a 0.");
             }
         }
+        public abstract int GetCuotas();
 
     }
 }

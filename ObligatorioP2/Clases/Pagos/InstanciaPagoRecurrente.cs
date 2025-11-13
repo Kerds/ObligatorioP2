@@ -88,7 +88,7 @@ namespace Clases.Pagos
                 return montoBase * cuotasRestantes * recargo;
             }
         }
-        public int GetCuotas()
+        public override int GetCuotas()
         {
             if (FechaFin == null)
             {
@@ -110,9 +110,9 @@ namespace Clases.Pagos
             int meses = (fechaFin.Year - mesActual.Year) * 12 + fechaFin.Month - mesActual.Month;
             return meses + 1; 
         }
-        public override bool EsPagoActivo(DateTime mes)
+        public override bool EsPagoActivo(DateTime fecha)
         {
-            return mes >= FechaInicio && (FechaFin == null || mes <= FechaFin);
+            return fecha >= FechaInicio && (FechaFin == null || fecha <= FechaFin);
         }
         public override string MiTipo()
         {

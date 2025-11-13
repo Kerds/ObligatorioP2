@@ -57,13 +57,17 @@ namespace Clases.Pagos
             }
         }
 
-        public override bool EsPagoActivo(DateTime mes)
+        public override bool EsPagoActivo(DateTime fecha)
         {
-            return FechaPago.Month == mes.Month && FechaPago.Year == mes.Year;
+            return FechaPago.Month == fecha.Month && FechaPago.Year == fecha.Year;
         }
         public override string MiTipo()
         {
             return "Unico";
+        }
+        public override int GetCuotas()
+        {
+            return 1;
         }
         public override string ToString()
         {
