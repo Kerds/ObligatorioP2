@@ -9,6 +9,12 @@ namespace WebApp_Op2.Controllers
     public class GerenteController : Controller
     {
         Sistema sistema = Sistema.GetSistema();
+        
+        public IActionResult Gastos()
+        {
+            IEnumerable<TipoGasto> listaGastos = sistema.GetTipoGastos(); 
+            return  View(listaGastos);
+        }
 
         [LogActionFilter]
         [RolActionFilter()]
@@ -26,6 +32,9 @@ namespace WebApp_Op2.Controllers
             return View(usuario);
         }
 
+     
+      
+
         [LogActionFilter]
         [RolActionFilter()]
         public IActionResult AltaGasto()
@@ -38,7 +47,37 @@ namespace WebApp_Op2.Controllers
         [HttpPost]
         public IActionResult AltaGasto(TipoGasto tipoGasto)
         {
+            try
+            {
+                sistema.AltaTipoGasto(tipoGasto);
+                return RedirectToAction("Gastos", "Gerente");
+            }
+            catch (Exception e)
+            {
+                ViewBag.Msg = e.Message;
+            }
+            
             return View();
+        }
+
+        public IActionResult EliminarGasto(int id)
+        {
+            TipoGasto tipoGasto = sistema.GetTipoGasto(id);
+            if (tipoGasto != null)
+            {
+                return View(tipoGasto);
+            }
+         return View();   
+        }
+
+        [HttpPost]
+
+        public IActionResult EliminarGasto(TipoGasto tg)
+        {
+            TipoGasto tipoGasto = sistema.GetTipoGasto(tg.Id);
+           sistema.BajaGasto(tipoGasto);
+                
+           return RedirectToAction("Gastos", "Gerente");
         }
     }
 }

@@ -8,10 +8,12 @@ namespace Clases.Pagos
         public static int UId {get; set;} = 0;
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-
+        
+        public bool Activo { get; set; } = true;
         public TipoGasto()
         {
             Id = UId++;
+            Activo = true;
         }
 
         public TipoGasto(string nombre, string descripcion)
@@ -19,6 +21,7 @@ namespace Clases.Pagos
             Id = UId++;
             Nombre = nombre;
             Descripcion = descripcion;
+            Activo = true;
         }
 
         public void Validar()
@@ -54,7 +57,7 @@ namespace Clases.Pagos
             if (obj is TipoGasto)
             {
                 TipoGasto tipoGasto = (TipoGasto)obj;
-                return Nombre == tipoGasto.Nombre || Id == tipoGasto.Id;
+                return Nombre.ToLower() == tipoGasto.Nombre.ToLower() || Id == tipoGasto.Id;
             }
             return false;
         }

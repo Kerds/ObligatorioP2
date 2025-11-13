@@ -45,7 +45,7 @@ namespace ObligatorioP2
         {
             return Equipos;
         }
-        public List<TipoGasto> GetTipoGastos()
+        public IEnumerable<TipoGasto> GetTipoGastos()
         {
             return TipoGastos;
         }
@@ -106,7 +106,7 @@ namespace ObligatorioP2
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al validar el tipo de gasto: " + ex.Message);
+                throw new Exception("Error: " + ex.Message);
             }
             TipoGastos.Add(tipoGasto);
         }
@@ -191,11 +191,11 @@ namespace ObligatorioP2
             return lisAux;
         }
 
-        public TipoGasto GetTipoGasto(String nombreGasto)
+        public TipoGasto GetTipoGasto(int id)
         {
             foreach (TipoGasto tipo in TipoGastos)
             {
-                if (tipo.Nombre == nombreGasto)
+                if (tipo.Id == id)
                 {
                     return tipo;
                 }
@@ -461,6 +461,11 @@ public void PrecargaPagos()
                 }
             }
             return null;
+        }
+
+        public void BajaGasto(TipoGasto tipoGasto)
+        {
+            tipoGasto.Activo = false;
         }
     }
 }
