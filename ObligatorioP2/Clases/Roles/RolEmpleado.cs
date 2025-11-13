@@ -38,5 +38,9 @@ namespace Clases.Roles
         {
             return true;        }
 
+        internal override bool VerMiembrosEquipo()
+        {
+            return false;
+        }
     }
 }

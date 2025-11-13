@@ -18,6 +18,6 @@ namespace Clases.Roles
         public abstract bool AddTipoGasto();
         public abstract bool RemoveTipoGasto();
         public abstract bool ListadoPagosEquipo();
-
+        internal abstract bool VerMiembrosEquipo();
     }
 }

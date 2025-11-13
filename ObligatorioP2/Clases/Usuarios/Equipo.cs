@@ -45,8 +45,21 @@ namespace Clases.Usuarios
             }
         }
 
-        public List<Usuario> GetMiembros()
+        public IEnumerable<Usuario> GetMiembros(Usuario u)
         {
+            if (u == null)
+            {
+                throw new Exception("El usuario no puede ser nulo.");
+            }
+            if(!Miembros.Contains(u))
+            {
+                throw new Exception("El usuario no es miembro del equipo.");
+            }
+            if (Miembros.Count == 0)
+            {
+                throw new Exception("El equipo no tiene miembros.");
+            }
+            
             return Miembros;
         }
         public void AgregarMiembro(Usuario usuario)

@@ -139,11 +139,23 @@ namespace Clases.Usuarios
             }
             return false;
         }
+        public bool GetMiembrosEquipo(Usuario u)
+        {
+            if(MiRol.VerMiembrosEquipo() == false)
+            {
+                throw new Exception("El usuario no tiene permiso para ver los miembros del equipo.");
+            }
+            return Equipo.GetMiembros(u).Contains(u);
+        }
 
         public string StringMiembrosEquipo()
         {
             return $"Usuario: {Nombre} {Apellido}, Email: {Email} ";
         }
-        
+        public string GetNombreEquipo()
+        {
+            return Equipo.Nombre;
+        }
+
     }
 }
