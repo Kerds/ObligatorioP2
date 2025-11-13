@@ -139,13 +139,23 @@ namespace Clases.Usuarios
             }
             return false;
         }
-        public bool GetMiembrosEquipo(Usuario u)
+        public IEnumerable<Usuario> GetMiembrosEquipo()
         {
-            if(MiRol.VerMiembrosEquipo() == false)
+         
+            if (Equipo == null)
+            {
+                throw new Exception("El usuario no pertenece a ningún equipo.");
+            }
+            if (Equipo.GetMiembros().Count() == 0)
+            {
+                throw new Exception("El equipo no tiene miembros.");
+            }
+            
+            if (MiRol.VerMiembrosEquipo() == false)
             {
                 throw new Exception("El usuario no tiene permiso para ver los miembros del equipo.");
             }
-            return Equipo.GetMiembros(u).Contains(u);
+            return Equipo.GetMiembros();
         }
 
         public string StringMiembrosEquipo()

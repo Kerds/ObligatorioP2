@@ -33,7 +33,7 @@ namespace WebApp_Op2.Controllers
             }
             try
             {
-                ViewBag.MiembrosEquipo = (sistema.GetEquipoPorNombre(usuario.GetNombreEquipo())).GetMiembros();
+                ViewBag.MiembrosEquipo = usuario.GetMiembrosEquipo();
                 ViewBag.Pagos = sistema.GetPagosUsuario(usuario);
 
             }catch(Exception e)
