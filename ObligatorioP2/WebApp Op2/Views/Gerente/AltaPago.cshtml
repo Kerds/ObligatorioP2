@@ -1,0 +1,59 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+}
+<section class=" flex items-center justify-center bg-gray-800">
+    <form asp-action="AltaPago" method="post" class="w-full max-w-md bg-white rounded-lg shadow-md p-8 space-y-6">
+
+        <h2 class="text-2xl font-semibold text-gray-800 text-center">Alta Pago</h2>
+        <p>@ViewBag.Error</p>
+        <div>
+            <label for="metodosPago" class="block text-sm font-medium text-gray-700">Metodo Pago</label>
+            <select id="metodosPago"
+                    name="metodosPago"
+                   required
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+             >
+             <option value="">Debito</option>
+             <option value="Credito">Credito</option>
+             <option value="Efectivo">Efectivo</option>
+        </select>
+
+        </div>
+
+        <div>
+            <label for="contrasena" class="block text-sm font-medium text-gray-700">Contraseña</label>
+            <input type="password"
+                   id="contrasena"
+                   name="contrasena"
+                   required
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                   placeholder="••••••••" />
+        </div>
+
+        <div class="flex items-center justify-between">
+            <label class="inline-flex items-center text-sm text-gray-600">
+                <input type="checkbox" name="remember" class="h-4 w-4 text-indigo-600 border-gray-300 rounded" />
+                <span class="ml-2">Recordarme</span>
+            </label>
+            <a href="#" class="text-sm text-indigo-600 hover:underline">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <button type="submit"
+                class="w-full inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 font-medium">
+            Iniciar sesión
+        </button>
+
+        <p class="text-center text-sm text-gray-600">
+            ¿No tienes cuenta?
+            <a href="#" class="text-indigo-600 hover:underline">Regístrate</a>
+        </p>
+    </form>
+</section>

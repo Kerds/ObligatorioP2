@@ -19,7 +19,7 @@ namespace Clases.Pagos
             Id = UId++;
         }
 
-        public Pago(MetodosPago metodosPago, Usuario usuarioAsociado, TipoGasto tipoGasto, string descripcion, InstanciaPago instanciaPago)
+        public Pago(MetodosPago metodosPago, Usuario usuarioAsociado, TipoGasto tipoGasto, string descripcion, InstanciaPago instanciaPago, DateTime fechaInicio, DateTime? fechaFinal)
         {
             Id = UId++;
             MetodosPago = metodosPago;

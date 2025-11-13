@@ -9,11 +9,11 @@ namespace WebApp_Op2.Controllers
     public class GerenteController : Controller
     {
         Sistema sistema = Sistema.GetSistema();
-        
+
         public IActionResult Gastos()
         {
-            IEnumerable<TipoGasto> listaGastos = sistema.GetTipoGastos(); 
-            return  View(listaGastos);
+            IEnumerable<TipoGasto> listaGastos = sistema.GetTipoGastos();
+            return View(listaGastos);
         }
 
         [LogActionFilter]
@@ -23,17 +23,19 @@ namespace WebApp_Op2.Controllers
             string userLogged = HttpContext.Session.GetString("usuario");
             Console.WriteLine("Entré al perfil del Gerente");
             Usuario usuario = null;
-            try { 
-            usuario = sistema.GetUsuarioPorEmail(userLogged);
-            }catch(Exception e)
+            try
             {
-            
+                usuario = sistema.GetUsuarioPorEmail(userLogged);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Login", "Usuario");
             }
             return View(usuario);
         }
 
-     
-      
+
+
 
         [LogActionFilter]
         [RolActionFilter()]
@@ -56,7 +58,7 @@ namespace WebApp_Op2.Controllers
             {
                 ViewBag.Msg = e.Message;
             }
-            
+
             return View();
         }
 
@@ -67,7 +69,7 @@ namespace WebApp_Op2.Controllers
             {
                 return View(tipoGasto);
             }
-         return View();   
+            return View();
         }
 
         [HttpPost]
@@ -75,9 +77,43 @@ namespace WebApp_Op2.Controllers
         public IActionResult EliminarGasto(TipoGasto tg)
         {
             TipoGasto tipoGasto = sistema.GetTipoGasto(tg.Id);
-           sistema.BajaGasto(tipoGasto);
-                
-           return RedirectToAction("Gastos", "Gerente");
+            sistema.BajaGasto(tipoGasto);
+
+            return RedirectToAction("Gastos", "Gerente");
+        }
+        [LogActionFilter]
+        [RolActionFilter()]
+        public IActionResult AltaPago()
+        {
+            ViewBag.TiposGasto = sistema.GetTipoGastos();
+            ViewBag.MetodosPago = MetodosPago.GetValues(typeof(MetodosPago)).Cast<MetodosPago>();
+            return View();
+        }
+        [LogActionFilter]
+        [RolActionFilter()]
+        [HttpPost]
+        public IActionResult AltaPago(string metodosPago, TipoGasto tipoGasto, string descripcion, DateTime fechaInicio, DateTime? fechaFin)// hacer todos los datos por separado y posteriormente crear el objeto pago
+        {
+            Pago pago = new Pago();
+            pago.MetodosPago = (MetodosPago)Enum.Parse(typeof(MetodosPago), metodosPago);
+            pago.TipoGasto = tipoGasto;
+            pago.Descripcion = descripcion;
+            string userLogged = HttpContext.Session.GetString("usuario");
+            Usuario usuario = sistema.GetUsuarioPorEmail(userLogged);
+
+            {
+                try
+                {
+                    pago.Validar();
+                }
+                catch (Exception e)
+                {
+                    ViewBag.Error = e.Message;
+                    return View();
+                }
+                //Posiblemente sustituir por el list de pagos
+                return RedirectToAction("Perfil");
+            }
         }
     }
 }
