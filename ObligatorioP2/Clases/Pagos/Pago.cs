@@ -87,6 +87,10 @@ namespace Clases.Pagos
                 throw new Exception("Error al calcular el monto final: " + ex.Message);
             }
         }
+        public double GetPagoMes()
+        {
+            return MontoFinal / InstanciaPago.GetCuotas();
+        }
         private void ValidarMetodosPago()
         {
             if (MetodosPago != MetodosPago.Credito && MetodosPago != MetodosPago.Debito &&
