@@ -55,6 +55,20 @@ namespace Clases.Usuarios
             
             return Miembros;
         }
+        public IEnumerable<Usuario> GetMiembrosAsc()
+        {
+            if (Miembros.Count == 0)
+            {
+                throw new Exception("El equipo no tiene miembros.");
+            }
+            if (Miembros == null)
+            {
+                throw new Exception("La lista de miembros es nula.");
+            }
+            List<Usuario> miembrosAsc = Miembros;
+            miembrosAsc.Sort(); 
+            return miembrosAsc;
+        }
         public void AgregarMiembro(Usuario usuario)
         {
             if (usuario == null)
