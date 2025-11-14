@@ -49,7 +49,34 @@ namespace WebApp_Op2.Controllers
             }
             return View(usuario);
         }
-
+        
+        [LogActionFilter]
+        [RolActionFilter()]
+        public IActionResult MisPagos()
+        {
+            string userLogged = HttpContext.Session.GetString("usuario");
+            Usuario usuario = null;
+            try
+            {
+                usuario = sistema.GetUsuarioPorEmail(userLogged);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Login", "Usuario");
+            }
+            try
+            {
+                
+                ViewBag.Pagos = sistema.GetPagosUsuario(usuario);
+              
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e.Message;
+                ViewBag.Pagos = new List<Pago>();
+            }
+            return View(usuario);
+        }
 
 
 
