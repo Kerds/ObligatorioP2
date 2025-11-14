@@ -3,13 +3,22 @@
 @{
   
     Layout = "_Layout";
+    int CantActivos = 0;
+
+    foreach (TipoGasto tg in Model)
+    {
+      if (tg.Activo)
+      {
+        CantActivos++;
+      }
+    }
 }
+
+
+
 
 @if (Model != null)
 {
-
-
-
   <div class="relative flex flex-col w-full h-full  text-white bg-transparent shadow-lg rounded-lg backdrop-blur-md border border-white/10">
     <table class="w-full text-left table-auto min-w-max">
       <thead>
@@ -27,35 +36,39 @@
         <th class="p-4 border-b border-white/20"></th>
       </tr>
       </thead>
-  @if (Model.Count != 0)
-      {
-        <tbody>
-
-        @foreach (TipoGasto tg in Model)
-        {
-@if (tg.Activo)
-{
-  <tr class="hover:bg-white/10 transition">
-    <td class="p-4 border-b border-white/10">
-      <p class="text-sm font-medium">@tg.Nombre</p>
-    </td>
-    <td class="p-4 border-b border-white/10">
-      <p class="text-sm">@tg.Descripcion</p>
-    </td>
-    <td  class=" p-4 border-b border-white/10">
-              
-      @Html.ActionLink("Eliminar", "EliminarGasto", new{id= tg.Id})
-             
-    </td>
-  </tr>
-}
-        }
-        </tbody>
-      }
-  else
+      <tbody>
+      @if (CantActivos != 0)
   {
-    <p>No Hay tipo de gastos cargados.</p>
+    @foreach (TipoGasto tg in Model)
+    {
+      @if (tg.Activo)
+      {
+        <tr class="hover:bg-white/10 transition">
+          <td class="p-4 border-b border-white/10">
+            <p class="text-sm font-medium">@tg.Nombre</p>
+          </td>
+          <td class="p-4 border-b border-white/10">
+            <p class="text-sm">@tg.Descripcion</p>
+          </td>
+          <td class=" p-4 border-b border-white/10">
+
+            @Html.ActionLink("Eliminar", "EliminarGasto", new { id = tg.Id })
+
+          </td>
+        </tr>
+      }
+    }
   }
+  else
+        {
+          <tr>
+            <td colspan="3" class="p-4 text-center text-gray-300 border-b border-white/10">
+              No hay gastos para mostrar.
+            </td>
+          </tr>
+        }
+      </tbody>
     </table>
   </div>
 }
+  

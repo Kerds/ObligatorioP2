@@ -15,19 +15,63 @@
             <div class="flex-none mb-4 m-auto border-b-1    ">
                 <a class="text-2xl font-semibold text-white" asp-area="" asp-controller="Home" asp-action="Index">LaEmpresa</a>
             </div>
-
-            <!-- Menú central: ocupa 2/3 de la altura (h-2/3 == 4/6) -->
-            <nav class="flex-none md:flex-1 w-full h-2/3">
-                <ul id="nav-content" class="w-full  ">
-                    <li class="flex-1 flex items-center">
-                        <a class="w-full px-3 py-2 text-base font-medium text-white hover:bg-gray-700 block" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
-                    </li>
-                    <li class="flex-1 flex items-center">
-                        <a class="w-full px-3 py-2 text-base font-medium text-white hover:bg-gray-700 block" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-                    <!-- Añade más items aquí; cada <li> con class="flex-1" ocupará espacio igual -->
-                </ul>
-            </nav>
+            
+            @{
+                string rol = Context.Session.GetString("rol"); 
+            }
+            @if (rol == "Gerente")
+            { 
+                <nav class="flex-none md:flex-1 w-full h-2/3">
+                    <ul id="nav-content" class="w-full  ">
+                        <li class="flex-1 flex items-center">
+                            <a class="w-full px-3 py-2 text-base font-medium text-white hover:bg-gray-700 block" asp-area="" asp-controller="Gerente" asp-action="Perfil">Perfil</a>
+                        </li>
+                        <li class="flex-1 flex items-center">
+                            <a class="w-full px-3 py-2 text-base font-medium text-white hover:bg-gray-700 block" asp-area="" asp-controller="Gerente" asp-action="Pagos">Ver Pagos</a>
+                        </li>
+                        <li class="flex-1 flex items-center">
+                            <a class="w-full px-3 py-2 text-base font-medium text-white hover:bg-gray-700 block" asp-area="" asp-controller="Gerente" asp-action="AltaPago">Cargar Nuevo Pago</a>
+                        </li>
+                        <li class="flex-1 flex items-center">
+                            <a class="w-full px-3 py-2 text-base font-medium text-white hover:bg-gray-700 block" asp-area="" asp-controller="Gerente" asp-action="Gastos">Ver Tipos de Gastos</a>
+                        </li>
+                        <li class="flex-1 flex items-center">
+                            <a class="w-full px-3 py-2 text-base font-medium text-white hover:bg-gray-700 block" asp-area="" asp-controller="Gerente" asp-action="AltaGasto">Cargar Nuevo Gasto</a>
+                        </li>
+                        <!-- Añade más items aquí; cada <li> con class="flex-1" ocupará espacio igual -->
+                    </ul>
+                </nav>
+                
+            }
+            else if(rol == "Empleado")
+            {
+                <nav class="flex-none md:flex-1 w-full h-2/3">
+                    <ul id="nav-content" class="w-full  ">
+                        <li class="flex-1 flex items-center">
+                            <a class="w-full px-3 py-2 text-base font-medium text-white hover:bg-gray-700 block" asp-area="" asp-controller="Home" asp-action="Index">Inicio em</a>
+                        </li>
+                        <li class="flex-1 flex items-center">
+                            <a class="w-full px-3 py-2 text-base font-medium text-white hover:bg-gray-700 block" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy emp</a>
+                        </li>
+                        <!-- Añade más items aquí; cada <li> con class="flex-1" ocupará espacio igual -->
+                    </ul>
+                </nav>
+            }
+            else
+            {
+                <!-- Menú central: ocupa 2/3 de la altura (h-2/3 == 4/6) -->
+                <nav class="flex-none md:flex-1 w-full h-2/3">
+                    <ul id="nav-content" class="w-full  ">
+                        <li class="flex-1 flex items-center">
+                            <a class="w-full px-3 py-2 text-base font-medium text-white hover:bg-gray-700 block" asp-area="" asp-controller="Empleado" asp-action="Perfil">Perfil</a>
+                        </li>
+                        <li class="flex-1 flex items-center">
+                            <a class="w-full px-3 py-2 text-base font-medium text-white hover:bg-gray-700 block" asp-area="" asp-controller="Empleado" asp-action="MisPagos">Ver Pagos</a>
+                        </li>
+                        <!-- Añade más items aquí; cada <li> con class="flex-1" ocupará espacio igual -->
+                    </ul>
+                </nav>
+            }
 
             <!-- Logout / acción en la parte inferior -->
             <div class="flex-none mt-4">

@@ -98,11 +98,12 @@ namespace ObligatorioP2
                 {
                     throw new Exception("El tipo de gasto no puede ser nulo.");
                 }
+                tipoGasto.Validar();
                 if (TipoGastos.Contains(tipoGasto))
                 {
                     throw new Exception("El tipo de gasto ya existe.");
                 }
-                tipoGasto.Validar();
+                
             }
             catch (Exception ex)
             {
