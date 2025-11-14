@@ -182,7 +182,6 @@ namespace Clases.Usuarios
         }
         public int CompareTo(Usuario other)
         {
-            // Orden ascendente por Nombre
             return this.Email.CompareTo(other.Email);
         }
     }
