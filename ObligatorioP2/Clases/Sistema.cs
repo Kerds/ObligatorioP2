@@ -476,7 +476,28 @@ public void PrecargaPagos()
         {
             tipoGasto.Activo = false;
         }
-
+        public double GetTotalPagosUsuario(Usuario usuario)
+        {
+            if (usuario == null)
+            {
+                throw new Exception("El usuario no puede ser nulo.");
+            }
+            if (!Usuarios.Contains(usuario))
+            {
+                throw new Exception("El usuario no existe en el sistema.");
+            }
+            if (Pagos.Count == 0)
+            {
+                throw new Exception("No hay pagos registrados en el sistema.");
+            }
+            double total = 0;
+            IEnumerable<Pago> pagosUsuario = GetPagosUsuario(usuario);
+            foreach (Pago pago in pagosUsuario)
+            {
+                total += pago.GetPagoMes();
+            }
+            return total;
+        }
         public IEnumerable<Pago> GetPagosUsuario(Usuario usuario)
         {
             if (usuario == null)
