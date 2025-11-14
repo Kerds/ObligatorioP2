@@ -31,16 +31,21 @@ namespace WebApp_Op2.Controllers
             {
                 return RedirectToAction("Login", "Usuario");
             }
+            IEnumerable<Usuario> miembrosEquipo =  null;
             try
             {
-                ViewBag.MiembrosEquipo = usuario.GetMiembrosEquipo();
+                miembrosEquipo = usuario.GetMiembrosEquipo();
+                ViewBag.MiembrosEquipo = miembrosEquipo;
                 ViewBag.Pagos = sistema.GetPagosUsuario(usuario);
-
-            }catch(Exception e)
+                ViewBag.DtoUser = usuario.GetDtoUser();
+                ViewBag.DtoUser.totalMes = sistema.GetTotalPagosUsuario(usuario);
+            }
+            catch(Exception e)
             {
                 ViewBag.Error = e.Message;
                 ViewBag.MiembrosEquipo = new List<Usuario>();
                 ViewBag.Pagos = new List<Pago>();
+                ViewBag.DtoUser = new { };
             }
             return View(usuario);
         }

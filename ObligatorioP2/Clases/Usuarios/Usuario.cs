@@ -155,7 +155,7 @@ namespace Clases.Usuarios
             {
                 throw new Exception("El usuario no tiene permiso para ver los miembros del equipo.");
             }
-            return Equipo.GetMiembros();
+            return Equipo.GetMiembrosAsc();
         }
 
         public string StringMiembrosEquipo()
@@ -167,5 +167,23 @@ namespace Clases.Usuarios
             return Equipo.Nombre;
         }
 
+        public dynamic GetDtoUser()
+        {
+            return new
+            {
+                nombreCompleto = this.Nombre + " " + this.Apellido,
+                email = this.Email,
+                equipo = this.Equipo.Nombre,
+                rol = this.MiRol != null ? this.MiRol.ToString() : null,
+                incorporacion = this.FechaAlta,
+                totalMes = 0,
+            };
+
+        }
+        public int CompareTo(Usuario other)
+        {
+            // Orden ascendente por Nombre
+            return this.Email.CompareTo(other.Email);
+        }
     }
 }

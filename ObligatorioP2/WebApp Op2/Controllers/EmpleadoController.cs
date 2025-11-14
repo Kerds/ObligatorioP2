@@ -28,7 +28,8 @@ namespace WebApp_Op2.Controllers
             try
             {
                 ViewBag.Pagos = sistema.GetPagosUsuario(usuario);
-
+                ViewBag.DtoUser = usuario.GetDtoUser();
+                ViewBag.DtoUser.totalMes = sistema.GetTotalPagosUsuario(usuario);
             }
             catch (Exception e)
             {
