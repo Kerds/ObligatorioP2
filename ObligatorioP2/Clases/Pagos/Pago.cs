@@ -128,5 +128,9 @@ namespace Clases.Pagos
             }
             return false;
         }
+        public int CompareTo(Pago other)
+        {
+            return this.MontoFinal.CompareTo(other.MontoFinal);
+        }
     }
 }

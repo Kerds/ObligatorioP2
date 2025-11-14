@@ -52,7 +52,7 @@ namespace WebApp_Op2.Controllers
         
         [LogActionFilter]
         [RolActionFilter()]
-        public IActionResult MisPagos()
+        public IActionResult Pagos()
         {
             string userLogged = HttpContext.Session.GetString("usuario");
             Usuario usuario = null;
@@ -64,16 +64,19 @@ namespace WebApp_Op2.Controllers
             {
                 return RedirectToAction("Login", "Usuario");
             }
+
+            IEnumerable<Usuario> miembrosEquipo = null;
+            List<Pago> pagosEquipo = new List<Pago>();
             try
             {
-                
-                ViewBag.Pagos = sistema.GetPagosUsuario(usuario);
+                pagosEquipo = sistema.GetPagosMiembrosEquipo(usuario.GetNombreEquipo());
+                ViewBag.MisPagos = sistema.GetPagosUsuario(usuario);
               
             }
             catch (Exception e)
             {
                 ViewBag.Error = e.Message;
-                ViewBag.Pagos = new List<Pago>();
+                ViewBag.MisPagos = new List<Pago>();
             }
             return View(usuario);
         }

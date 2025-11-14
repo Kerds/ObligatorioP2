@@ -526,5 +526,33 @@ public void PrecargaPagos()
             }
             return pagosUsuario.AsEnumerable();
         }
+
+        public List<Pago> GetPagosMiembrosEquipo(string nombreEquipo)
+        {
+            Equipo e = GetEquipoPorNombre(nombreEquipo); 
+            if (e == null)
+            {
+                throw new Exception("El equipo no existe.");
+            }
+            if (e.GetMiembros().Count() == 0)
+            {
+                throw new Exception("El equipo no tiene miembros.");
+            }
+            if (Pagos.Count == 0)
+            {
+                throw new Exception("No hay pagos registrados en el sistema.");
+            }
+            List<Pago> pagosEquipo = new List<Pago>();
+            foreach (Usuario u in e.GetMiembros())
+            {
+                foreach (Pago p in GetPagosUsuario(u))
+                {
+                    pagosEquipo.Add(p);
+                }
+            }
+            pagosEquipo.Sort();
+            return pagosEquipo;
+        
+    }
     }
 }

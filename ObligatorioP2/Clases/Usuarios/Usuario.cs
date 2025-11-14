@@ -1,4 +1,5 @@
-﻿using Clases.Roles;
+﻿using Clases.Pagos;
+using Clases.Roles;
 using ObligatorioP2;
 using System.Diagnostics.Metrics;
 
@@ -95,6 +96,7 @@ namespace Clases.Usuarios
             }
             return str.Substring(0, 3);
         }
+       
         public string CreateEmail(int counter)
         {
             string email;
@@ -139,6 +141,7 @@ namespace Clases.Usuarios
             }
             return false;
         }
+       
         public IEnumerable<Usuario> GetMiembrosEquipo()
         {
          

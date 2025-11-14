@@ -1,4 +1,5 @@
-﻿using ObligatorioP2;
+﻿using Clases.Pagos;
+using ObligatorioP2;
 using System.ComponentModel.DataAnnotations;
 
 namespace Clases.Usuarios
@@ -69,6 +70,7 @@ namespace Clases.Usuarios
             miembrosAsc.Sort(); 
             return miembrosAsc;
         }
+      
         public void AgregarMiembro(Usuario usuario)
         {
             if (usuario == null)
