@@ -554,6 +554,27 @@ public void PrecargaPagos()
             pagosEquipo.Sort();
             return pagosEquipo;
         
-    }
+    
+            
+            // Metodos de eliminacion de pago revisar
+
+        public TipoGasto TipoGastoTienePago(int id)
+        {
+            TipoGasto tipoGasto = GetTipoGasto(id);
+            if (tipoGasto == null)
+            {
+                throw new Exception("El tipo de gasto no existe."); 
+                
+            }
+            foreach (Pago p in Pagos)
+            {
+                if (p.UsaTipoGasto(tipoGasto))
+                {
+                    throw new Exception("No se puede eliminar, el Tipo de gasto tiene un pago asociado.");
+                }
+            }
+            return tipoGasto;
+        }
+
     }
 }

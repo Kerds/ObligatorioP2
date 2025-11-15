@@ -101,6 +101,9 @@ namespace WebApp_Op2.Controllers
             return View();
         }
 
+        
+        
+        
         [LogActionFilter]
         [RolActionFilter()]
         [HttpPost]
@@ -119,18 +122,25 @@ namespace WebApp_Op2.Controllers
             return View();
         }
 
+        
+        // Error en get eliminar
         public IActionResult EliminarGasto(int id)
         {
-            TipoGasto tipoGasto = sistema.GetTipoGasto(id);
-            if (tipoGasto != null)
+            TipoGasto tipoGasto = null;
+            try
             {
-                return View(tipoGasto);
+                tipoGasto = sistema.TipoGastoTienePago(id);
+              
             }
-            return View();
+            catch(Exception e)
+            {
+                ViewBag.ErrorMsj = e.Message;
+                return View();
+            }
+            return View(tipoGasto);
         }
 
         [HttpPost]
-
         public IActionResult EliminarGasto(TipoGasto tg)
         {
             TipoGasto tipoGasto = sistema.GetTipoGasto(tg.Id);
@@ -138,6 +148,8 @@ namespace WebApp_Op2.Controllers
 
             return RedirectToAction("Gastos", "Gerente");
         }
+        
+        
         [LogActionFilter]
         [RolActionFilter()]
         public IActionResult AltaPago()

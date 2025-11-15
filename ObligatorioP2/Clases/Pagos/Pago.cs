@@ -132,5 +132,12 @@ namespace Clases.Pagos
         {
             return this.MontoFinal.CompareTo(other.MontoFinal);
         }
+
+        
+        //Devuelve true si machea el id
+        public bool UsaTipoGasto(TipoGasto tipoGasto)
+        {
+            return TipoGasto.Equals(tipoGasto);
+        }
     }
 }
