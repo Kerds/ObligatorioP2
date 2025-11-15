@@ -82,7 +82,8 @@ namespace WebApp_Op2.Controllers
             {
                 pagosEquipo = sistema.GetPagosMiembrosEquipo(usuario.GetNombreEquipo(), usuario);
                 ViewBag.MisPagos = sistema.GetPagosUsuario(usuario);
-              
+                ViewBag.PagosEquipo = pagosEquipo;
+
             }
             catch (Exception e)
             {
