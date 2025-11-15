@@ -130,7 +130,7 @@ namespace Clases.Pagos
         }
         public int CompareTo(Pago other)
         {
-            return this.MontoFinal.CompareTo(other.MontoFinal);
+            return this.MontoFinal.CompareTo(other.MontoFinal) * -1;
         }
 
         

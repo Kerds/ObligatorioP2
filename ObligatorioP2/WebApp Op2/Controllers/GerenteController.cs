@@ -77,10 +77,10 @@ namespace WebApp_Op2.Controllers
             }
 
             IEnumerable<Usuario> miembrosEquipo = null;
-            List<Pago> pagosEquipo = new List<Pago>();
+            IEnumerable<Pago> pagosEquipo = new List<Pago>();
             try
             {
-                pagosEquipo = sistema.GetPagosMiembrosEquipo(usuario.GetNombreEquipo());
+                pagosEquipo = sistema.GetPagosMiembrosEquipo(usuario.GetNombreEquipo(), usuario);
                 ViewBag.MisPagos = sistema.GetPagosUsuario(usuario);
               
             }
@@ -101,9 +101,6 @@ namespace WebApp_Op2.Controllers
             return View();
         }
 
-        
-        
-        
         [LogActionFilter]
         [RolActionFilter()]
         [HttpPost]
@@ -122,25 +119,18 @@ namespace WebApp_Op2.Controllers
             return View();
         }
 
-        
-        // Error en get eliminar
         public IActionResult EliminarGasto(int id)
         {
-            TipoGasto tipoGasto = null;
-            try
+            TipoGasto tipoGasto = sistema.GetTipoGasto(id);
+            if (tipoGasto != null)
             {
-                tipoGasto = sistema.TipoGastoTienePago(id);
-              
+                return View(tipoGasto);
             }
-            catch(Exception e)
-            {
-                ViewBag.ErrorMsj = e.Message;
-                return View();
-            }
-            return View(tipoGasto);
+            return View();
         }
 
         [HttpPost]
+
         public IActionResult EliminarGasto(TipoGasto tg)
         {
             TipoGasto tipoGasto = sistema.GetTipoGasto(tg.Id);
@@ -148,8 +138,6 @@ namespace WebApp_Op2.Controllers
 
             return RedirectToAction("Gastos", "Gerente");
         }
-        
-        
         [LogActionFilter]
         [RolActionFilter()]
         public IActionResult AltaPago()

@@ -528,7 +528,7 @@ public void PrecargaPagos()
             return pagosUsuario.AsEnumerable();
         }
 
-        public List<Pago> GetPagosMiembrosEquipo(string nombreEquipo)
+        public IEnumerable<Pago> GetPagosMiembrosEquipo(string nombreEquipo, Usuario user)
         {
             Equipo e = GetEquipoPorNombre(nombreEquipo); 
             if (e == null)
@@ -546,6 +546,10 @@ public void PrecargaPagos()
             List<Pago> pagosEquipo = new List<Pago>();
             foreach (Usuario u in e.GetMiembros())
             {
+                if(u.Email == user.Email)
+                {
+                    continue;
+                }
                 foreach (Pago p in GetPagosUsuario(u))
                 {
                     pagosEquipo.Add(p);
