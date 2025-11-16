@@ -1,16 +1,27 @@
 @using Clases.Pagos
 
 @{
-  
+
     Layout = "_Layout";
     int CantActivos = 0;
 
     foreach (TipoGasto tg in Model)
     {
-      if (tg.Activo)
-      {
-        CantActivos++;
-      }
+        if (tg.Activo)
+        {
+            CantActivos++;
+        }
+    }
+
+    string error = "";
+    if (ViewBag.Error != null)
+    {
+        error = ViewBag.Error;
+    }
+    string succes = "";
+    if(ViewBag.Succes != null)
+    {
+        succes = ViewBag.Succes;
     }
 }
 
@@ -70,6 +81,31 @@
       </tbody>
     </table>
   </div>
-  <p class="text-xl text-red-500">@ViewBag.Error</p>
+    <div class="p-4 text-center text-gray-300 border-b border-white/10 h-16">
+    <p id="pMensaje"
+           class="text-md px-4 py-2 font-semibold ">
+   @if (error.Length > 0 ) { @error }
+            @if (succes.Length > 0) { @succes }
+</p>
+    </div>
 }
   
+
+<script>
+    if(@error.Length >0 || @succes.Length >0){
+            const el = document.getElementById("pMensaje");
+            if(@error.Length >0){
+              el.classList.add("text-white","bg-red-400","mb-6", "rounded-xl")
+            };
+            if(@succes.Length >0){
+                el.classList.add("text-white","bg-green-400","mb-6", "rounded-xl")
+            };
+
+           setTimeout(() => {
+            if (el) {
+        
+                el.classList.add("hidden")
+            };
+        }, 3000);
+    }
+</script>

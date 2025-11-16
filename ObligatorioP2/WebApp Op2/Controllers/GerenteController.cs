@@ -24,6 +24,8 @@ namespace WebApp_Op2.Controllers
         public IActionResult Gastos()
         {
             ViewBag.Error = TempData["Error"];
+            ViewBag.Succes = TempData["Succes"];
+
             IEnumerable<TipoGasto> listaGastos = sistema.GetTipoGastos();
             return View(listaGastos);
         }
@@ -111,6 +113,8 @@ namespace WebApp_Op2.Controllers
             try
             {
                 sistema.AltaTipoGasto(tipoGasto);
+                TempData["Succes"] = "Tipo de gasto creado con exito";
+
                 return RedirectToAction("Gastos", "Gerente");
             }
             catch (Exception e)
@@ -147,6 +151,7 @@ namespace WebApp_Op2.Controllers
         {
             TipoGasto tipoGasto = sistema.GetTipoGasto(tg.Id);
             sistema.BajaGasto(tipoGasto);
+            TempData["Succes"] = "Tipo de gasto eliminado con exito";
 
             return RedirectToAction("Gastos", "Gerente");
         }
