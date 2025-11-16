@@ -530,7 +530,7 @@ public void PrecargaPagos()
 
         public IEnumerable<Pago> GetPagosMiembrosEquipo(string nombreEquipo, Usuario user)
         {
-            Equipo e = GetEquipoPorNombre(nombreEquipo); 
+            Equipo e = GetEquipoPorNombre(nombreEquipo);
             if (e == null)
             {
                 throw new Exception("El equipo no existe.");
@@ -546,7 +546,7 @@ public void PrecargaPagos()
             List<Pago> pagosEquipo = new List<Pago>();
             foreach (Usuario u in e.GetMiembros())
             {
-                if(u.Email == user.Email)
+                if (u.Email == user.Email)
                 {
                     continue;
                 }
@@ -557,27 +557,25 @@ public void PrecargaPagos()
             }
             pagosEquipo.Sort();
             return pagosEquipo;
-        
+        }
     
             
             // Metodos de eliminacion de pago revisar
 
-        public TipoGasto TipoGastoTienePago(int id)
+        public void TipoGastoTienePago(TipoGasto t)
         {
-            TipoGasto tipoGasto = GetTipoGasto(id);
-            if (tipoGasto == null)
+            if (t == null)
             {
                 throw new Exception("El tipo de gasto no existe."); 
                 
             }
             foreach (Pago p in Pagos)
             {
-                if (p.UsaTipoGasto(tipoGasto))
+                if (p.UsaTipoGasto(t))
                 {
                     throw new Exception("No se puede eliminar, el Tipo de gasto tiene un pago asociado.");
                 }
             }
-            return tipoGasto;
         }
 
     }

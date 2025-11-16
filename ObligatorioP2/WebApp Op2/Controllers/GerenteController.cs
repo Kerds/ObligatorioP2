@@ -23,6 +23,7 @@ namespace WebApp_Op2.Controllers
         [RolActionFilter()]
         public IActionResult Gastos()
         {
+            ViewBag.Error = TempData["Error"];
             IEnumerable<TipoGasto> listaGastos = sistema.GetTipoGastos();
             return View(listaGastos);
         }
@@ -123,11 +124,21 @@ namespace WebApp_Op2.Controllers
         public IActionResult EliminarGasto(int id)
         {
             TipoGasto tipoGasto = sistema.GetTipoGasto(id);
-            if (tipoGasto != null)
+            
+            if (tipoGasto == null)
             {
                 return View(tipoGasto);
             }
-            return View();
+            try
+            {
+                sistema.TipoGastoTienePago(tipoGasto);
+            }
+            catch (Exception e)
+            {
+                TempData["Error"] = e.Message;
+                return RedirectToAction("Gastos");
+            }
+            return View(tipoGasto);
         }
 
         [HttpPost]
