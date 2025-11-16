@@ -597,5 +597,54 @@ public void PrecargaPagos()
             }
         }
 
+        public void AltaPagoDesdeDTO(DTOpago dto, Usuario usuario)
+        {
+            try
+            {
+                if (dto == null)
+                {
+                    throw new Exception("El DTO de pago no puede ser nulo.");
+                }
+                dto.Validar();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al validar el DTO de pago: " + ex.Message);
+            }
+
+            TipoGasto tipoGasto = GetTipoGastoByName(dto.TipoGasto);
+            if (tipoGasto == null)
+            {
+                throw new Exception("El tipo de gasto no existe.");
+            }
+            MetodosPago metodoPago;
+            if (!Enum.TryParse(dto.MetodosPago, out metodoPago))
+            {
+                throw new Exception("El método de pago no es válido.");
+            }
+            InstanciaPago instanciaPago;
+            if (dto.TipoPago == "Unico")
+            {
+                instanciaPago = new InstanciaPagoUnico(dto.MontoBase, dto.FechaPago.Value, dto.ReciboPago);
+            }
+            else if (dto.TipoPago == "Recurrente")
+            {
+                instanciaPago = new InstanciaPagoRecurrente(dto.MontoBase, dto.FechaPago.Value, dto.FechaFin);
+            }
+            else
+            {
+                throw new Exception("El tipo de pago no es válido.");
+            }
+
+            Pago nuevoPago = new Pago(metodoPago, usuario, tipoGasto, dto.Descripcion, instanciaPago);
+            try
+            {
+                AltaPago(nuevoPago);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al dar de alta el pago: " + ex.Message);
+            }
+        }
     }
 }
