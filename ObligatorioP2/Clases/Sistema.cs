@@ -99,9 +99,17 @@ namespace ObligatorioP2
                     throw new Exception("El tipo de gasto no puede ser nulo.");
                 }
                 tipoGasto.Validar();
+
                 if (TipoGastos.Contains(tipoGasto))
                 {
+                    TipoGasto t = GetTipoGastoByName(tipoGasto.Nombre);
+                    if (t.Activo) { 
                     throw new Exception("El tipo de gasto ya existe.");
+                    }
+                    else {
+                        t.Activo = true;
+                        return;
+                    }
                 }
                 
             }
@@ -197,6 +205,17 @@ namespace ObligatorioP2
             foreach (TipoGasto tipo in TipoGastos)
             {
                 if (tipo.Id == id)
+                {
+                    return tipo;
+                }
+            }
+            return null;
+        }
+        public TipoGasto GetTipoGastoByName(string name)
+        {
+            foreach (TipoGasto tipo in TipoGastos)
+            {
+                if (tipo.Nombre == name)
                 {
                     return tipo;
                 }
