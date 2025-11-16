@@ -64,37 +64,7 @@ namespace WebApp_Op2.Controllers
             return View(usuario);
         }
         
-        [LogActionFilter]
-        [RolActionFilter()]
-        public IActionResult Pagos()
-        {
-            string userLogged = HttpContext.Session.GetString("usuario");
-            Usuario usuario = null;
-            try
-            {
-                usuario = sistema.GetUsuarioPorEmail(userLogged);
-            }
-            catch (Exception e)
-            {
-                return RedirectToAction("Login", "Usuario");
-            }
-
-            IEnumerable<Usuario> miembrosEquipo = null;
-            IEnumerable<Pago> pagosEquipo = new List<Pago>();
-            try
-            {
-                pagosEquipo = sistema.GetPagosMiembrosEquipo(usuario.GetNombreEquipo(), usuario);
-                ViewBag.MisPagos = sistema.GetPagosUsuario(usuario);
-                ViewBag.PagosEquipo = pagosEquipo;
-
-            }
-            catch (Exception e)
-            {
-                ViewBag.Error = e.Message;
-                ViewBag.MisPagos = new List<Pago>();
-            }
-            return View(usuario);
-        }
+        
 
 
 
@@ -155,39 +125,84 @@ namespace WebApp_Op2.Controllers
 
             return RedirectToAction("Gastos", "Gerente");
         }
+
+
         [LogActionFilter]
         [RolActionFilter()]
         public IActionResult AltaPago()
         {
             ViewBag.TiposGasto = sistema.GetTipoGastos();
-            ViewBag.MetodosPago = MetodosPago.GetValues(typeof(MetodosPago)).Cast<MetodosPago>();
             return View();
         }
         [LogActionFilter]
         [RolActionFilter()]
         [HttpPost]
-        public IActionResult AltaPago(string metodosPago, TipoGasto tipoGasto, string descripcion, DateTime fechaInicio, DateTime? fechaFin)// hacer todos los datos por separado y posteriormente crear el objeto pago
+        public IActionResult AltaPago(DTOpago dto)
         {
-            Pago pago = new Pago();
-            pago.MetodosPago = (MetodosPago)Enum.Parse(typeof(MetodosPago), metodosPago);
-            pago.TipoGasto = tipoGasto;
-            pago.Descripcion = descripcion;
             string userLogged = HttpContext.Session.GetString("usuario");
-            Usuario usuario = sistema.GetUsuarioPorEmail(userLogged);
-
+            Usuario usuario = null;
+            try
             {
-                try
-                {
-                    pago.Validar();
-                }
-                catch (Exception e)
-                {
-                    ViewBag.Error = e.Message;
-                    return View();
-                }
-                //Posiblemente sustituir por el list de pagos
-                return RedirectToAction("Perfil");
+                usuario = sistema.GetUsuarioPorEmail(userLogged);
             }
+            catch (Exception e)
+            {
+                return RedirectToAction("Login", "Usuario");
+            }
+            try
+            {
+            dto.Validar();
+            }
+            catch (Exception e)
+            {
+            ViewBag.Error = e.Message;
+            return View();
+            }
+            if(!usuario.MiRol.CargarNuevoPago())
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            try { 
+                sistema.AltaPagoDesdeDTO(dto, usuario);
+            }catch(Exception e) { 
+                ViewBag.Error = e.Message;
+                return View();
+            }
+            return RedirectToAction("Pagos");
+            
+        }
+        [LogActionFilter]
+        [RolActionFilter()]
+        public IActionResult Pagos()
+        {
+            string userLogged = HttpContext.Session.GetString("usuario");
+            Usuario usuario = null;
+            try
+            {
+                usuario = sistema.GetUsuarioPorEmail(userLogged);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Login", "Usuario");
+            }
+
+            IEnumerable<Usuario> miembrosEquipo = null;
+            IEnumerable<Pago> pagosEquipo = new List<Pago>();
+            try
+            {
+                pagosEquipo = sistema.GetPagosMiembrosEquipo(usuario.GetNombreEquipo(), usuario);
+                ViewBag.MisPagos = sistema.GetPagosUsuario(usuario);
+                ViewBag.PagosEquipo = pagosEquipo;
+
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e.Message;
+                ViewBag.MisPagos = new List<Pago>();
+                ViewBag.PagosEquipo = new List<Pago>();
+
+            }
+            return View(usuario);
         }
     }
 }

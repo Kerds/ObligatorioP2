@@ -65,5 +65,53 @@ namespace WebApp_Op2.Controllers
             }
             return View(usuario);
         }
+
+        [LogActionFilter]
+        [RolActionFilter()]
+        public IActionResult AltaPago()
+        {
+            ViewBag.TiposGasto = sistema.GetTipoGastos();
+            return View();
+        }
+        [LogActionFilter]
+        [RolActionFilter()]
+        [HttpPost]
+        public IActionResult AltaPago(DTOpago dto)
+        {
+            string userLogged = HttpContext.Session.GetString("usuario");
+            Usuario usuario = null;
+            try
+            {
+                usuario = sistema.GetUsuarioPorEmail(userLogged);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Login", "Usuario");
+            }
+            try
+            {
+                dto.Validar();
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e.Message;
+                return View();
+            }
+            if (!usuario.MiRol.CargarNuevoPago())
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            try
+            {
+                sistema.AltaPagoDesdeDTO(dto, usuario);
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e.Message;
+                return View();
+            }
+            return RedirectToAction("Pagos");
+
+        }
     }
 }
