@@ -94,7 +94,9 @@ namespace WebApp_Op2.Controllers
 
             return View();
         }
-
+//Duda si es null redirige a la  vista de confirmacion?
+        [LogActionFilter]
+        [RolActionFilter()]
         public IActionResult EliminarGasto(int id)
         {
             TipoGasto tipoGasto = sistema.GetTipoGasto(id);
@@ -114,9 +116,9 @@ namespace WebApp_Op2.Controllers
             }
             return View(tipoGasto);
         }
-
+        [LogActionFilter]
+        [RolActionFilter()]
         [HttpPost]
-
         public IActionResult EliminarGasto(TipoGasto tg)
         {
             TipoGasto tipoGasto = sistema.GetTipoGasto(tg.Id);

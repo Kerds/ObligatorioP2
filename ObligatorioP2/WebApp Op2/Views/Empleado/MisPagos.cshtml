@@ -1,5 +1,127 @@
-﻿@*
+﻿@using Clases.Pagos
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
+
+
+
+<section class="flex items-center justify-center bg-gray-800 py-8">
+    <div class="w-full max-w-6xl px-4">
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-2xl font-semibold text-gray-800">@Model.Nombre @Model.Apellido</h1>
+                    <p class="text-sm text-gray-600">Equipo: @Model.Equipo?.Nombre</p>
+                    <p class="text-sm text-gray-600">Email: @Model.Email</p>
+                </div>
+                <div class="text-right">
+                    <a href="@Url.Action("Perfil", "Empleado")" class="inline-block px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Volver al Perfil</a>
+                </div>
+            </div>
+        </div>
+
+        @if (!string.IsNullOrEmpty(ViewBag.Error as string))
+        {
+            <div class="bg-red-100 border border-red-300 text-red-700 px-4 py-3 rounded mb-6">
+                @ViewBag.Error
+            </div>
+        }
+
+        <div class="grid  gap-6">
+            <div>
+                <div class="bg-white rounded-lg shadow p-4 mb-4">
+                    <h2 class="text-lg font-medium text-gray-800">Mis pagos</h2>
+                </div>
+
+                @{
+                    List<Pago> misPagos = ViewBag.Pagos;
+                    if (misPagos.Count() >0)
+                    {
+                        foreach (Pago p in misPagos)
+                        {
+                            bool activo = p.EsPagoActivo(DateTime.Now);
+                            <div class="bg-white  rounded-lg shadow p-4 mb-4">
+                                <div class="flex items-start justify-between">
+                                    <div>
+                                        <div class="flex items-center space-x-2">
+                                            <span class="text-sm font-semibold text-gray-700">@p.InstanciaPago.MiTipo()</span>
+                                            <span class="text-xs text-gray-500">· @p.TipoGasto?.Nombre</span>
+                                        </div>
+                                        <p class="text-gray-700 mt-2 font-medium">@p.Descripcion</p>
+                                        <p class="text-sm text-gray-600 mt-1">Método: <span class="font-semibold">@p.MetodosPago</span></p>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-xl font-semibold text-gray-800">@p.MontoFinal.ToString("F2")</div>
+                                        <div class="text-sm text-gray-600">/ monto total</div>
+                                        <div class="mt-2">
+                                            @if (activo)
+                                            {
+                                                <span class="inline-block px-2 py-1 text-xs bg-green-100 text-green-800 rounded">Activo</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="inline-block px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded">Inactivo</span>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-2 text-sm text-gray-600">
+                                    <div>
+                                        <div class="text-xs text-gray-500">Pago mes</div>
+                                        <div class="font-medium">@p.GetPagoMes().ToString("F2")</div>
+                                    </div>
+
+                                    <div>
+                                        <div class="text-xs text-gray-500">Detalles</div>
+                                        <div class="font-medium">
+                                            @if (p.InstanciaPago is Clases.Pagos.InstanciaPagoUnico unico)
+                                            {
+                                                <span>Fecha: @unico.GetFechaPago().ToString("dd/MM/yyyy")</span>
+                                
+                                                <br />
+                                                <span>Recibo: @unico.GetReciboPago()</span>
+                                            }
+                                            else if (p.InstanciaPago is Clases.Pagos.InstanciaPagoRecurrente rec)
+                                            {
+                                                <span>Inicio: @rec.GetFechaInicio().ToString("dd/MM/yyyy")</span>
+                                
+                                                <br />
+                                                <span>Fin: @(rec.GetFechaFin()?.ToString("dd/MM/yyyy") ?? "Indefinido")</span>
+                                            }
+                                            else
+                                            {
+                                                <span> - </span>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="text-xs text-gray-500">Cuotas / Estado</div>
+                                        <div class="font-medium">
+                                            @if (p.InstanciaPago is Clases.Pagos.InstanciaPagoRecurrente rec2)
+                                            {
+                                                var cuotas = rec2.GetCuotas();
+                                                <span>@(cuotas == -1 ? "Indefinido" : cuotas.ToString()) cuotas</span>
+                                            }
+                                            else
+                                            {
+                                                <span>Pago único</span>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="bg-white rounded-lg shadow p-6 text-gray-600">No tienes pagos activos.</div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</section>

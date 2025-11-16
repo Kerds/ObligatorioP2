@@ -455,7 +455,7 @@ public void PrecargaPagos()
     AltaPago(new Pago(MetodosPago.Debito,   Usuarios[8],  TipoGastos[2], "Reemplazo neumático",new InstanciaPagoUnico(9300,  DateTime.Now.AddDays(-22), 2014)));
     AltaPago(new Pago(MetodosPago.Efectivo,  Usuarios[9],  TipoGastos[3], "Servicio desinfección",new InstanciaPagoUnico(6100,  DateTime.Now.AddDays(-27), 2015)));
     AltaPago(new Pago(MetodosPago.Efectivo, Usuarios[10], TipoGastos[4], "Compra matafuegos",new InstanciaPagoUnico(3900,  DateTime.Now.AddDays(-45), 2016)));
-    AltaPago(new Pago(MetodosPago.Debito,   Usuarios[11], TipoGastos[5], "Reparación notebook",new InstanciaPagoUnico(7200,  DateTime.Now.AddDays(-12), 2017)));
+    AltaPago(new Pago(MetodosPago.Debito,   Usuarios[1], TipoGastos[5], "Reparación notebook",new InstanciaPagoUnico(7200,  DateTime.Now.AddDays(-12), 2017)));
 }
 
         public Usuario ObtenerUsuario(string email, string contrasena)
@@ -579,7 +579,7 @@ public void PrecargaPagos()
         }
     
             
-            // Metodos de eliminacion de pago revisar
+            
 
         public void TipoGastoTienePago(TipoGasto t)
         {
