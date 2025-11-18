@@ -540,10 +540,7 @@ public void PrecargaPagos()
                     pagosUsuario.Add(pago);
                 }
             }
-            if (pagosUsuario.Count == 0)
-            {
-                throw new Exception("El usuario no tiene pagos activos.");
-            }
+          
             return pagosUsuario.AsEnumerable();
         }
 

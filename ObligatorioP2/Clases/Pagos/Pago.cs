@@ -3,7 +3,7 @@ using ObligatorioP2;
 
 namespace Clases.Pagos
 {
-    public class Pago : IValidar
+    public class Pago : IValidar, IComparable<Pago>
     {
         public int Id { get; set; }
         public static int UId { get; set; }
@@ -130,7 +130,9 @@ namespace Clases.Pagos
         }
         public int CompareTo(Pago other)
         {
-            return this.MontoFinal.CompareTo(other.MontoFinal) * -1;
+            if (other == null) return -1;
+
+            return MontoFinal.CompareTo(other.MontoFinal) * -1;
         }
 
         
