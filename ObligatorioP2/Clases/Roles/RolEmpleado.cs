@@ -38,9 +38,14 @@ namespace Clases.Roles
         {
             return true;        }
 
-        internal override bool VerMiembrosEquipo()
+        public override bool VerMiembrosEquipo()
         {
             return false;
+        }
+
+        public override string GetNombreRol()
+        {
+            return "Empleado";
         }
     }
 }

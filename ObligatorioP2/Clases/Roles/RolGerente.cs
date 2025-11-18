@@ -37,8 +37,13 @@ namespace Clases.Roles
             return true;
         }
 
-        internal override bool VerMiembrosEquipo()
+        public override bool VerMiembrosEquipo()
         {
             return true;        }
+
+        public override string GetNombreRol()
+        {
+            return "Gerente";
+        }
     }
 }
