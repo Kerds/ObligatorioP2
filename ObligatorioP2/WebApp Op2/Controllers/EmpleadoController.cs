@@ -27,8 +27,7 @@ namespace WebApp_Op2.Controllers
             }
             try
             {
-                ViewBag.Pagos = sistema.GetPagosUsuario(usuario);
-                ViewBag.DtoUser = usuario.GetDtoUser();
+                ViewBag.DtoUser = new DTOUser(usuario);
                 ViewBag.DtoUser.totalMes = sistema.GetTotalPagosUsuario(usuario);
             }
             catch (Exception e)
@@ -36,7 +35,7 @@ namespace WebApp_Op2.Controllers
                 ViewBag.Error = e.Message;
                 ViewBag.Pagos = new List<Pago>();
             }
-            return View(usuario);
+            return View();
         }
         [LogActionFilter]
         [RolActionFilter()]

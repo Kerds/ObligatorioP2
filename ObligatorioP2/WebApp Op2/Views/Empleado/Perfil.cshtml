@@ -1,5 +1,35 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Clases.Pagos
+@using Clases.Usuarios
 @{
-}
+    ViewData["Title"] = "Perfil";
+
+    DTOUser dto = ViewBag.DtoUser;
+    IEnumerable<Pago> pagos = ViewBag.Pagos as IEnumerable<Pago> ?? Enumerable.Empty<Pago>();
+    string error = ViewBag.Error as string;
+
+    }
+<div class="container my-4">
+    @if (!string.IsNullOrEmpty(error))
+    {
+        <div class="alert alert-warning">@error</div>
+    }
+
+    <div class="card">
+        <div class="card-body">
+            <h4>Perfil</h4>
+
+            <div class="mb-2"><strong>Nombre:</strong> @dto.nombreCompleto</div>
+            <div class="mb-2"><strong>Rol:</strong> @dto.rol</div>
+            <div class="mb-2"><strong>Email:</strong> @dto.email</div>
+            <div class="mb-2"><strong>Fecha incorporación:</strong> @dto.fechaAlta</div>
+            <div class="mb-2"><strong>Equipo:</strong> @dto.equipo</div>
+
+            <hr />
+
+            <div class="mb-3">
+                <strong>Gasto este mes:</strong>
+                <span class="text-danger">$ @dto.totalMes</span>
+            </div>
+        </div>
+    </div>
+</div>
