@@ -121,10 +121,29 @@ namespace WebApp_Op2.Controllers
         [HttpPost]
         public IActionResult EliminarGasto(TipoGasto tg)
         {
-            TipoGasto tipoGasto = sistema.GetTipoGasto(tg.Id);
-            sistema.BajaGasto(tipoGasto);
-            TempData["Succes"] = "Tipo de gasto eliminado con exito";
-
+            string userLogged = HttpContext.Session.GetString("usuario");
+            Usuario usuario = null;
+            try
+            {
+                usuario = sistema.GetUsuarioPorEmail(userLogged);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Login", "Usuario");
+            }
+            if(!usuario.MiRol.RemoveTipoGasto())
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            try { 
+                TipoGasto tipoGasto = sistema.GetTipoGasto(tg.Id);
+                sistema.BajaGasto(tipoGasto);
+                TempData["Succes"] = "Tipo de gasto eliminado con exito";
+            }catch(Exception e) { 
+                ViewBag.Error = e.Message;
+                return View();
+            }
+            
             return RedirectToAction("Gastos", "Gerente");
         }
 
