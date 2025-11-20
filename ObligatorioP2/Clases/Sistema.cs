@@ -494,7 +494,19 @@ public void PrecargaPagos()
 
         public void BajaGasto(TipoGasto tipoGasto)
         {
-            tipoGasto.Activo = false;
+
+            if(tipoGasto == null)
+            {
+                throw new Exception("El tipo de gasto no puede ser nulo.");
+            }
+            try
+            {
+                TipoGastoTienePago(tipoGasto);
+                tipoGasto.Activo = false;
+            }
+            catch (Exception e) {
+                throw;
+            }
         }
         public double GetTotalPagosUsuario(Usuario usuario)
         {
