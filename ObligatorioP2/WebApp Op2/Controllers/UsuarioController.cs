@@ -35,7 +35,7 @@ public class UsuarioController : Controller
             {
                 HttpContext.Session.SetString("rol", usuario.MiRol.ToString());
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", usuario.MiRol.ToString());
         }
         else
         {

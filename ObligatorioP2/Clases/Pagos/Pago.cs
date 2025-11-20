@@ -89,6 +89,10 @@ namespace Clases.Pagos
         }
         public double GetPagoMes()
         {
+            if(InstanciaPago.GetCuotas() == -1)
+            {
+                return MontoFinal;
+            }
             return MontoFinal / InstanciaPago.GetCuotas();
         }
         private void ValidarMetodosPago()

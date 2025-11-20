@@ -76,17 +76,9 @@ namespace Clases.Pagos
         public override double CalcularMontoPago(MetodosPago metodoPago)
         {
             double montoBase = MontoBase;
-            int cuotasRestantes = GetCuotas();
             double recargo = CalcularRecargo();
 
-            if (cuotasRestantes == -1)
-            {
-                return montoBase * recargo;
-            }
-            else
-            {
-                return montoBase * cuotasRestantes * recargo;
-            }
+            return montoBase * recargo;
         }
         public override int GetCuotas()
         {

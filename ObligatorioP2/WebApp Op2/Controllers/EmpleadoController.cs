@@ -9,6 +9,15 @@ namespace WebApp_Op2.Controllers
     public class EmpleadoController : Controller
     {
         Sistema sistema = Sistema.GetSistema();
+
+        [LogActionFilter]
+        [RolActionFilter()]
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
         [LogActionFilter]
         [RolActionFilter()]
         public IActionResult Perfil()
