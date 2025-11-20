@@ -34,6 +34,7 @@ namespace WebApp_Op2.Controllers
         [RolActionFilter()]
         public IActionResult Perfil()
         {
+
             string userLogged = HttpContext.Session.GetString("usuario");
             Console.WriteLine("Entré al perfil del Gerente");
             Usuario usuario = null;
@@ -46,27 +47,25 @@ namespace WebApp_Op2.Controllers
                 return RedirectToAction("Login", "Usuario");
             }
             IEnumerable<Usuario> miembrosEquipo =  null;
+
             try
             {
                 miembrosEquipo = usuario.GetMiembrosEquipo();
                 ViewBag.MiembrosEquipo = miembrosEquipo;
-                ViewBag.Pagos = sistema.GetPagosUsuario(usuario);
-                ViewBag.DtoUser = usuario.GetDtoUser();
+
+                ViewBag.DtoUser = new DTOUser(usuario);
                 ViewBag.DtoUser.totalMes = sistema.GetTotalPagosUsuario(usuario);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 ViewBag.Error = e.Message;
                 ViewBag.MiembrosEquipo = new List<Usuario>();
                 ViewBag.Pagos = new List<Pago>();
-                ViewBag.DtoUser = new { };
+                ViewBag.DtoUser = new DTOUser(usuario);
             }
-            return View(usuario);
+            return View();
         }
         
-        
-
-
 
         [LogActionFilter]
         [RolActionFilter()]
@@ -94,7 +93,8 @@ namespace WebApp_Op2.Controllers
 
             return View();
         }
-//Duda si es null redirige a la  vista de confirmacion?
+
+
         [LogActionFilter]
         [RolActionFilter()]
         public IActionResult EliminarGasto(int id)

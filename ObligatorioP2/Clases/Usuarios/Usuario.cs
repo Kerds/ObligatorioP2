@@ -5,7 +5,7 @@ using System.Diagnostics.Metrics;
 
 namespace Clases.Usuarios
 {
-    public class Usuario : IValidar 
+    public class Usuario : IValidar , IComparable<Usuario>
     {
         public int Id { get; set; }
         public static int UId { get; set; } = 0;
