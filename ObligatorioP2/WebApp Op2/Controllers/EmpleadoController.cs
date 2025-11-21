@@ -81,6 +81,7 @@ namespace WebApp_Op2.Controllers
             ViewBag.TiposGasto = sistema.GetTipoGastos();
             return View();
         }
+        
         [LogActionFilter]
         [RolActionFilter()]
         [HttpPost]
@@ -118,7 +119,7 @@ namespace WebApp_Op2.Controllers
                 ViewBag.Error = e.Message;
                 return View();
             }
-            return RedirectToAction("Pagos");
+            return RedirectToAction("MisPagos");
 
         }
     }

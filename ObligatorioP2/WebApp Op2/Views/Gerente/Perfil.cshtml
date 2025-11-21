@@ -9,37 +9,74 @@
     string error = ViewBag.Error as string;
 
 }
-<div class="container my-4">
+<div>
     @if (!string.IsNullOrEmpty(error))
     {
-        <div class="alert alert-warning">@error</div>
+        <div class="mb-4 bg-yellow-500/20 text-yellow-300 border border-yellow-500 px-4 py-3 rounded-lg">
+            @error
+        </div>
     }
 
-    <div class="card">
-        <div class="card-body">
-            <h4>Perfil</h4>
+    <div class="bg-gray-900 border border-gray-800 shadow-xl rounded-2xl px-10 py-8">
+        
+        <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+         
+            <div>
+                <h2 class="text-3xl font-semibold text-white mb-6">Perfil</h2>
 
-            <div class="mb-2"><strong>Nombre:</strong> @dto.nombreCompleto</div>
-            <div class="mb-2"><strong>Rol:</strong> @dto.rol</div>
-            <div class="mb-2"><strong>Email:</strong> @dto.email</div>
-            <div class="mb-2"><strong>Fecha incorporación:</strong> @dto.fechaAlta</div>
-            <div class="mb-2"><strong>Equipo:</strong> @dto.equipo</div>
+                <div class="space-y-2 text-gray-200 text-sm">
+                    <p><span class="font-semibold">Nombre:</span> @dto.nombreCompleto</p>
+                    <p><span class="font-semibold">Rol:</span> @dto.rol</p>
+                    <p><span class="font-semibold">Email:</span> @dto.email</p>
+                    <p><span class="font-semibold">Fecha de incorporación:</span> @dto.fechaAlta</p>
+                    <p><span class="font-semibold">Equipo:</span> @dto.equipo</p>
+                </div>
+            </div>
 
-            <section>
-                <h1>Miembros Equipo:</h1>
-                <ul>
-                @foreach(Usuario miembro in mEquipo)
-                {
-                    <li>@miembro.ToString()</li>
-                }
-                </ul>
-            </section>
-            <hr />
-
-            <div class="mb-3">
-                <strong>Gasto este mes:</strong>
-                <span class="text-danger">$ @dto.totalMes</span>
+          
+            <div class="md:self-start">
+                <div class="bg-gray-800 rounded-2xl px-8 py-5 text-center shadow-lg">
+                    <p class="text-gray-300 text-sm font-semibold leading-tight">
+                        Total gasto<br />del mes
+                    </p>
+                    <p class="text-red-400 text-3xl font-bold mt-2">
+                        $@dto.totalMes
+                    </p>
+                </div>
             </div>
         </div>
+
+        
+        <section class="mt-12">
+            <h3 class="text-2xl font-semibold text-white mb-6">Miembros del Equipo</h3>
+
+            <div class="bg-gray-800 rounded-xl overflow-hidden shadow border border-gray-700">
+                <table class="w-full text-left">
+                    <thead class="bg-gray-700 text-gray-200 text-sm">
+                        <tr>
+                            <th class="px-6 py-3 font-semibold">Usuario</th>
+                            <th class="px-6 py-3 font-semibold">Email</th>
+                            <th class="px-6 py-3 font-semibold">Equipo</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-100 text-sm">
+                        @foreach (Usuario miembro in mEquipo)
+                        {
+                            <tr class="border-t border-gray-700">
+                                <td class="px-6 py-3">
+                                    @miembro.Nombre @miembro.Apellido
+                                </td>
+                                <td class="px-6 py-3">
+                                    @miembro.Email
+                                </td>
+                                <td class="px-6 py-3">
+                                    @miembro.Equipo.Nombre
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </div>
 </div>

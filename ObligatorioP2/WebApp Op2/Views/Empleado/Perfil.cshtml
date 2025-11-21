@@ -7,29 +7,42 @@
     IEnumerable<Pago> pagos = ViewBag.Pagos as IEnumerable<Pago> ?? Enumerable.Empty<Pago>();
     string error = ViewBag.Error as string;
 
-    }
-<div class="container my-4">
+}
+<div class="bg-gray-900 border border-gray-800 shadow-xl rounded-2xl px-10 py-8">
+<div class="w-full my-4">
     @if (!string.IsNullOrEmpty(error))
     {
-        <div class="alert alert-warning">@error</div>
+        <div class="alert alert-warning">
+            @error
+        </div>
     }
 
-    <div class="card">
-        <div class="card-body">
-            <h4>Perfil</h4>
+    <div class="flex flex-col md:flex-row gap-8 md:items-stretch">
+        <div class="flex-1">
+            <h2 class="text-2xl font-semibold text-white mb-6 text-left">Perfil</h2>
+            <div class="space-y-2 text-gray-200 text-sm">
+            <p><span class="font-semibold">Nombre:</span> @dto.nombreCompleto</p>
+            <p><span class="font-semibold">Rol:</span>@dto.rol</p>
+        <p><span class="font-semibold">Email:</span> @dto.email</p>
+        <p><span class="font-semibold">Fecha incorporación:</span> @dto.fechaAlta</p>
+    <p><span class="font-semibold">Equipo:</span> @dto.equipo</p>
 
-            <div class="mb-2"><strong>Nombre:</strong> @dto.nombreCompleto</div>
-            <div class="mb-2"><strong>Rol:</strong> @dto.rol</div>
-            <div class="mb-2"><strong>Email:</strong> @dto.email</div>
-            <div class="mb-2"><strong>Fecha incorporación:</strong> @dto.fechaAlta</div>
-            <div class="mb-2"><strong>Equipo:</strong> @dto.equipo</div>
-
-            <hr />
-
-            <div class="mb-3">
-                <strong>Gasto este mes:</strong>
-                <span class="text-danger">$ @dto.totalMes</span>
+        </div>
+        </div>
+        <div class="w-full md:w-1/3 flex">
+            <div class="bg-gray-800 rounded-2xl px-8 py-5 text-center shadow-lg
+                            w-full h-full flex flex-col justify-center">
+                <p class="text-gray-300 text-sm font-semibold leading-tight">
+                    Total gasto<br />del mes
+                </p>
+                <p class="text-red-400 text-3xl font-bold mt-2">
+                    $@dto.totalMes
+                </p>
             </div>
         </div>
+
+        <div class="my-6 border-t border-gray-700"></div>
+
+    </div>
     </div>
 </div>

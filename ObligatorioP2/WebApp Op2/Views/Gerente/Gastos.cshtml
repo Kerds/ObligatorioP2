@@ -30,21 +30,19 @@
 
 @if (Model != null)
 {
-  <div class="relative flex flex-col w-full h-full  text-white bg-transparent shadow-lg rounded-lg backdrop-blur-md border border-white/10">
-    <table class="w-full text-left table-auto min-w-max">
-      <thead>
-      <tr class="bg-white/10 backdrop-blur-sm">
-        <th class="p-4 border-b border-white/20">
-          <p class="text-sm font-semibold uppercase tracking-wider text-gray-200">
+  <div class="bg-gray-800 rounded-xl overflow-hidden shadow border border-gray-700">
+    <table class="w-full text-left">
+      <thead class="bg-gray-700 text-gray-200 text-sm">
+      <tr>
+        <th class="px-6 py-3 font-semibold">
+          
             Nombre
-          </p>
+          
         </th>
-        <th class="p-4 border-b border-white/20">
-          <p class="text-sm font-semibold uppercase tracking-wider text-gray-200">
+        <th class="px-6 py-3 font-semibold">
             Descripcion
-          </p>
         </th>
-        <th class="p-4 border-b border-white/20"></th>
+        <th class="px-6 py-3 font-semibold">Accion</th>
       </tr>
       </thead>
       <tbody>
@@ -81,7 +79,7 @@
       </tbody>
     </table>
   </div>
-    <div class="p-4 text-center text-gray-300 border-b border-white/10 h-16">
+    <div class="p-4 text-center text-gray-300 border-white/10 h-16">
     <p id="pMensaje"
            class="text-md px-4 py-2 font-semibold ">
    @if (error.Length > 0 ) { @error }
