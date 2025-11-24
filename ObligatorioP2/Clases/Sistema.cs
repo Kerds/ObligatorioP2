@@ -530,7 +530,7 @@ public void PrecargaPagos()
             }
             return total;
         }
-        public IEnumerable<Pago> GetPagosUsuario(Usuario usuario)
+        public IEnumerable<Pago> GetPagosUsuario(Usuario usuario, DateTime? fechaPago = null)
         {
             if (usuario == null)
             {
@@ -547,7 +547,7 @@ public void PrecargaPagos()
             List<Pago> pagosUsuario = new List<Pago>();
             foreach (Pago pago in Pagos)
             {
-                if (pago.UsuarioAsociado.Email == usuario.Email && pago.EsPagoActivo(DateTime.Now))
+                if (pago.UsuarioAsociado.Email == usuario.Email && pago.EsPagoActivo(fechaPago.HasValue? fechaPago.Value : DateTime.Now))
                 {
                     pagosUsuario.Add(pago);
                 }

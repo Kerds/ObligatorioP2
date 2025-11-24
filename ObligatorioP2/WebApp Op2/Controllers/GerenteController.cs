@@ -224,5 +224,38 @@ namespace WebApp_Op2.Controllers
             }
             return View(usuario);
         }
-    }
+        [LogActionFilter]
+        [RolActionFilter()]
+        [HttpPost]
+        public IActionResult Pagos(DateTime fecha)
+        { 
+            string userLogged = HttpContext.Session.GetString("usuario");
+            Usuario usuario = null;
+            try
+            {
+                usuario = sistema.GetUsuarioPorEmail(userLogged);
+            }
+            catch (Exception e)
+            {
+                return RedirectToAction("Login", "Usuario");
+            }
+
+            IEnumerable<Usuario> miembrosEquipo = null;
+            IEnumerable<Pago> pagosEquipo = new List<Pago>();
+            try
+            {
+                pagosEquipo = sistema.GetPagosMiembrosEquipo(usuario.GetNombreEquipo(), usuario);
+                ViewBag.MisPagos = sistema.GetPagosUsuario(usuario, fecha);
+                ViewBag.PagosEquipo = pagosEquipo;
+            }
+            catch (Exception e)
+            {
+                ViewBag.Error = e.Message;
+                ViewBag.MisPagos = new List<Pago>();
+                ViewBag.PagosEquipo = new List<Pago>();
+
+            }
+            return View(usuario);
+        }
+        }
 }
