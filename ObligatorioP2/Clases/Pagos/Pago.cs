@@ -135,12 +135,11 @@ namespace Clases.Pagos
         public int CompareTo(Pago other)
         {
             if (other == null) return -1;
-
-            return MontoFinal.CompareTo(other.MontoFinal) * -1;
+            double pagoMes = GetPagoMes();
+            return pagoMes.CompareTo(other.GetPagoMes()) * -1;
         }
 
         
-        //Devuelve true si machea el id
         public bool UsaTipoGasto(TipoGasto tipoGasto)
         {
             return TipoGasto.Equals(tipoGasto);

@@ -547,7 +547,7 @@ public void PrecargaPagos()
             List<Pago> pagosUsuario = new List<Pago>();
             foreach (Pago pago in Pagos)
             {
-                if (pago.UsuarioAsociado.Email == usuario.Email && pago.EsPagoActivo(fechaPago.HasValue? fechaPago.Value : DateTime.Now))
+                if (pago.UsuarioAsociado.Email == usuario.Email && pago.EsPagoActivo(fechaPago ?? DateTime.Now))
                 {
                     pagosUsuario.Add(pago);
                 }
