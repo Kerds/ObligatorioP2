@@ -3,9 +3,8 @@
 @{
     ViewData["Title"] = "Perfil";
 
-    DTOUser dto = ViewBag.DtoUser;
-    IEnumerable<Pago> pagos = ViewBag.Pagos as IEnumerable<Pago> ?? Enumerable.Empty<Pago>();
-    IEnumerable<Usuario> mEquipo = ViewBag.MiembrosEquipo;
+    DTOUser dto = @Model;
+    IEnumerable<Usuario> mEquipo = dto.MiembrosEquipo;
     string error = ViewBag.Error as string;
 
 }

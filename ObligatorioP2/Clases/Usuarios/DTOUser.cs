@@ -15,6 +15,7 @@ namespace Clases.Usuarios
         public string rol { get; set; }
         public DateTime fechaAlta { get; set; }
         public double totalMes { get; set; }
+        public IEnumerable<Usuario>? MiembrosEquipo { get; set; } = null;
         public DTOUser()
         {
         }
@@ -26,6 +27,7 @@ namespace Clases.Usuarios
             rol = u.MiRol.GetNombreRol();
             fechaAlta = u.FechaAlta;
             totalMes = 0;
+           
         }
     }
 }

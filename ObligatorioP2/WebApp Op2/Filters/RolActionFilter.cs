@@ -13,7 +13,6 @@ namespace WebApp_Op2.Filters
             Sistema s = Sistema.GetSistema();
                 // Obtener controller/action actuales
                 var controller = context.RouteData.Values["controller"]?.ToString() ?? "";
-                var action = context.RouteData.Values["action"]?.ToString() ?? "";
                 
                     string userLogged = context.HttpContext.Session.GetString("usuario");
                     string roleLogged = context.HttpContext.Session.GetString("rol");
@@ -30,7 +29,6 @@ namespace WebApp_Op2.Filters
                 return;
 
             }
-            Usuario usuario = s.GetUsuarioPorEmail(userLogged);
         }
 
         public override void OnActionExecuted(ActionExecutedContext context)

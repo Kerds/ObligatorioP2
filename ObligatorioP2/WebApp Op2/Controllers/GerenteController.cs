@@ -37,6 +37,7 @@ namespace WebApp_Op2.Controllers
 
             string userLogged = HttpContext.Session.GetString("usuario");
             Console.WriteLine("Entré al perfil del Gerente");
+
             Usuario usuario = null;
             try
             {
@@ -47,23 +48,24 @@ namespace WebApp_Op2.Controllers
                 return RedirectToAction("Login", "Usuario");
             }
             IEnumerable<Usuario> miembrosEquipo =  null;
-
+            DTOUser dtoUser = null;
             try
             {
                 miembrosEquipo = usuario.GetMiembrosEquipo();
-                ViewBag.MiembrosEquipo = miembrosEquipo;
 
-                ViewBag.DtoUser = new DTOUser(usuario);
-                ViewBag.DtoUser.totalMes = sistema.GetTotalPagosUsuario(usuario);
+                 dtoUser = new DTOUser(usuario);
+                dtoUser.totalMes = sistema.GetTotalPagosUsuario(usuario);
+                dtoUser.MiembrosEquipo = miembrosEquipo;
+
             }
             catch (Exception e)
             {
                 ViewBag.Error = e.Message;
-                ViewBag.MiembrosEquipo = new List<Usuario>();
-                ViewBag.Pagos = new List<Pago>();
-                ViewBag.DtoUser = new DTOUser(usuario);
+               dtoUser = new DTOUser(usuario);
+                dtoUser.MiembrosEquipo = new List<Usuario>();
             }
-            return View();
+
+            return View(dtoUser);
         }
         
 

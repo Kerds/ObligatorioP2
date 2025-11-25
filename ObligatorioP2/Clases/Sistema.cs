@@ -74,7 +74,7 @@ namespace ObligatorioP2
         {
             try
             {
-                if (equipo == null)
+                if (equipo == null) 
                 {
                     throw new Exception("El equipo no puede ser nulo.");
                 }
