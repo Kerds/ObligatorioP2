@@ -39,7 +39,7 @@ public class UsuarioController : Controller
         }
         else
         {
-            ViewBag.Error = "Nombre de usuario o contraseña incorrectos.";
+            ViewBag.Error = "Nombre de usuario o contraseÃ±a incorrectos.";
             return View();
         }
     }
