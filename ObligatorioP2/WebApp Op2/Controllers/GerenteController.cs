@@ -214,12 +214,15 @@ namespace WebApp_Op2.Controllers
                 pagosEquipo = sistema.GetPagosMiembrosEquipo(usuario.GetNombreEquipo(), usuario);
                 ViewBag.MisPagos = sistema.GetPagosUsuario(usuario);
                 ViewBag.PagosEquipo = pagosEquipo;
+                ViewBag.FechaFiltro = DateTime.Now;
+
             }
             catch (Exception e)
             {
                 ViewBag.Error = e.Message;
                 ViewBag.MisPagos = new List<Pago>();
                 ViewBag.PagosEquipo = new List<Pago>();
+                ViewBag.FechaFiltro = DateTime.Now;
 
             }
             return View(usuario);
@@ -247,12 +250,14 @@ namespace WebApp_Op2.Controllers
                 pagosEquipo = sistema.GetPagosMiembrosEquipo(usuario.GetNombreEquipo(), usuario, fecha);
                 ViewBag.MisPagos = sistema.GetPagosUsuario(usuario, fecha);
                 ViewBag.PagosEquipo = pagosEquipo;
+                ViewBag.FechaFiltro = fecha;
             }
             catch (Exception e)
             {
                 ViewBag.Error = e.Message;
                 ViewBag.MisPagos = new List<Pago>();
                 ViewBag.PagosEquipo = new List<Pago>();
+                ViewBag.FechaFiltro = fecha;
 
             }
             return View(usuario);
