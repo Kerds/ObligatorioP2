@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Perfil";
 
-    DTOUser dto = ViewBag.DtoUser;
+    DTOUser dto = @Model;
     IEnumerable<Pago> pagos = ViewBag.Pagos as IEnumerable<Pago> ?? Enumerable.Empty<Pago>();
     string error = ViewBag.Error as string;
 

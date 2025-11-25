@@ -34,17 +34,18 @@ namespace WebApp_Op2.Controllers
             {
                 return RedirectToAction("Login", "Usuario");
             }
+            DTOUser dtoUser = null;
             try
             {
-                ViewBag.DtoUser = new DTOUser(usuario);
-                ViewBag.DtoUser.totalMes = sistema.GetTotalPagosUsuario(usuario);
+                dtoUser = new DTOUser(usuario);
+               dtoUser.totalMes = sistema.GetTotalPagosUsuario(usuario);
             }
             catch (Exception e)
             {
                 ViewBag.Error = e.Message;
                 ViewBag.Pagos = new List<Pago>();
             }
-            return View();
+            return View(dtoUser);
         }
         [LogActionFilter]
         [RolActionFilter()]

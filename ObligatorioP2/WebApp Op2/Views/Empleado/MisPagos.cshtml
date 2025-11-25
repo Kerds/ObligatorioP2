@@ -31,7 +31,7 @@
 
                 @{
                     // Materializar la colección para evitar múltiples enumeraciones y nulls
-                    var misPagos = (ViewBag.Pagos as IEnumerable<Pago>)?.ToList() ?? new List<Pago>();
+                    List<Pago> misPagos = (ViewBag.Pagos as IEnumerable<Pago>)?.ToList() ?? new List<Pago>();
                 }
 
                 <!-- Contenedor con altura máxima 75vh y scroll vertical -->
@@ -100,7 +100,7 @@
                                         <div class="font-medium">
                                             @if (p.InstanciaPago is Clases.Pagos.InstanciaPagoRecurrente rec2)
                                             {
-                                                var cuotas = rec2.GetCuotas();
+                                                int cuotas = rec2.GetCuotas();
                                                 <span>@(cuotas == -1 ? "Indefinido" : cuotas.ToString()) cuotas</span>
                                             }
                                             else
