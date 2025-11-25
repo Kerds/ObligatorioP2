@@ -32,7 +32,7 @@
 
                 @{
                     // materializamos la colección para evitar enumeraciones múltiples
-                    var misPagos = (ViewBag.MisPagos as IEnumerable<Pago>)?.ToList() ?? new List<Pago>();
+                    List<Pago> misPagos = (ViewBag.MisPagos as IEnumerable<Pago>)?.ToList() ?? new List<Pago>();
                 }
 
                 <!-- Este contenedor tiene altura 75vh y scrollbar vertical si hay más elementos -->
@@ -101,7 +101,7 @@
                                         <div class="font-medium">
                                             @if (p.InstanciaPago is Clases.Pagos.InstanciaPagoRecurrente rec2)
                                             {
-                                                var cuotas = rec2.GetCuotas();
+                                                int cuotas = rec2.GetCuotas();
                                                 <span>@(cuotas == -1 ? "Indefinido" : cuotas.ToString()) cuotas</span>
                                             }
                                             else
@@ -145,7 +145,7 @@
 
 
                 @{
-                    var pagosEquipo = (ViewBag.PagosEquipo as IEnumerable<Pago>)?.ToList() ?? new List<Pago>();
+                    List<Pago> pagosEquipo = (ViewBag.PagosEquipo as IEnumerable<Pago>)?.ToList() ?? new List<Pago>();
                 }
 
                 <!-- altura limitada y scroll vertical -->
@@ -156,7 +156,7 @@
                     }
                     else
                     {
-                        foreach (var p in pagosEquipo)
+                        foreach (Pago p in pagosEquipo)
                         {
                             bool activo = p.EsPagoActivo(DateTime.Now);
                             <div class="border-b last:border-b-0 pb-3 mb-3">
