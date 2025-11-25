@@ -549,6 +549,7 @@ public void PrecargaPagos()
             {
                 if (pago.UsuarioAsociado.Email == usuario.Email && pago.EsPagoActivo(fechaPago ?? DateTime.Now))
                 {
+                    
                     pagosUsuario.Add(pago);
                 }
             }

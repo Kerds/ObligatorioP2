@@ -104,7 +104,7 @@ namespace Clases.Pagos
         }
         public override bool EsPagoActivo(DateTime fecha)
         {
-            return fecha >= FechaInicio && (FechaFin == null || fecha <= FechaFin);
+            return fecha >= FechaInicio && (FechaFin == null || fecha >= FechaInicio && fecha <= FechaFin);
         }
         public override string MiTipo()
         {
