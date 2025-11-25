@@ -244,7 +244,7 @@ namespace WebApp_Op2.Controllers
             IEnumerable<Pago> pagosEquipo = new List<Pago>();
             try
             {
-                pagosEquipo = sistema.GetPagosMiembrosEquipo(usuario.GetNombreEquipo(), usuario);
+                pagosEquipo = sistema.GetPagosMiembrosEquipo(usuario.GetNombreEquipo(), usuario, fecha);
                 ViewBag.MisPagos = sistema.GetPagosUsuario(usuario, fecha);
                 ViewBag.PagosEquipo = pagosEquipo;
             }

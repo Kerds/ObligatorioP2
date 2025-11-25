@@ -121,11 +121,28 @@
                 </div>
             </div>
 
-            <!-- Columna derecha: panel secundario con altura máxima igual y scroll -->
+            
             <div class="md:col-span-1">
-                <div class="bg-white rounded-lg shadow p-4 mb-4">
-                    <h2 class="text-lg font-medium text-gray-800">Pagos del equipo</h2>
+                <div class="bg-white rounded-lg shadow p-4 flex flex-col mb-4 gap-4">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-lg font-medium text-gray-800">
+                            Pagos del equipo</h2>
+                        <form asp-action="Pagos" method="post" class="flex items-center gap-2">
+                            <input
+                                type="date"
+                                name="fecha"
+                                class="px-3 py-1.5 border border-gray-300 rounded-md text-sm text-gray-700
+                    focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"/>
+
+                            <button
+                                type="submit"
+                                class="px-3 py-1.5 text-sm bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition">
+                                Filtrar
+                            </button>
+                        </form>
+                    </div>
                 </div>
+
 
                 @{
                     var pagosEquipo = (ViewBag.PagosEquipo as IEnumerable<Pago>)?.ToList() ?? new List<Pago>();

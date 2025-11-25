@@ -556,7 +556,7 @@ public void PrecargaPagos()
             return pagosUsuario.AsEnumerable();
         }
 
-        public IEnumerable<Pago> GetPagosMiembrosEquipo(string nombreEquipo, Usuario user)
+        public IEnumerable<Pago> GetPagosMiembrosEquipo(string nombreEquipo, Usuario user, DateTime? fechaPago = null)
         {
             Equipo e = GetEquipoPorNombre(nombreEquipo);
             if (e == null)
@@ -578,7 +578,7 @@ public void PrecargaPagos()
                 {
                     continue;
                 }
-                foreach (Pago p in GetPagosUsuario(u))
+                foreach (Pago p in GetPagosUsuario(u, fechaPago))
                 {
                     pagosEquipo.Add(p);
                 }
