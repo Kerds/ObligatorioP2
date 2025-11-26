@@ -154,7 +154,7 @@ namespace WebApp_Op2.Controllers
         [RolActionFilter()]
         public IActionResult AltaPago()
         {
-            ViewBag.TiposGasto = sistema.GetTipoGastos();
+            ViewBag.TiposGasto = sistema.GetTipoGastosActivos();
             return View();
         }
         [LogActionFilter]

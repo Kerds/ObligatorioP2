@@ -49,6 +49,18 @@ namespace ObligatorioP2
         {
             return TipoGastos;
         }
+        public IEnumerable<TipoGasto> GetTipoGastosActivos()
+        {
+            List<TipoGasto> tipos = new List<TipoGasto>();
+            foreach(TipoGasto t in TipoGastos)
+            {
+                if (t.Activo)
+                {
+                    tipos.Add(t);
+                }
+            }
+            return tipos;
+        }
         public void AltaUsuario(Usuario usuario)
         {
             try
