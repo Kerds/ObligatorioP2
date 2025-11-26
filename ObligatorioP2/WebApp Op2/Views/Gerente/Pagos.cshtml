@@ -1,14 +1,14 @@
 ﻿@using Clases.Pagos
-@model Clases.Usuarios.Usuario
+@model Clases.Usuarios.DTOUser
 
 <section class="flex items-center justify-center bg-gray-800 py-8">
     <div class="w-full max-w-6xl px-4">
         <div class="bg-white rounded-lg shadow-md p-6 mb-6">
             <div class="flex items-center justify-between">
                 <div>
-                    <h1 class="text-2xl font-semibold text-gray-800">@Model.Nombre @Model.Apellido</h1>
-                    <p class="text-sm text-gray-600">Equipo: @Model.Equipo?.Nombre</p>
-                    <p class="text-sm text-gray-600">Email: @Model.Email</p>
+                    <h1 class="text-2xl font-semibold text-gray-800">@Model.nombreCompleto</h1>
+                    <p class="text-sm text-gray-600">Equipo: @Model.equipo</p>
+                    <p class="text-sm text-gray-600">Email: @Model.email</p>
                 </div>
                 <div class="text-right">
                     <a href="@Url.Action("Perfil", "Gerente")" class="inline-block px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Volver al Perfil</a>
@@ -32,12 +32,12 @@
 
                 @{
                     // materializamos la colección para evitar enumeraciones múltiples
-                    List<Pago> misPagos = (ViewBag.MisPagos as IEnumerable<Pago>)?.ToList() ?? new List<Pago>();
+                    IEnumerable<Pago> misPagos = (@Model.MisPagos)?.ToList() ?? new List<Pago>();
                 }
 
                 <!-- Este contenedor tiene altura 75vh y scrollbar vertical si hay más elementos -->
                 <div class="space-y-4 bg-transparent p-0 max-h-[75vh] overflow-y-auto">
-                    @if (misPagos.Count > 0)
+                    @if (misPagos.Count() > 0)
                     {
                         foreach (Pago p in misPagos)
                         {
@@ -152,7 +152,7 @@
                 </div>
 
                 @{
-                    List<Pago> pagosEquipo = (ViewBag.PagosEquipo as IEnumerable<Pago>)?.ToList() ?? new List<Pago>();
+                    IEnumerable<Pago> pagosEquipo = (@Model.PagosEquipo )?.ToList() ?? new List<Pago>();
                 }
 
                 <!-- altura limitada y scroll vertical -->

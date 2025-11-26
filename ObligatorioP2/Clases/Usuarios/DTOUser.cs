@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Clases.Pagos;
 using Clases.Usuarios;
 
 namespace Clases.Usuarios
@@ -16,6 +17,9 @@ namespace Clases.Usuarios
         public DateTime fechaAlta { get; set; }
         public double totalMes { get; set; }
         public IEnumerable<Usuario>? MiembrosEquipo { get; set; } = null;
+        public IEnumerable<Pago> PagosEquipo { get; set; } = null;
+        
+        public IEnumerable<Pago> MisPagos { get; set; } = null;
         public DTOUser()
         {
         }
@@ -27,7 +31,6 @@ namespace Clases.Usuarios
             rol = u.MiRol.GetNombreRol();
             fechaAlta = u.FechaAlta;
             totalMes = 0;
-           
         }
     }
 }

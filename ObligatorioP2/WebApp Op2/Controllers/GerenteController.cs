@@ -197,7 +197,7 @@ namespace WebApp_Op2.Controllers
         [LogActionFilter]
         [RolActionFilter()]
         public IActionResult Pagos()
-        {
+        { 
             string userLogged = HttpContext.Session.GetString("usuario");
             Usuario usuario = null;
             try
@@ -211,23 +211,26 @@ namespace WebApp_Op2.Controllers
 
             IEnumerable<Usuario> miembrosEquipo = null;
             IEnumerable<Pago> pagosEquipo = new List<Pago>();
+            DTOUser dtoUser = null;
             try
             {
+                dtoUser = new DTOUser(usuario);
                 pagosEquipo = sistema.GetPagosMiembrosEquipo(usuario.GetNombreEquipo(), usuario);
-                ViewBag.MisPagos = sistema.GetPagosUsuario(usuario);
-                ViewBag.PagosEquipo = pagosEquipo;
-                ViewBag.FechaFiltro = DateTime.Now;
-
+                dtoUser.MisPagos = sistema.GetPagosUsuario(usuario);
+                dtoUser.PagosEquipo = pagosEquipo;
+                ViewBag.FechaFiltro = DateTime.Now;;
             }
             catch (Exception e)
             {
+                dtoUser = new DTOUser(usuario);
+
                 ViewBag.Error = e.Message;
-                ViewBag.MisPagos = new List<Pago>();
-                ViewBag.PagosEquipo = new List<Pago>();
-                ViewBag.FechaFiltro = DateTime.Now;
+                dtoUser.MisPagos = new List<Pago>();
+                dtoUser.PagosEquipo = new List<Pago>();
+                ViewBag.FechaFiltro = DateTime.Now;;
 
             }
-            return View(usuario);
+            return View(dtoUser);
         }
         [LogActionFilter]
         [RolActionFilter()]
@@ -247,22 +250,26 @@ namespace WebApp_Op2.Controllers
 
             IEnumerable<Usuario> miembrosEquipo = null;
             IEnumerable<Pago> pagosEquipo = new List<Pago>();
+            DTOUser dtoUser = null;
             try
             {
+                dtoUser = new DTOUser(usuario);
                 pagosEquipo = sistema.GetPagosMiembrosEquipo(usuario.GetNombreEquipo(), usuario, fecha);
-                ViewBag.MisPagos = sistema.GetPagosUsuario(usuario, fecha);
-                ViewBag.PagosEquipo = pagosEquipo;
+                dtoUser.MisPagos = sistema.GetPagosUsuario(usuario, fecha);
+                dtoUser.PagosEquipo = pagosEquipo;
                 ViewBag.FechaFiltro = fecha;
             }
             catch (Exception e)
             {
+                dtoUser = new DTOUser(usuario);
+
                 ViewBag.Error = e.Message;
-                ViewBag.MisPagos = new List<Pago>();
-                ViewBag.PagosEquipo = new List<Pago>();
+                dtoUser.MisPagos = new List<Pago>();
+                dtoUser.PagosEquipo = new List<Pago>();
                 ViewBag.FechaFiltro = fecha;
 
             }
-            return View(usuario);
+            return View(dtoUser);
         }
         }
 }
