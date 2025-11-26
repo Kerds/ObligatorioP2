@@ -169,20 +169,7 @@ namespace Clases.Usuarios
         {
             return Equipo.Nombre;
         }
-
-        public dynamic GetDtoUser()
-        {
-            return new
-            {
-                nombreCompleto = this.Nombre + " " + this.Apellido,
-                email = this.Email,
-                equipo = this.Equipo.Nombre,
-                rol = this.MiRol != null ? this.MiRol.ToString() : null,
-                incorporacion = this.FechaAlta,
-                totalMes = 0,
-            };
-
-        }
+        
         public int CompareTo(Usuario other)
         {
             return this.Email.CompareTo(other.Email);
