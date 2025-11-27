@@ -1,4 +1,5 @@
-﻿@*
+﻿@using Clases.Pagos
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -40,7 +41,7 @@
                 <option value="">-- Seleccione --</option>
                 @if (ViewBag.TiposGasto != null)
                 {
-                    foreach (var tg in (IEnumerable<dynamic>)ViewBag.TiposGasto)
+                    foreach (TipoGasto tg in (IEnumerable<dynamic>)ViewBag.TiposGasto)
                     {
                         <option value="@tg.Nombre">@tg.Nombre</option>
                     }

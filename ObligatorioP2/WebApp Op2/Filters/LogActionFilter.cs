@@ -8,8 +8,8 @@ namespace WebApp_Op2.Filters
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             // Obtener controller/action actuales
-            var controller = context.RouteData.Values["controller"]?.ToString() ?? "";
-            var action = context.RouteData.Values["action"]?.ToString() ?? "";
+            string controller = context.RouteData.Values["controller"]?.ToString() ?? "";
+            string action = context.RouteData.Values["action"]?.ToString() ?? "";
 
             if (string.Equals(controller, "Usuario", StringComparison.OrdinalIgnoreCase)
                 && string.Equals(action, "Login", StringComparison.OrdinalIgnoreCase))
@@ -18,7 +18,7 @@ namespace WebApp_Op2.Filters
             }
 
             // Si no hay usuario en sesión, redirigir al Login (UsuarioController.Login)
-            var userLogged = context.HttpContext.Session.GetString("usuario");
+            string userLogged = context.HttpContext.Session.GetString("usuario");
             if (string.IsNullOrEmpty(userLogged))
             {
                 context.Result = new RedirectToActionResult("Login", "Usuario", null);
