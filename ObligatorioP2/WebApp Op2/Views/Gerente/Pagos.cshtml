@@ -23,7 +23,6 @@
             </div>
         }
 
-        <!-- Contenedor con columnas; la columna principal tendrá altura fija (75vh) y scroll -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="">
                 <div class="bg-white rounded-lg shadow p-4 mb-4">
@@ -170,6 +169,8 @@
                                 <div class="flex items-start justify-between">
                                     <div>
                                         <div class="text-sm font-semibold text-gray-700">@p.UsuarioAsociado?.Nombre @p.UsuarioAsociado?.Apellido</div>
+                                        <div class="text-sm font-semibold text-gray-700">@p.UsuarioAsociado?.Email</div>
+
                                         <p class="text-sm text-gray-600">@p.TipoGasto?.Nombre · @p.InstanciaPago.MiTipo()</p>
                                     </div>
                                     <div class="text-right">

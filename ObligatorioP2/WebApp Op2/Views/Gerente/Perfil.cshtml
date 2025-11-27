@@ -54,8 +54,12 @@
                     <thead class="bg-gray-700 text-gray-200 text-sm">
                         <tr>
                             <th class="px-6 py-3 font-semibold">Usuario</th>
+                            <th class="px-6 py-3 font-semibold">Rol</th>
+                            <th class="px-6 py-3 font-semibold">Fecha Incorporacion</th>
+
                             <th class="px-6 py-3 font-semibold">Email</th>
                             <th class="px-6 py-3 font-semibold">Equipo</th>
+
                         </tr>
                     </thead>
                     <tbody class="text-gray-100 text-sm">
@@ -64,6 +68,12 @@
                             <tr class="border-t border-gray-700">
                                 <td class="px-6 py-3">
                                     @miembro.Nombre @miembro.Apellido
+                                </td>
+                                <td class="px-6 py-3">
+                                    @miembro.MiRol.ToString()
+                                </td>
+                                <td class="px-6 py-3">
+                                    @miembro.FechaAlta.ToString("dd/MM/yyyy")
                                 </td>
                                 <td class="px-6 py-3">
                                     @miembro.Email
