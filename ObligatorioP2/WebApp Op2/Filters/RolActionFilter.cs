@@ -12,7 +12,7 @@ namespace WebApp_Op2.Filters
             {
             Sistema s = Sistema.GetSistema();
                 // Obtener controller/action actuales
-                var controller = context.RouteData.Values["controller"]?.ToString() ?? "";
+                string controller = context.RouteData.Values["controller"]?.ToString() ?? "";
                 
                     string userLogged = context.HttpContext.Session.GetString("usuario");
                     string roleLogged = context.HttpContext.Session.GetString("rol");
